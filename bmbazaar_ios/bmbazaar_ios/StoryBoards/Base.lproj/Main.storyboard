@@ -11,7 +11,7 @@
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="LoginViewController" customClass="ViewController" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="LoginViewController" customClass="LoginViewController" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,6 +81,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="arq-pf-Xky" secondAttribute="trailing" constant="145" id="zmj-Bf-3bD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailText" destination="bIO-UD-9xM" id="56y-sa-ND4"/>
+                        <outlet property="loginButton" destination="tIw-qo-fvQ" id="ZaO-2m-H2A"/>
+                        <outlet property="passwordText" destination="cyK-bU-jOG" id="kUA-Ix-n1v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
