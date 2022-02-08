@@ -19,4 +19,17 @@ class UserLoginViewController: UIViewController {
       
     }
     
+    @IBAction func onUserLogin(_ sender: Any) {
+        performSegue(withIdentifier: "toMainPage", sender: self);
+        isModalInPresentation.toggle();
+        
+    }
+    
+    
+    @IBAction func onGuestLogin(_ sender: UIButton) {
+        performSegue(withIdentifier: "toMainPage", sender: self);
+        isModalInPresentation.toggle();
+    }
+    
+    
 }
