@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jcj-dZ-7JT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -8,6 +8,54 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--UserLoginViewController-->
+        <scene sceneID="FF3-Ex-Y9i">
+            <objects>
+                <viewController id="jcj-dZ-7JT" userLabel="UserLoginViewController" customClass="UserLoginViewController" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0od-D8-Amp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tmI-Xr-bHg">
+                                <rect key="frame" x="20" y="347" width="374" height="202"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D45-HB-laW">
+                                        <rect key="frame" x="0.0" y="0.0" width="177" height="202"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="-170" minY="0.0" maxX="0.0" maxY="-180"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="25"/>
+                                        <state key="normal" title="User Login" image="avatar-5">
+                                            <color key="titleColor" red="0.054901960780000002" green="0.36078431370000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dC4-HT-3Rc">
+                                        <rect key="frame" x="197" y="0.0" width="177" height="202"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="-170" minY="0.0" maxX="0.0" maxY="-180"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="25"/>
+                                        <state key="normal" title="Guest Login" image="sponge">
+                                            <color key="titleColor" red="0.054901960780000002" green="0.36078431370000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Uge-fb-Y9o"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tmI-Xr-bHg" firstAttribute="top" secondItem="Uge-fb-Y9o" secondAttribute="top" constant="303" id="348-Yb-Pcn"/>
+                            <constraint firstItem="Uge-fb-Y9o" firstAttribute="bottom" secondItem="tmI-Xr-bHg" secondAttribute="bottom" constant="313" id="Axq-KM-6CB"/>
+                            <constraint firstItem="tmI-Xr-bHg" firstAttribute="centerX" secondItem="0od-D8-Amp" secondAttribute="centerX" id="Qeb-mL-s7B"/>
+                            <constraint firstItem="tmI-Xr-bHg" firstAttribute="leading" secondItem="Uge-fb-Y9o" secondAttribute="leading" constant="20" id="U1o-UU-tAS"/>
+                            <constraint firstItem="Uge-fb-Y9o" firstAttribute="trailing" secondItem="tmI-Xr-bHg" secondAttribute="trailing" constant="20" id="YCG-9X-KkW"/>
+                            <constraint firstItem="tmI-Xr-bHg" firstAttribute="centerY" secondItem="0od-D8-Amp" secondAttribute="centerY" id="tJE-fo-J4i"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3RN-1h-Y4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-588.40579710144937" y="69.642857142857139"/>
+        </scene>
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -93,6 +141,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avatar-5" width="341.33334350585938" height="341.33334350585938"/>
+        <image name="sponge" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
