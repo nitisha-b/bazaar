@@ -14,21 +14,17 @@ class UserLoginViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-//        guestLoginButton.adjustsImageSizeForAccessibilityContentSizeCategory = true;
-        
-      
     }
     
     @IBAction func onUserLogin(_ sender: Any) {
-        performSegue(withIdentifier: "toMainPage", sender: self);
-        isModalInPresentation.toggle();
+        navigationController?.pushViewController(MainPageViewController(), animated: true);
         
     }
     
     
     @IBAction func onGuestLogin(_ sender: UIButton) {
-        performSegue(withIdentifier: "toMainPage", sender: self);
-        isModalInPresentation.toggle();
+        navigationController?.pushViewController(MainPageViewController(), animated: true);
+    
     }
     
     

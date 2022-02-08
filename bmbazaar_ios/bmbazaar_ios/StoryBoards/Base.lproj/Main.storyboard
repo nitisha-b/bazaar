@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,7 +42,7 @@
                                         </state>
                                         <connections>
                                             <action selector="onGuestLogin:" destination="jcj-dZ-7JT" eventType="touchUpInside" id="BtC-tx-eyz"/>
-                                            <segue destination="Qx4-Ov-ZJA" kind="showDetail" identifier="toMainPage" id="hos-dI-Ei6"/>
+                                            <segue destination="S6A-2L-PmB" kind="show" identifier="toMainPage" id="uqF-JT-L9c"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -63,30 +64,36 @@
             </objects>
             <point key="canvasLocation" x="-588.40579710144937" y="69.642857142857139"/>
         </scene>
-        <!--MainPageViewController-->
-        <scene sceneID="Vc3-8E-XXa">
+        <!--Home-->
+        <scene sceneID="yV9-wY-2NU">
             <objects>
-                <viewController id="Qx4-Ov-ZJA" userLabel="MainPageViewController" customClass="MainPageViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PLX-WR-L2p">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                <viewController storyboardIdentifier="homepage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNJ-aS-50B" customClass="MainPageViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wpH-yu-5fh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY1-to-1mt">
-                                <rect key="frame" x="186" y="154" width="80" height="21"/>
+                                <rect key="frame" x="180" y="277" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="ItG-R3-5qB"/>
+                        <viewLayoutGuide key="safeArea" id="dpc-eO-CFa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0Q9-xp-lZg"/>
+                    <navigationItem key="navigationItem" title="Home" id="W3b-bI-GbV">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="OeQ-Oz-SFI">
+                            <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ohf-FN-R0o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bi0-sU-TQ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="238" y="70"/>
+            <point key="canvasLocation" x="932" y="52"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -171,9 +178,29 @@
             </objects>
             <point key="canvasLocation" x="-542" y="816"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="6fU-43-dhu">
+            <objects>
+                <navigationController title="Home" automaticallyAdjustsScrollViewInsets="NO" id="S6A-2L-PmB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="LSg-DZ-CrA"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dSo-vI-hcY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hNJ-aS-50B" kind="relationship" relationship="rootViewController" id="tp1-4D-srA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D6E-vp-HsJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141" y="70"/>
+        </scene>
     </scenes>
     <resources>
         <image name="avatar-5" width="341.33334350585938" height="341.33334350585938"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="sponge" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
