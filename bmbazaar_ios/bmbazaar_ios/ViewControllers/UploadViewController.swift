@@ -10,12 +10,12 @@ import UIKit
 
 class UploadViewController: UIViewController {
 
-//    @IBOutlet weak var titleText: UITextField!
-//    @IBOutlet weak var descText: UITextField!
-//    @IBOutlet weak var venmoText: UITextField!
-//    @IBOutlet weak var locationText: UITextField!
-//    @IBOutlet weak var priceText: UITextField!
-//    @IBOutlet weak var segControl: UISegmentedControl!
+    @IBOutlet weak var titleText: UITextField!
+    @IBOutlet weak var descText: UITextField!
+    @IBOutlet weak var venmoText: UITextField!
+    @IBOutlet weak var locationText: UITextField!
+    @IBOutlet weak var priceText: UITextField!
+    @IBOutlet weak var segControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,37 +24,39 @@ class UploadViewController: UIViewController {
     }
     
     @IBAction func onClickUpload(_ sender: UIButton!) {
-        
-        // url string
-//        let isService = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
-        let isService = false;
-//        let t = titleText.text!
-        let t = "Phone";
+       // print("clicked");
+
+//        url string;
+        let isService = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
+        //let isService = false;
+        let t = titleText.text!
+        //let t = "Phone";
         let title = "title=" + t;
-//        let d = descText.text ?? "";
-        let d = "hello"
+        let d = descText.text ?? "";
+        //let d = "hello"
         let desc = "&description=" + d;
-//        let v = venmoText.text ?? "";
-        let v  = "@nitisha";
+        let v = venmoText.text ?? "";
+        //let v  = "@nitisha";
         let ven = "&venmo=" + v;
-//        let l = locationText.text ?? "";
-        let l = "rock"
+        let l = locationText.text ?? "";
+        //let l = "rock"
         let loc = "&location=" + l;
-//        let p = priceText.text!;
-        let p = "10"
+        let p = priceText.text!;
+        //let p = "10"
         let price = "&price=" + p;
         let urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&service="+String(isService);
-        
+        print(urlStr);
+
         let url = URL(string: urlStr)!;
-        
+
         var request = URLRequest(url: url);
-        
+
         let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService] as [String : Any];
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
-        
+
         request.httpMethod = "POST"
         request.httpBody = bodyData;
-        
+
         // Create the HTTP request
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -66,7 +68,7 @@ class UploadViewController: UIViewController {
                 print("Http request failed \(error)")
             }
         }
-        
+
         task.resume()
     }
 }
