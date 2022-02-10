@@ -17,15 +17,13 @@ class UserLoginViewController: UIViewController {
     }
     
     @IBAction func onUserLogin(_ sender: Any) {
+//        MainPageViewController().modalPresentationStyle = .fullScreen;
         navigationController?.pushViewController(MainPageViewController(), animated: true);
-        
+//        performSegue(withIdentifier: "mainpage", sender: self);
     }
-    
     
     @IBAction func onGuestLogin(_ sender: UIButton) {
         navigationController?.pushViewController(MainPageViewController(), animated: true);
     
     }
-    
-    
 }

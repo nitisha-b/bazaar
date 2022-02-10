@@ -16,4 +16,15 @@ class MainPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func onBackButton(_ sender: UIButton!) {
+    //        navigationController?.popViewController(animated: true);
+            
+    //        navigationController?.isModalInPresentation = false;
+            navigationController?.popToViewController(MainPageViewController(), animated: true)
+
+//            self.dismiss(animated: true, completion: nil)
+    //        dismiss(animated: true, completion: nil);
+            
+    }
+    
 }
