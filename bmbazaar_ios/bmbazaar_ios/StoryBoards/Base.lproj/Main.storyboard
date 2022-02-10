@@ -107,7 +107,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="onClickUpload:" destination="UBY-at-3JY" eventType="touchUpInside" id="kxX-7B-Mza"/>
+                                            <action selector="onClickUpload:" destination="UBY-at-3JY" eventType="touchUpInside" id="ctm-AS-cfa"/>
                                         </connections>
                                     </button>
                                 </subviews>
