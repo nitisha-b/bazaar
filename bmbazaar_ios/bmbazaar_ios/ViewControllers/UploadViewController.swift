@@ -71,12 +71,7 @@ class UploadViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.displayAlert(isPosted: isPosted)
-                self.titleText.text = ""
-                self.descText.text = ""
-                self.venmoText.text = ""
-                self.locationText.text = ""
-                self.priceText.text = ""
-                self.segControl.selectedSegmentIndex = 0;
+                self.clearForm()
             }
         }
         task.resume()
@@ -95,5 +90,14 @@ class UploadViewController: UIViewController {
             self.present(postedAlert, animated: true, completion: nil)
         }
     
+    }
+    
+    func clearForm() {
+        self.titleText.text = ""
+        self.descText.text = ""
+        self.venmoText.text = ""
+        self.locationText.text = ""
+        self.priceText.text = ""
+        self.segControl.selectedSegmentIndex = 0;
     }
 }
