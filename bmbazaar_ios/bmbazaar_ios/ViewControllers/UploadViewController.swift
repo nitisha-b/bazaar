@@ -24,7 +24,6 @@ class UploadViewController: UIViewController {
     }
     
     @IBAction func onClickUpload(_ sender: UIButton!) {
-       // print("clicked");
 
 //        url string;
         let isService = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
@@ -56,19 +55,45 @@ class UploadViewController: UIViewController {
 
         request.httpMethod = "POST"
         request.httpBody = bodyData;
-
+        var isPosted = false;
+        
         // Create the HTTP request
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
-
+            
             if let data = data {
                 print("Data successfully posted in the database! \(data)")
+                isPosted = true
             }
             else if let error = error {
                 print("Http request failed \(error)")
             }
+            
+            DispatchQueue.main.async {
+                self.displayAlert(isPosted: isPosted)
+                self.titleText.text = ""
+                self.descText.text = ""
+                self.venmoText.text = ""
+                self.locationText.text = ""
+                self.priceText.text = ""
+                self.segControl.selectedSegmentIndex = 0;
+            }
         }
-
         task.resume()
+    }
+    
+    func displayAlert(isPosted: Bool) {
+        
+        if (isPosted) {
+            // Create a new alert
+            let postedAlert = UIAlertController(title: "Yay!", message: "Product successfully posted!", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default) { (aciton) ->Void in
+                print("OK button tapped")
+            }
+            postedAlert.addAction(ok)
+            self.present(postedAlert, animated: true, completion: nil)
+        }
+    
     }
 }
