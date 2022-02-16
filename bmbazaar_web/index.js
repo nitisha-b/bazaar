@@ -98,31 +98,31 @@ app.use('/api', (req, res) => {
 
 	// construct the query object
 	var queryObject = {};
-	if (req.query.name) {
+	if (req.query.title) {
 	    // if there's a name in the query parameter, use it here
-	    queryObject = { "name" : req.query.name };
+	    queryObject = { "title" : req.query.title };
 	}
     
-	Person.find( queryObject, (err, persons) => {
-		console.log(persons);
+	Item.find( queryObject, (err, items) => {
+		console.log(items);
 		if (err) {
 		    console.log('uh oh' + err);
 		    res.json({});
 		}
-		else if (persons.length == 0) {
+		else if (items.length == 0) {
 		    // no objects found, so send back empty json
 		    res.json({});
 		}
-		else if (persons.length == 1 ) {
-		    var person = persons[0];
+		else if (items.length == 1 ) {
+		    var item = items[0];
 		    // send back a single JSON object
-		    res.json( { "name" : person.name , "age" : person.age } );
+		    res.json( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo } );
 		}
 		else {
 		    // construct an array out of the result
 		    var returnArray = [];
-		    persons.forEach( (person) => {
-			    returnArray.push( { "name" : person.name, "age" : person.age } );
+		    items.forEach( (item) => {
+			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo } );
 			});
 		    // send it back as JSON Array
 		    res.json(returnArray); 
