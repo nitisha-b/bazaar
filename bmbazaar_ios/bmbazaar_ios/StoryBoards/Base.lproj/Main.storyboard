@@ -129,6 +129,7 @@
                             <constraint firstItem="VDw-gC-Qdb" firstAttribute="trailing" secondItem="34j-D0-YLK" secondAttribute="trailing" id="oig-Jd-OyA"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4dj-8f-sHE"/>
                     <connections>
                         <outlet property="descText" destination="1Cp-XZ-tee" id="oCt-2T-vlj"/>
                         <outlet property="locationText" destination="0Kj-qa-YJb" id="3r5-ah-DWu"/>
@@ -163,20 +164,18 @@
                                         </state>
                                         <connections>
                                             <action selector="onUserLogin:" destination="jcj-dZ-7JT" eventType="touchUpInside" id="uBZ-aC-fTP"/>
-                                            <segue destination="S6A-2L-PmB" kind="show" identifier="userToMainPage" id="LLG-lK-u6N"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dC4-HT-3Rc">
                                         <rect key="frame" x="190.5" y="0.0" width="183.5" height="202"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <inset key="titleEdgeInsets" minX="-170" minY="0.0" maxX="0.0" maxY="-180"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="25"/>
                                         <state key="normal" title="Guest Login" image="sponge">
                                             <color key="titleColor" red="0.054901960780000002" green="0.36078431370000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="onGuestLogin:" destination="jcj-dZ-7JT" eventType="touchUpInside" id="BtC-tx-eyz"/>
-                                            <segue destination="S6A-2L-PmB" kind="show" identifier="guestToMainPage" id="uqF-JT-L9c"/>
+                                            <segue destination="hNJ-aS-50B" kind="modal" modalPresentationStyle="fullScreen" id="kqh-UX-TCs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -203,7 +202,7 @@
         <scene sceneID="yV9-wY-2NU">
             <objects>
                 <viewController storyboardIdentifier="homepage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNJ-aS-50B" customClass="MainPageViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wpH-yu-5fh">
+                    <view key="view" contentMode="scaleToFill" id="wpH-yu-5fh" customClass="UIWindow">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -316,29 +315,7 @@
             </objects>
             <point key="canvasLocation" x="-542" y="816"/>
         </scene>
-        <!--Home-->
-        <scene sceneID="6fU-43-dhu">
-            <objects>
-                <navigationController title="Home" automaticallyAdjustsScrollViewInsets="NO" id="S6A-2L-PmB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="LSg-DZ-CrA"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dSo-vI-hcY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hNJ-aS-50B" kind="relationship" relationship="rootViewController" id="tp1-4D-srA"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D6E-vp-HsJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="141" y="70"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="uqF-JT-L9c"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="avatar-5" width="341.33334350585938" height="341.33334350585938"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>

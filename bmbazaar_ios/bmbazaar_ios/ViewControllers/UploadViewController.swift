@@ -43,7 +43,7 @@ class UploadViewController: UIViewController {
         let p = priceText.text!;
         //let p = "10"
         let price = "&price=" + p;
-        let urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&service="+String(isService);
+        let urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
         print(urlStr);
 
         let url = URL(string: urlStr)!;

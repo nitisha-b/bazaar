@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 
+
 // set up BodyParser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,9 +37,25 @@ app.use('/create', (req, res) => {
 		    // display the "successfull created" message
 		    res.send('successfully added ' + newItem.title + ' to the database');
 		}
-	    } ); 
-    }
-    );
+	}); 
+});
+
+app.use('/delete', (req, res) => {
+	var filter = { 'title': req.query.title};
+	console.log(filter);
+
+	Item.findOneAndDelete(filter, (err, orig) => {
+		if (err) {
+			res.json({ 'status': err });
+		}
+		else if (!orig) {
+			res.json({ 'status': 'no resource' });
+		}
+		else {
+			res.json({ 'status': 'success' });
+		}
+	});
+});
 
 
 
@@ -46,32 +63,32 @@ app.use('/create', (req, res) => {
 app.use('/all', (req, res) => {
     
 	// find all the Person objects in the database
-	Person.find( {}, (err, persons) => {
+	Item.find( {}, (err, items) => {
 		if (err) {
 		    res.type('html').status(200);
 		    console.log('uh oh' + err);
 		    res.write(err);
 		}
 		else {
-		    if (persons.length == 0) {
+		    if (items.length == 0) {
 			res.type('html').status(200);
-			res.write('There are no people');
+			res.write('There are no items');
 			res.end();
 			return;
 		    }
 		    else {
 			res.type('html').status(200);
-			res.write('Here are the people in the database:');
+			res.write('Here are the items in the database:');
 			res.write('<ul>');
-			// show all the people
-			persons.forEach( (person) => {
-				res.write('<li>Name: ' + person.name + '; age: ' + person.age + '</li>');
+			// show all the items
+			items.forEach( (item) => {
+				res.write('<li>Title: ' + item.title + '; description: ' + item.description + '; service?: '+ item.isService +'; venmo: ' + item.venmo + '; location: ' + item.location + '; price: ' + item.price + '</li>');
 			    });
 			res.write('</ul>');
 			res.end();
 		    }
 		}
-	    }).sort({ 'age': 'asc' }); // this sorts them BEFORE rendering the results
+	    }).sort({ 'price': 'asc' }); // this sorts them BEFORE rendering the results
     });
 
 // endpoint for accessing data via the web api

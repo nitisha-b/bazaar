@@ -16,7 +16,12 @@ class MainPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    
     @IBAction func onBackButton(_ sender: UIButton!) {
+//        let viewController = UIViewController()
+//        viewController.modalPresentationStyle = .fullScreen
+//        present(viewController, animated: true, completion: nil)
     //        navigationController?.popViewController(animated: true);
             
     //        navigationController?.isModalInPresentation = false;

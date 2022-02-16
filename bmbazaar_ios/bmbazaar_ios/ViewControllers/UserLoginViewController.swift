@@ -23,7 +23,10 @@ class UserLoginViewController: UIViewController {
     }
     
     @IBAction func onGuestLogin(_ sender: UIButton) {
+//        let myModalController = MainPageViewController()
+//        myModalController.modalPresentationStyle = .overFullScreen
+//        self.present(myModalController, animated: true, completion: nil)
         navigationController?.pushViewController(MainPageViewController(), animated: true);
-    
+      
     }
 }
