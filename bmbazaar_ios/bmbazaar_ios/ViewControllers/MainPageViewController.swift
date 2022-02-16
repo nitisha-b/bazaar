@@ -10,6 +10,8 @@ import UIKit
 
 class MainPageViewController: UIViewController {
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     func onLoad() {
         let url = URL(string: "https://http://localhost:3000/api")
 
@@ -44,15 +46,13 @@ class MainPageViewController: UIViewController {
         }
         task.resume()
     }
-
-
-    @IBOutlet weak var collectionView: UICollectionView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        collectionView.dataSource = self
     }
     
     
