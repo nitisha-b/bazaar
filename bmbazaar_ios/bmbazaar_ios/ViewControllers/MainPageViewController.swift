@@ -12,6 +12,12 @@ class MainPageViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var items: [Item] = [
+            Item(title: "Pants", description: "comfy", price: 10.00, seller: "nitisha"),
+            Item(title: "shirt", description: "cotton", price: 5.50, seller: "nigina"),
+            Item(title: "book", description: "mathematics", price: 10.50, seller: "sarah")
+        ]
+    
     func onLoad() {
         let url = URL(string: "https://http://localhost:3000/api")
 
@@ -71,4 +77,17 @@ class MainPageViewController: UIViewController {
             
     }
     
+}
+
+extension MainPageViewController: UICollectionViewDataSource {
+ 
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
+        cell.setup(with: items[indexPath.row])
+        return cell
+    }
 }

@@ -10,12 +10,18 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var itemImage: UIImageView!
+//    @IBOutlet weak var itemImage: UIImageView!
+    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var seller: UILabel!
     
-    
+    func setup(with item: Item) {
+        title.text = item.title;
+        price.text = String(item.price)
+        seller.text = item.seller
+        
+    }
     
     
 }
