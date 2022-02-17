@@ -90,4 +90,8 @@ extension MainPageViewController: UICollectionViewDataSource {
         cell.setup(with: items[indexPath.row])
         return cell
     }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
 }
