@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Item {
+struct Item: Decodable {
     var title: String;
     var description: String;
     var price: Float;
-    var seller: String;
+ //   var seller: String;
 //    var dateAdded: Date;
 //    var dateSold: Date;
 //    var location: String;
