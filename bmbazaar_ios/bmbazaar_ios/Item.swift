@@ -11,8 +11,9 @@ struct Item {
     var title: String;
     var description: String;
     var price: Float;
-    var dateAdded: Date;
-    var dateSold: Date;
-    var location: String;
-    var isService: Bool;   // specify product or service
+    var seller: String;
+//    var dateAdded: Date;
+//    var dateSold: Date;
+//    var location: String;
+//    var isService: Bool;   // specify product or service
 }
