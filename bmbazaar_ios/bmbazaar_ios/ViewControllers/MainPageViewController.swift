@@ -52,7 +52,7 @@ class MainPageViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        collectionView.dataSource = self
+        //collectionView.dataSource = self
     }
     
     
