@@ -206,7 +206,6 @@
                     <view key="view" contentMode="scaleToFill" id="wpH-yu-5fh" customClass="UIWindow">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cMD-x6-HbR">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
@@ -218,7 +217,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCollectionViewCell" id="Un1-pL-OaZ" customClass="ProductCollectionViewCell" customModule="bmbazaar_ios" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="Un1-pL-OaZ" customClass="ItemCollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="201" height="270"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SNS-xX-Fbk">
@@ -261,6 +260,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="201" height="270"/>
                                         <connections>
+                                            <outlet property="itemImage" destination="5qm-wy-tiC" id="5kR-5x-lG6"/>
                                             <outlet property="price" destination="SKp-gs-6Ek" id="F5y-9G-vyv"/>
                                             <outlet property="productPreviewImage" destination="5qm-wy-tiC" id="cce-nV-Uyr"/>
                                             <outlet property="seller" destination="eTT-DU-iXi" id="RA4-a5-9iK"/>
@@ -270,7 +270,6 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-
                         <viewLayoutGuide key="safeArea" id="dpc-eO-CFa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
