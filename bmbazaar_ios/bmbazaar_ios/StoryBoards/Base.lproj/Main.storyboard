@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UBY-at-3JY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jcj-dZ-7JT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -270,12 +270,17 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="201" height="270"/>
                                         <connections>
+                                            <outlet property="itemImage" destination="5qm-wy-tiC" id="1x3-VW-Hpn"/>
                                             <outlet property="price" destination="SKp-gs-6Ek" id="wA2-kU-Ghy"/>
                                             <outlet property="seller" destination="eTT-DU-iXi" id="d7b-Ot-KUr"/>
                                             <outlet property="title" destination="HkI-43-eOa" id="ZrT-hC-AQx"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="hNJ-aS-50B" id="ngk-XU-0DE"/>
+                                    <outlet property="delegate" destination="hNJ-aS-50B" id="y5r-lc-7np"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dpc-eO-CFa"/>
