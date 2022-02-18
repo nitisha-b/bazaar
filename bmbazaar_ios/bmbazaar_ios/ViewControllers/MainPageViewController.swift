@@ -117,7 +117,7 @@ extension MainPageViewController: UICollectionViewDataSource {
     }
     
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        return CGSize(width: self.view.frame.size.width/CGFloat(Float(items.count)), height: 0)
+//        return CGSize(width: self.view.frame.size.width/CGFloat(Float(items.count)))
 //    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

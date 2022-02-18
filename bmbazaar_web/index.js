@@ -22,7 +22,8 @@ app.use('/create', (req, res) => {
 		isService: req.query.isService,
 		venmo: req.query.venmo,
 		location: req.query.location,
-		price: req.query.price
+		price: req.query.price,
+		image: req.query.image
 	    });
 
 	// save the person to the database
@@ -82,7 +83,7 @@ app.use('/all', (req, res) => {
 			res.write('<ul>');
 			// show all the items
 			items.forEach( (item) => {
-				res.write('<li>Title: ' + item.title + '; description: ' + item.description + '; service?: '+ item.isService +'; venmo: ' + item.venmo + '; location: ' + item.location + '; price: ' + item.price + '</li>');
+				res.write('<li>Title: ' + item.title + '; description: ' + item.description + '; service?: '+ item.isService +'; venmo: ' + item.venmo + '; location: ' + item.location + '; price: ' + item.price + '; image: ' + item.image + '</li>');
 			    });
 			res.write('</ul>');
 			res.end();
@@ -116,13 +117,13 @@ app.use('/api', (req, res) => {
 		else if (items.length == 1 ) {
 		    var item = items[0];
 		    // send back a single JSON object
-		    res.json( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo } );
+		    res.json( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image } );
 		}
 		else {
 		    // construct an array out of the result
 		    var returnArray = [];
 		    items.forEach( (item) => {
-			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo } );
+			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image } );
 			});
 		    // send it back as JSON Array
 		    res.json(returnArray); 
