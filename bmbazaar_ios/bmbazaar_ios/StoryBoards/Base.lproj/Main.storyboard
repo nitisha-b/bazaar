@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UBY-at-3JY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LRG-RI-Iht">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -218,7 +217,7 @@
                                             <color key="titleColor" red="0.054901960780000002" green="0.36078431370000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="hNJ-aS-50B" kind="modal" modalPresentationStyle="fullScreen" id="kqh-UX-TCs"/>
+                                            <segue destination="hNJ-aS-50B" kind="show" id="v7h-t8-Ee1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -227,7 +226,6 @@
                         <viewLayoutGuide key="safeArea" id="Uge-fb-Y9o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tmI-Xr-bHg" firstAttribute="top" secondItem="Uge-fb-Y9o" secondAttribute="top" constant="303" id="348-Yb-Pcn"/>
                             <constraint firstItem="Uge-fb-Y9o" firstAttribute="bottom" secondItem="tmI-Xr-bHg" secondAttribute="bottom" constant="313" id="Axq-KM-6CB"/>
                             <constraint firstItem="tmI-Xr-bHg" firstAttribute="centerX" secondItem="0od-D8-Amp" secondAttribute="centerX" id="Qeb-mL-s7B"/>
                             <constraint firstItem="tmI-Xr-bHg" firstAttribute="leading" secondItem="Uge-fb-Y9o" secondAttribute="leading" constant="20" id="U1o-UU-tAS"/>
@@ -239,9 +237,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RN-1h-Y4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-588.40579710144937" y="69.642857142857139"/>
+            <point key="canvasLocation" x="321.73913043478262" y="69.642857142857139"/>
         </scene>
-        <!--Home-->
+        <!--Main Page View Controller-->
         <scene sceneID="yV9-wY-2NU">
             <objects>
                 <viewController storyboardIdentifier="homepage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hNJ-aS-50B" customClass="MainPageViewController" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,14 +331,7 @@
                             <constraint firstItem="cMD-x6-HbR" firstAttribute="top" secondItem="dpc-eO-CFa" secondAttribute="top" id="wK0-UH-ySG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="W3b-bI-GbV">
-                        <barButtonItem key="leftBarButtonItem" style="done" id="OeQ-Oz-SFI">
-                            <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
-                            <connections>
-                                <action selector="onBackButton:" destination="hNJ-aS-50B" id="ncM-y7-VMA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="vy6-tV-cCg"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -349,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bi0-sU-TQ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="931.88405797101461" y="51.5625"/>
+            <point key="canvasLocation" x="1261" y="70"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -434,10 +425,27 @@
             </objects>
             <point key="canvasLocation" x="-542" y="816"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="18J-9b-o06">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LRG-RI-Iht" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="bNy-WO-ePl">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jcj-dZ-7JT" kind="relationship" relationship="rootViewController" id="RUF-uL-bI5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x9o-sV-iyq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-588.40579710144937" y="69.642857142857139"/>
+        </scene>
     </scenes>
     <resources>
         <image name="avatar-5" width="341.33334350585938" height="341.33334350585938"/>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="sponge" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

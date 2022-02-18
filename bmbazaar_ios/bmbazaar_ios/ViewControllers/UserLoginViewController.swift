@@ -12,13 +12,14 @@ class UserLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Select User"
         
         // Do any additional setup after loading the view.
     }
     
     @IBAction func onUserLogin(_ sender: Any) {
 //        MainPageViewController().modalPresentationStyle = .fullScreen;
-        navigationController?.pushViewController(MainPageViewController(), animated: true);
+//        navigationController?.pushViewController(MainPageViewController(), animated: true);
 //        performSegue(withIdentifier: "mainpage", sender: self);
     }
     
@@ -26,7 +27,7 @@ class UserLoginViewController: UIViewController {
 //        let myModalController = MainPageViewController()
 //        myModalController.modalPresentationStyle = .overFullScreen
 //        self.present(myModalController, animated: true, completion: nil)
-        navigationController?.pushViewController(MainPageViewController(), animated: true);
+//        navigationController?.pushViewController(MainPageViewController(), animated: true);
       
     }
 }

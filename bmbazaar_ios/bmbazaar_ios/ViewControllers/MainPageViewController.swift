@@ -54,14 +54,13 @@ class MainPageViewController: UIViewController {
             // Convert HTTP Response Data to a simple String
             if let data = data {
                 do {
-                    //print(String (data: data, encoding: .utf8)!)
+//                    print(String (data: data, encoding: .utf8)!)
                     guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
                         print("Error: Couldn't decode data into cars array")
                         return
                     }
                     for item in json {
                         items.append(item)
-                        //print(item.title)
                     }
 //                    for item in items {
 //                        print(item)
@@ -85,6 +84,7 @@ class MainPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Home"
         
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
@@ -94,20 +94,10 @@ class MainPageViewController: UIViewController {
     
     
     
-    @IBAction func onBackButton(_ sender: UIButton!) {
-//        let viewController = UIViewController()
-//        viewController.modalPresentationStyle = .fullScreen
-//        present(viewController, animated: true, completion: nil)
-    //        navigationController?.popViewController(animated: true);
-            
-    //        navigationController?.isModalInPresentation = false;
-            navigationController?.popToViewController(MainPageViewController(), animated: true)
-
-//            self.dismiss(animated: true, completion: nil)
-    //        dismiss(animated: true, completion: nil);
-            
-    }
-    
+//    @IBAction func onBackButton(_ sender: UIButton!) {
+//        navigationController?.popToViewController(MainPageViewController(), animated: true)
+//    }
+//
 }
 
 extension MainPageViewController: UICollectionViewDataSource {
