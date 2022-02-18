@@ -14,8 +14,8 @@
             filePath = "bmbazaar_ios/ViewControllers/MainPageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "onLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "bmbazaar_ios/ViewControllers/MainPageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "onLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -40,19 +40,19 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "EE9D5D10-012A-47FA-AC3D-A6D48849F68F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bmbazaar_ios/ViewControllers/MainPageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "onLoad()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "EE9D5D10-012A-47FA-AC3D-A6D48849F68F - 122ef1543bcf9f56"
+                  uuid = "EE9D5D10-012A-47FA-AC3D-A6D48849F68F - 122ef1543bcf9e08"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -62,12 +62,12 @@
                   urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "354">
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "286">
                </Location>
                <Location
-                  uuid = "EE9D5D10-012A-47FA-AC3D-A6D48849F68F - 122ef1543bcf9f56"
+                  uuid = "EE9D5D10-012A-47FA-AC3D-A6D48849F68F - 122ef1543bcf9e08"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -77,9 +77,9 @@
                   urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "964">
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "896">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -88,19 +88,19 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D435CB3F-35D1-4D5F-B1D3-924EEFB2A59B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bmbazaar_ios/ViewControllers/MainPageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "onLoad()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D435CB3F-35D1-4D5F-B1D3-924EEFB2A59B - 122ef1543bcf9f56"
+                  uuid = "D435CB3F-35D1-4D5F-B1D3-924EEFB2A59B - 122ef1543bcf9e08"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -110,12 +110,12 @@
                   urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "354">
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "286">
                </Location>
                <Location
-                  uuid = "D435CB3F-35D1-4D5F-B1D3-924EEFB2A59B - 122ef1543bcf9f56"
+                  uuid = "D435CB3F-35D1-4D5F-B1D3-924EEFB2A59B - 122ef1543bcf9e08"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -125,9 +125,9 @@
                   urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "964">
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "896">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -136,48 +136,80 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4DC586D0-2B2C-4D6E-8112-B43300F16F1F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bmbazaar_ios/ViewControllers/MainPageViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "onLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4DC586D0-2B2C-4D6E-8112-B43300F16F1F - 122ef1543bcf9e08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in bmbazaar_ios.MainPageViewController.onLoad() -&gt; ()"
+                  moduleName = "bmbazaar_ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "286">
+               </Location>
+               <Location
+                  uuid = "4DC586D0-2B2C-4D6E-8112-B43300F16F1F - 122ef1543bcf9e08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in bmbazaar_ios.MainPageViewController.onLoad() -&gt; ()"
+                  moduleName = "bmbazaar_ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "896">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B3A95A7-EC9C-4F64-ABA0-696B5A092F69"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bmbazaar_ios/ViewControllers/MainPageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "onLoad()"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4DC586D0-2B2C-4D6E-8112-B43300F16F1F - 122ef1543bcf9f56"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in bmbazaar_ios.MainPageViewController.onLoad() -&gt; ()"
-                  moduleName = "bmbazaar_ios"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "354">
-               </Location>
-               <Location
-                  uuid = "4DC586D0-2B2C-4D6E-8112-B43300F16F1F - 122ef1543bcf9f56"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in bmbazaar_ios.MainPageViewController.onLoad() -&gt; ()"
-                  moduleName = "bmbazaar_ios"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/niginadaniyarova/Desktop/bazaar/bmbazaar_ios/bmbazaar_ios/ViewControllers/MainPageViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "964">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96E18604-02FA-42B0-8CA4-03CA45456853"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bmbazaar_ios/ViewControllers/MainPageViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "MainPageViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

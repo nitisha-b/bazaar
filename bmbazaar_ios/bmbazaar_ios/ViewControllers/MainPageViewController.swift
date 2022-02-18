@@ -12,7 +12,13 @@ class MainPageViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-        var items: [Item] = []
+    var items = [Item]()
+    
+    var items2: [Item] = [
+            Item(title: "hehe", description: "hehe", price: 10.0),
+            Item(title: "boom", description: "hehe", price: 10.0),
+            Item(title: "a", description: "hehe", price: 10.0)
+         ]
         
     
     
@@ -25,7 +31,7 @@ class MainPageViewController: UIViewController {
         // Specify HTTP Method to use
         request.httpMethod = "GET"
         // Send HTTP Request
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
 
             // Check if Error took place
             if let error = error {
@@ -48,20 +54,27 @@ class MainPageViewController: UIViewController {
             // Convert HTTP Response Data to a simple String
             if let data = data {
                 do {
-                    let str = String(decoding: request.httpBody!, as: UTF8.self)
-                    print("BODY \n \(str)")
-                    if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                       let results = json["results"] as? [[String: Any]] {
-                        for result in results {
-                            print(result)
-                        }
+                    //print(String (data: data, encoding: .utf8)!)
+                    guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
+                        print("Error: Couldn't decode data into cars array")
+                        return
                     }
-                    else {
-                        print("data may be corrupted")
+                    for item in json {
+                        items.append(item)
+                        //print(item.title)
                     }
-
+//                    for item in items {
+//                        print(item)
+//                    }
+//                    else {
+//                        print("data may be corrupted")
+//                    }
+                
                 } catch {
                     print("Failed to load: \(error.localizedDescription)")
+                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
             }
 
@@ -103,15 +116,27 @@ extension MainPageViewController: UICollectionViewDataSource {
         return items.count
     }
     
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        return CGSize(width: self.view.frame.size.width/CGFloat(Float(items.count)), height: 0)
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //print(items.isEmpty)
+//        for item in items {
+//            print(item)
+//        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         cell.setup(with: items[indexPath.row])
+        
+
+        
         return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
+
 }
 
 extension MainPageViewController: UICollectionViewDelegate {

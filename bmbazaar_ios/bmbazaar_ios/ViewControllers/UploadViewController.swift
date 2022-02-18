@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class UploadViewController: UIViewController {
+class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var descText: UITextField!
@@ -16,6 +16,7 @@ class UploadViewController: UIViewController {
     @IBOutlet weak var locationText: UITextField!
     @IBOutlet weak var priceText: UITextField!
     @IBOutlet weak var segControl: UISegmentedControl!
+    @IBOutlet var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

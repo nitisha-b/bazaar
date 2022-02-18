@@ -10,9 +10,7 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     
-//    @IBOutlet weak var itemImage: UIImageView!
-    
-    //@IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var seller: UILabel!
@@ -24,7 +22,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
         //title.text = "HI"
         //price.text = "10.00"
         
-        //itemImage.image = UIImage(named: "avatar-5")
+        itemImage.image = UIImage(named: "avatar-5")
         
     }
     
