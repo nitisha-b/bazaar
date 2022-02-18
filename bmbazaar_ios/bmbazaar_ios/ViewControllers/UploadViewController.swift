@@ -50,23 +50,16 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func onClickUpload(_ sender: UIButton!) {
 
-//        url string;
         let isService = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
-        //let isService = false;
         let t = titleText.text!
-        //let t = "Phone";
         let title = "title=" + t;
         let d = descText.text ?? "";
-        //let d = "hello"
         let desc = "&description=" + d;
         let v = venmoText.text ?? "";
-        //let v  = "@nitisha";
         let ven = "&venmo=" + v;
         let l = locationText.text ?? "";
-        //let l = "rock"
         let loc = "&location=" + l;
         let p = priceText.text!;
-        //let p = "10"
         let price = "&price=" + p;
         var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
         print(urlStr);
@@ -115,7 +108,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             postedAlert.addAction(ok)
             self.present(postedAlert, animated: true, completion: nil)
         }
-    
     }
     
     func clearForm() {

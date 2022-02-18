@@ -16,18 +16,4 @@ class UserLoginViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func onUserLogin(_ sender: Any) {
-//        MainPageViewController().modalPresentationStyle = .fullScreen;
-//        navigationController?.pushViewController(MainPageViewController(), animated: true);
-//        performSegue(withIdentifier: "mainpage", sender: self);
-    }
-    
-    @IBAction func onGuestLogin(_ sender: UIButton) {
-//        let myModalController = MainPageViewController()
-//        myModalController.modalPresentationStyle = .overFullScreen
-//        self.present(myModalController, animated: true, completion: nil)
-//        navigationController?.pushViewController(MainPageViewController(), animated: true);
-      
-    }
 }

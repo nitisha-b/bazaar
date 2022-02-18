@@ -13,14 +13,13 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var items = [Item]()
-    
-    var items2: [Item] = [
-            Item(title: "hehe", description: "hehe", price: 10.0),
-            Item(title: "boom", description: "hehe", price: 10.0),
-            Item(title: "a", description: "hehe", price: 10.0)
-         ]
+//
+//    var items2: [Item] = [
+//            Item(title: "hehe", description: "hehe", price: 10.0),
+//            Item(title: "boom", description: "hehe", price: 10.0),
+//            Item(title: "a", description: "hehe", price: 10.0)
+//         ]
         
-    
     
     func onLoad() {
         let url = URL(string: "http://localhost:3000/api")
@@ -38,18 +37,6 @@ class MainPageViewController: UIViewController {
                 print("Error took place \(error)")
                 return
             }
-//            guard let response = response as? HTTPURLResponse else { return }
-//            if response.statusCode == 200 {
-//                guard let data = data else { return }
-//                      DispatchQueue.main.async {
-//                          do {
-//                              let decodedUsers = try JSONDecoder().decode([Item].self, from: data)
-//                              self.items = decodedUsers
-//                          } catch let error {
-//                              print("Error decoding: ", error)
-//                          }
-//                      }
-//                  }
 
             // Convert HTTP Response Data to a simple String
             if let data = data {
@@ -62,13 +49,6 @@ class MainPageViewController: UIViewController {
                     for item in json {
                         items.append(item)
                     }
-//                    for item in items {
-//                        print(item)
-//                    }
-//                    else {
-//                        print("data may be corrupted")
-//                    }
-                
                 } catch {
                     print("Failed to load: \(error.localizedDescription)")
                 }
@@ -91,13 +71,7 @@ class MainPageViewController: UIViewController {
         collectionView.delegate = self
         onLoad()
     }
-    
-    
-    
-//    @IBAction func onBackButton(_ sender: UIButton!) {
-//        navigationController?.popToViewController(MainPageViewController(), animated: true)
-//    }
-//
+
 }
 
 extension MainPageViewController: UICollectionViewDataSource {
@@ -111,14 +85,9 @@ extension MainPageViewController: UICollectionViewDataSource {
 //    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //print(items.isEmpty)
-//        for item in items {
-//            print(item)
-//        }
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         cell.setup(with: items[indexPath.row])
-        
-
         
         return cell
     }
