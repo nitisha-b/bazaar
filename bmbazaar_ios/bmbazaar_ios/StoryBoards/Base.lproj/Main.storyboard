@@ -333,11 +333,121 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="cMD-x6-HbR" id="qXe-Ye-gBY"/>
+                        <segue destination="Ng9-fs-a51" kind="show" id="hUl-2B-cxD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bi0-sU-TQ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="471"/>
+        </scene>
+        <!--Product DetailsVC-->
+        <scene sceneID="C0J-Bi-zVe">
+            <objects>
+                <viewController storyboardIdentifier="ProductDetailsVC" id="Ng9-fs-a51" customClass="ProductDetailsVC" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NZY-55-Y7m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wom-52-eSj">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Tgt-3m-BPm" userLabel="Main Stack View">
+                                        <rect key="frame" x="0.0" y="30" width="162" height="792"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzF-VC-guj">
+                                                <rect key="frame" x="0.0" y="0.0" width="162" height="30"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3w1-IY-JV3">
+                                                <rect key="frame" x="0.0" y="45" width="162" height="605"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMl-0x-Pq7">
+                                                <rect key="frame" x="0.0" y="665" width="162" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYS-TJ-XRq">
+                                                <rect key="frame" x="0.0" y="700.5" width="162" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vOy-vt-gwK" userLabel="Seller Stack View">
+                                                <rect key="frame" x="0.0" y="736" width="162" height="56"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6aF-Z5-2ZE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="162" height="20.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sold By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWL-15-X5z">
+                                                                <rect key="frame" x="0.0" y="0.0" width="62.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AT5-pz-a9c">
+                                                                <rect key="frame" x="72.5" y="0.0" width="89.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hp6-cX-7gf">
+                                                        <rect key="frame" x="0.0" y="35.5" width="162" height="20.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sold By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkk-q0-GFB" userLabel="Venmo:">
+                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller venmo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE5-c8-Fka">
+                                                                <rect key="frame" x="69" y="0.0" width="93" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Tgt-3m-BPm" secondAttribute="trailing" id="3UC-Rj-QSO"/>
+                                    <constraint firstItem="Tgt-3m-BPm" firstAttribute="top" secondItem="Wom-52-eSj" secondAttribute="top" constant="30" id="Ip3-Rx-vGr"/>
+                                    <constraint firstItem="Tgt-3m-BPm" firstAttribute="leading" secondItem="Wom-52-eSj" secondAttribute="leading" id="Qjx-ux-rYd"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tgt-3m-BPm" secondAttribute="bottom" id="zfW-pv-Z9S"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="f7O-Zf-drZ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="7r8-wb-C2k"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nng-75-vWo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Wom-52-eSj" firstAttribute="top" secondItem="NZY-55-Y7m" secondAttribute="top" id="0Gw-Kr-U6w"/>
+                            <constraint firstAttribute="bottom" secondItem="Wom-52-eSj" secondAttribute="bottom" id="6qW-xG-ij5"/>
+                            <constraint firstAttribute="trailing" secondItem="Wom-52-eSj" secondAttribute="trailing" id="V1V-TJ-ycM"/>
+                            <constraint firstItem="Wom-52-eSj" firstAttribute="leading" secondItem="NZY-55-Y7m" secondAttribute="leading" id="gNG-FL-TC0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="prodDesc" destination="FMl-0x-Pq7" id="y5I-jD-CV1"/>
+                        <outlet property="prodImage" destination="3w1-IY-JV3" id="vtD-Zz-cPO"/>
+                        <outlet property="prodPrice" destination="mYS-TJ-XRq" id="6WV-QF-9id"/>
+                        <outlet property="prodTitle" destination="gzF-VC-guj" id="NhP-Li-NlQ"/>
+                        <outlet property="sellerName" destination="AT5-pz-a9c" id="da3-Od-h9z"/>
+                        <outlet property="sellerVenmo" destination="BE5-c8-Fka" id="MfO-Sk-cxH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7O1-BO-oJK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2026" y="471"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -467,6 +577,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="JN4-Y2-ZyE"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lUN-VD-7au">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
