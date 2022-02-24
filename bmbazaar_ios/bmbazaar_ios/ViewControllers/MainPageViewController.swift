@@ -99,19 +99,16 @@ extension MainPageViewController: UICollectionViewDataSource {
 }
 
 extension MainPageViewController: UICollectionViewDelegate {
-    private func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsVC") as? ProductDetailsVC
 
-        detailsVC?.title = items[indexPath.row].title.description
+        // Set values for product details
+        detailsVC?.name = items[indexPath.row].title
+        detailsVC?.desc = items[indexPath.row].description
+        detailsVC?.price = items[indexPath.row].price.description
+        
+        // Show details view controller
         self.navigationController?.pushViewController(detailsVC!, animated: true)
-
-        let cell = collectionView.cellForItem(at: indexPath) as? ItemCollectionViewCell
-        return cell
     }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let detailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsVC") as? ProductDetailsVC
-//
-//        detailsVC?.title = items[indexPath.row].title.description
-//        self.navigationController?.pushViewController(detailsVC!, animated: true)
-//    }
 }

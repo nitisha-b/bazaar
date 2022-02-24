@@ -19,14 +19,22 @@ class ProductDetailsVC: UIViewController {
     
     
     var name = ""
+    var desc = ""
+    var price = ""
+    var venmo = ""
+    var seller = ""
+    var imgName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Product Details"
         
         prodTitle.text = name
-        
-        // Do any additional setup after loading the view.
+        prodDesc.text = desc
+        prodPrice.text = price
+        sellerVenmo.text = venmo
+        sellerName.text = seller
+      
     }
     
 }
