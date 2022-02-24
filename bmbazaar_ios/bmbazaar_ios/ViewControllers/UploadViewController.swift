@@ -48,6 +48,10 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             dismiss(animated: true, completion: nil)
         }
     
+    func convertImageToBase64String (img: UIImage) -> String {
+        return img.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
+    }
+    
     @IBAction func onClickUpload(_ sender: UIButton!) {
 
         let isService = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
@@ -61,7 +65,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let loc = "&location=" + l;
         let p = priceText.text!;
         let price = "&price=" + p;
-        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
+        
+        let image = "&image=" + convertImageToBase64String(img: imageView.image! );
+        
+        
+        print(image)
+        
+        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService) + image;
         print(urlStr);
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
@@ -69,7 +79,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         var request = URLRequest(url: url);
 
-        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService] as [String : Any];
+        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService, "image":image] as [String : Any];
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
 
         request.httpMethod = "POST"

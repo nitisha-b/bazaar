@@ -42,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24E3880B27C72F1600B37E92 /* bmbazaar_iosTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bmbazaar_iosTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		6B0E5B0527C4AF3B0077463B /* ProductDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
 		6B5C471527B4BA92001862C6 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		6B671A4927AF4A3300745FDB /* bmbazaar_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bmbazaar_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +131,7 @@
 			children = (
 				6B671A6327AF4A3D00745FDB /* bmbazaar_iosTests.swift */,
 				6B671A6527AF4A3D00745FDB /* Info.plist */,
+				24E3880B27C72F1600B37E92 /* bmbazaar_iosTests-Bridging-Header.h */,
 			);
 			path = bmbazaar_iosTests;
 			sourceTree = "<group>";
@@ -235,6 +237,7 @@
 					};
 					6B671A5E27AF4A3D00745FDB = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1320;
 						TestTargetID = 6B671A4827AF4A3300745FDB;
 					};
 					6B671A6927AF4A3D00745FDB = {
@@ -518,6 +521,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = bmbazaar_iosTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -528,6 +532,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nitisha.bmbazaar-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "bmbazaar_iosTests/bmbazaar_iosTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bmbazaar_ios.app/bmbazaar_ios";
@@ -539,6 +545,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = bmbazaar_iosTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -549,6 +556,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nitisha.bmbazaar-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "bmbazaar_iosTests/bmbazaar_iosTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bmbazaar_ios.app/bmbazaar_ios";

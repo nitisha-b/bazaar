@@ -11,6 +11,7 @@ struct Item: Decodable {
     var title: String;
     var description: String;
     var price: Float;
+    var image: String;
  //   var seller: String;
 //    var dateAdded: Date;
 //    var dateSold: Date;
