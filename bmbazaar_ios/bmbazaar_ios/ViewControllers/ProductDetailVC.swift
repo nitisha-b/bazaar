@@ -37,4 +37,6 @@ class ProductDetailsVC: UIViewController {
       
     }
     
+    @IBAction func onClickDelete(_ sender: Any) {
+    }
 }

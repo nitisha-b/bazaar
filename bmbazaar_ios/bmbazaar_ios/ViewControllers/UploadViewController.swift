@@ -65,13 +65,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let loc = "&location=" + l;
         let p = priceText.text!;
         let price = "&price=" + p;
+//
+//        let image = "&image=" + convertImageToBase64String(img: imageView.image! );
         
-        let image = "&image=" + convertImageToBase64String(img: imageView.image! );
         
+//        print(image)
         
-        print(image)
-        
-        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService) + image;
+//        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService) + image;
+        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
         print(urlStr);
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
@@ -79,7 +80,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         var request = URLRequest(url: url);
 
-        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService, "image":image] as [String : Any];
+//        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService, "image":image] as [String : Any];
+        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService] as [String : Any];
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
 
         request.httpMethod = "POST"

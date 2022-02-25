@@ -23,11 +23,11 @@ app.use('/create', (req, res) => {
 		venmo: req.query.venmo,
 		location: req.query.location,
 		price: req.query.price,
-		image: req.query.image
+		// image: req.query.image
 	    });
 
 	// save the person to the database
-	newItem.save( (err) => { 
+	newItem.save( (err) => {
 		if (err) {
 		    res.type('html').status(200);
 		    res.write('uh oh: ' + err);
@@ -38,11 +38,11 @@ app.use('/create', (req, res) => {
 		    // display the "successfull created" message
 		    res.send('successfully added ' + newItem.title + ' to the database');
 		}
-	}); 
+	});
 });
 
 app.use('/delete', (req, res) => {
-	var filter = { 'title': req.query.title};
+	var filter = { 'title': req.query.title, 'venmo': req.query.venmo};
 	console.log(filter);
 
 	Item.findOneAndDelete(filter, (err, orig) => {
@@ -62,7 +62,7 @@ app.use('/delete', (req, res) => {
 
 // endpoint for showing all the people
 app.use('/all', (req, res) => {
-    
+
 	// find all the Person objects in the database
 	Item.find( {}, (err, items) => {
 		if (err) {
@@ -103,7 +103,7 @@ app.use('/api', (req, res) => {
 	    // if there's a name in the query parameter, use it here
 	    queryObject = { "title" : req.query.title };
 	}
-    
+
 	Item.find( queryObject, (err, items) => {
 		console.log(items);
 		if (err) {
@@ -126,9 +126,10 @@ app.use('/api', (req, res) => {
 			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image } );
 			});
 		    // send it back as JSON Array
-		    res.json(returnArray); 
+				items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+		    res.json(returnArray);
 		}
-		
+
 	    });
     });
 
