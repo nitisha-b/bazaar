@@ -126,8 +126,8 @@ app.use('/api', (req, res) => {
 			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image } );
 			});
 		    // send it back as JSON Array
-				items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-		    res.json(returnArray);
+				eitherSort(returnArray);
+				res.json(returnArray);
 		}
 
 	    });
@@ -145,3 +145,10 @@ app.use('/', (req, res) => { res.redirect('/public/personform.html'); } );
 app.listen(3000,  () => {
 	console.log('Listening on port 3000');
     });
+
+const eitherSort = (arr = []) => {
+   const sorter = (a, b) => {
+      return +a.price - +b.price;
+   };
+   arr.sort(sorter);
+};
