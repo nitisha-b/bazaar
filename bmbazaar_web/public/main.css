@@ -1,0 +1,14 @@
+body {
+  background-color: #c8dddb;
+}
+.required {
+    color: red;
+  }
+
+  #addressDetails{
+    display: none;
+  }
+
+.resourceBox {
+  background-color: #f4f3f3;
+}
