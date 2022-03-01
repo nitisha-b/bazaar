@@ -15,14 +15,15 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var seller: UILabel!
     
-    func setup(with item: Item) {
+    func setup(with item: Item, with image: Image) {
         title.text = item.title;
         price.text = String(item.price)
         //seller.text = item.seller
         //title.text = "HI"
         //price.text = "10.00"
         
-        itemImage.image = UIImage(named: "avatar-5")
+        
+        itemImage.image = image.image
         
     }
     

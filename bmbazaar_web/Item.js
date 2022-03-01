@@ -13,7 +13,7 @@ var itemSchema = new Schema({
  venmo: String,
  location: String,
  price: {type: Number, required: true},
- // image: String
+ image: String
 });
 
 // export personSchema as a class called Person

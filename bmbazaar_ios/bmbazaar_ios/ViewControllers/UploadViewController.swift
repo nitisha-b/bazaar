@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+import AWSCore
+import AWSS3
+import Photos
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -19,6 +22,9 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet var imageView: UIImageView!
     
     let imagePicker = UIImagePickerController()
+    let AWS_ACCESS_KEY_ID="AKIA53OI5K7GYUBM5MOJ"
+    let AWS_ACCESS_KEY_SECRET="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"
+    let AWS_BUCKET_NAME="brynmawrbazaar"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +58,62 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         return img.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
     }
     
-    @IBAction func onClickUpload(_ sender: UIButton!) {
+    func generateRandomStringWithLength(length: Int) -> String {
+        let randomString: NSMutableString = NSMutableString(capacity: length)
+        let letters: NSMutableString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var i: Int = 0
 
-        let isService = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
+        while i < length {
+            let randomIndex: Int = Int(arc4random_uniform(UInt32(letters.length)))
+            randomString.append("\(Character( UnicodeScalar( letters.character(at: randomIndex))!))")
+            i += 1
+        }
+        return String(randomString)
+    }
+    
+    @IBAction func onClickUpload(_ sender: UIButton!) {
+        let imageLength = 10
+        let key = generateRandomStringWithLength(length: imageLength)
+        
+        let image = imageView.image!
+        let fileManager = FileManager.default
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("test3.jpeg")
+        let imageData = image.jpegData(compressionQuality: 0); fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
+
+        let fileUrl = NSURL(fileURLWithPath: path)
+        
+        let uploadRequest = AWSS3TransferManagerUploadRequest()
+        //AWSConfigsS3.UseSignatureVersion4 = true;
+        uploadRequest?.bucket = "brynmawrbazaar"
+        uploadRequest?.key = key
+        uploadRequest?.contentType = "image/jpeg"
+        uploadRequest?.body = fileUrl as URL
+        uploadRequest?.serverSideEncryption = AWSS3ServerSideEncryption.awsKms
+        uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
+            DispatchQueue.main.async(execute: {
+                                print("totalBytesSent",totalBytesSent)
+                                print("totalBytesExpectedToSend",totalBytesExpectedToSend)
+
+//                                self.amountUploaded = totalBytesSent // To show the updating data status in label.
+//                                self.fileSize = totalBytesExpectedToSend
+                            })
+                        }
+        print(fileUrl as URL)
+        let transferManager = AWSS3TransferManager.default()
+        transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+                        if task.error != nil {
+                                // Error.
+                            print(task.error ?? "default value")
+                            } else {
+                                // Do something with your result.
+                            print("No error Upload Done")
+                            }
+                            return nil
+                        })
+        
+
+        let s = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
+        let isService = "&isService=" + String(s);
         let t = titleText.text!
         let title = "title=" + t;
         let d = descText.text ?? "";
@@ -65,23 +124,36 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let loc = "&location=" + l;
         let p = priceText.text!;
         let price = "&price=" + p;
+        
+//        let uiImage : UIImage = imageView.image!
+//        let imageData : Data = uiImage.jpegData(compressionQuality: 0) ?? Data()
+//        var i : String = imageData.base64EncodedString()
 //
-//        let image = "&image=" + convertImageToBase64String(img: imageView.image! );
+//        i = i.replacingOccurrences(of: "+", with: "%2B")
+//        i = i.replacingOccurrences(of: "/", with: "%2F")
+//        i = i.replacingOccurrences(of: "=", with: "%3D")
+        let i: String = key
+        let image1: String = "&image=" + i
+//        let i = convertImageToBase64String(img: imageView.image! );
+//        let image = "&image=" + i;
         
         
-//        print(image)
         
-//        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService) + image;
-        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
-        print(urlStr);
+        
+        
+        print(image1)
+        
+        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+isService+image1;
+//        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
+//        print(urlStr);
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
         let url = URL(string: urlStr)!;
 
         var request = URLRequest(url: url);
 
-//        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService, "image":image] as [String : Any];
-        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService] as [String : Any];
+        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i] as [String : Any];
+//        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService] as [String : Any];
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
 
         request.httpMethod = "POST"

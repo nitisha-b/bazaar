@@ -7,12 +7,15 @@
 
 import Foundation
 import UIKit
+import AWSCore
+import AWSS3
 
-class MainPageViewController: UIViewController {
+class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout{
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var items = [Item]()
+    var images = [Image]()
 //
 //    var items2: [Item] = [
 //            Item(title: "hehe", description: "hehe", price: 10.0),
@@ -47,6 +50,16 @@ class MainPageViewController: UIViewController {
                         return
                     }
                     for item in json {
+                        
+                        
+                        let url = NSURL(string: "https://brynmawrbazaar.s3.amazonaws.com/" + item.image);
+                        var err: NSError?
+                        var imageData :NSData = try! NSData(contentsOf: url as! URL,options: NSData.ReadingOptions.mappedIfSafe)
+                        var bgImage = UIImage(data:imageData as Data)
+                        var i = Image(image: bgImage!, title: item.title)
+                        images.append(i)
+                        
+                        //item.image = bgImage
                         items.append(item)
                     }
                 } catch {
@@ -87,7 +100,8 @@ extension MainPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
-        cell.setup(with: items[indexPath.row])
+        cell.setup(with: items[indexPath.row], with: images[indexPath.row])
+        
         
         return cell
     }
@@ -109,7 +123,10 @@ extension MainPageViewController: UICollectionViewDelegate {
         detailsVC?.price = items[indexPath.row].price.description
         detailsVC?.venmo = items[indexPath.row].venmo
         
+        
         // Show details view controller
         self.navigationController?.pushViewController(detailsVC!, animated: true)
     }
 }
+
+
