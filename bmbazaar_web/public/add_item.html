@@ -18,6 +18,27 @@
         </script>
         <script type="text/javascript">
         		function validateForm() {
+							var title = document.forms["create"]["title"].value;
+							var venmo = document.forms["create"]["venmo"].value;
+							var price = document.forms["create"]["price"].value;
+
+								// Validation for title, price and venmo
+	            if (title == null || title.trim() == "" || venmo == null || venmo.trim() == "" || price == null || price.trim() == "") {
+	                alert("Title, Venmo and/or Price cannot be empty");
+	                return false;
+	            }
+
+							// Check that at least one address option is selected
+	            var chx = document.getElementsByName('isService');
+	            for (var i = 0; i < chx.length; i++) {
+	                // Return true from the function on first match of a checked item
+	                if (chx[i].type == 'radio' && chx[i].checked) {
+	                    return true;
+	                }
+	            }
+	            // End of the loop, return false
+	            alert('Please select an item type')
+	            return false;
             }
         </script>
 
@@ -72,10 +93,10 @@
         <div class="container-fluid col-8">
             <h4>Add a new resource</h4><br>
 
-            <form name="create" action="\create" method="POST" onsubmit="return validateForm()">
+            <form name="create" action="/create" method="POST" onsubmit="return validateForm()">
               <div class="form-group mb-3">
-                  <label for="title">Image:</label>
-                  <input type="text" class="form-control" name="title" placeholder="Upload Image">
+                  <label for="image">Image:</label>
+                  <input type="text" class="form-control" name="image" placeholder="Upload Image">
               </div>
                 <div class="form-group mb-3">
                     <label for="title">Item Title <span class="required">*</span></label>
@@ -108,13 +129,13 @@
                 <div class="form-group mb-3">
                     <label>Item Type: <span class="required">*</span></label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="isService" id="serviceNo" value="no">
+                        <input class="form-check-input" type="radio" name="isService" id="isNotService" value="no">
                         <label class="form-check-label" for="isService">
                             Product
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="isService" id="serviceYes" value="yes">
+                        <input class="form-check-input" type="radio" name="isService" id="isService" value="yes">
                         <label class="form-check-label" for="isService">
                             Service
                         </label>

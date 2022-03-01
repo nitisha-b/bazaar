@@ -1,14 +1,21 @@
 // set up Express
 var express = require('express');
 var app = express();
-
+var mongoose = require('mongoose');
 
 // set up BodyParser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // import the Person class from Person.js
 var Item = require('./Item.js');
+
+// Set up ejs
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/public');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 /***************************************/
 
@@ -16,14 +23,30 @@ var Item = require('./Item.js');
 // this is the action of the "create new person" form
 app.use('/create', (req, res) => {
 	// construct the Person from the form data which is in the request body
+
+	// Get Item type
+	var service = false;
+	//
+	// if (req.body.getElementById('isService').checked) {
+	// 	service = true
+	// }
+
 	var newItem = new Item ({
-		title: req.query.title,
-		description: req.query.description,
-		isService: req.query.isService,
-		venmo: req.query.venmo,
-		location: req.query.location,
-		price: req.query.price,
+		// title: req.query.title,
+		// description: req.query.description,
+		// isService: req.query.isService,
+		// venmo: req.query.venmo,
+		// location: req.query.location,
+		// price: req.query.price,
 		// image: req.query.image
+
+		title: req.body.title,
+		description: req.body.description,
+		isService: service,
+		venmo: req.body.venmo,
+		location: req.body.location,
+		price: req.body.price,
+		// image: req.body.image
 	    });
 
 	// save the person to the database
