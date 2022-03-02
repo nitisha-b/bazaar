@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
+mongoose.connect("mongodb+srv://ndaniyarov:HelloNitisha@cluster0.sazvw.mongodb.net/items_services?retryWrites=true&w=majority");
+mongoose.set('useFindAndModify', false);
 
 const router = express.Router()               // router will be used to handle the request.
 const multer = require('multer')              // multer will be used to handle the form data.
@@ -183,4 +185,3 @@ const eitherSort = (arr = []) => {
    };
    arr.sort(sorter);
 };
-
