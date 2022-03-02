@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'bmbazaar_ios' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for bmbazaar_ios
+
+  target 'bmbazaar_iosTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'bmbazaar_iosUITests' do
+    # Pods for testing
+  end
+
+  # Analytics dependency
+    pod 'AWSPinpoint', '~> 2.6.10'
+    pod 'AWSCore', '~> 2.6.10'
+    pod 'AWSS3',  '~> 2.6.10'
+
+end

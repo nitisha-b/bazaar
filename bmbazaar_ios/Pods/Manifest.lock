@@ -1,0 +1,26 @@
+PODS:
+  - AWSCore (2.6.35)
+  - AWSPinpoint (2.6.35):
+    - AWSCore (= 2.6.35)
+  - AWSS3 (2.6.35):
+    - AWSCore (= 2.6.35)
+
+DEPENDENCIES:
+  - AWSCore (~> 2.6.10)
+  - AWSPinpoint (~> 2.6.10)
+  - AWSS3 (~> 2.6.10)
+
+SPEC REPOS:
+  trunk:
+    - AWSCore
+    - AWSPinpoint
+    - AWSS3
+
+SPEC CHECKSUMS:
+  AWSCore: 2dab62ef2e5ca5d8c72c6cbdb3a6ea1532c27c2b
+  AWSPinpoint: 269c600f74368deb045854f28aa45bce20820baa
+  AWSS3: 282a590bb47e9cd88de24979fb28954399c41c52
+
+PODFILE CHECKSUM: 5b43a7603732fcebb63877c5df7ac71b79acd4dd
+
+COCOAPODS: 1.8.4

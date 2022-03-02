@@ -22,9 +22,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet var imageView: UIImageView!
     
     let imagePicker = UIImagePickerController()
-    let AWS_ACCESS_KEY_ID="AKIA53OI5K7GYUBM5MOJ"
-    let AWS_ACCESS_KEY_SECRET="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"
-    let AWS_BUCKET_NAME="brynmawrbazaar"
     
     override func viewDidLoad() {
         super.viewDidLoad()

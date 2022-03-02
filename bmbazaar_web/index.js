@@ -1,7 +1,3 @@
-//should ideally go to .gitignore
-var AWS_ACCESS_KEY_ID="AKIA53OI5K7GYUBM5MOJ"
-var AWS_ACCESS_KEY_SECRET="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"
-var AWS_BUCKET_NAME="brynmawrbazaar"
 
 // set up Express
 var express = require('express');
@@ -44,20 +40,20 @@ app.use('/create', (req, res) => {
 	// }
 
 	var newItem = new Item ({
-		// title: req.query.title,
-		// description: req.query.description,
-		// isService: req.query.isService,
-		// venmo: req.query.venmo,
-		// location: req.query.location,
-		// price: req.query.price,
-		// image: req.query.image
+		title: req.query.title,
+		description: req.query.description,
+		isService: req.query.isService,
+		venmo: req.query.venmo,
+		location: req.query.location,
+		price: req.query.price,
+		image: req.query.image
 
-		title: req.body.title,
-		description: req.body.description,
-		isService: service,
-		venmo: req.body.venmo,
-		location: req.body.location,
-		price: req.body.price,
+		// title: req.body.title,
+		// description: req.body.description,
+		// isService: service,
+		// venmo: req.body.venmo,
+		// location: req.body.location,
+		// price: req.body.price,
 		// image: req.body.image
 	    });
 
@@ -188,84 +184,3 @@ const eitherSort = (arr = []) => {
    arr.sort(sorter);
 };
 
-// creating the storage variable to upload the file and providing the destination folder, 
-// if nothing is provided in the callback it will get uploaded in main directory
-
-// const storage = multer.memoryStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, '')
-//     }
-// })
-
-// // below variable is define to check the type of file which is uploaded
-
-// const filefilter = (req, file, cb) => {
-//     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
-//         cb(null, true)
-//     } else {
-//         cb(null, false)
-//     }
-// }
-
-// // defining the upload variable for the configuration of photo being uploaded
-// const upload = multer({ storage: storage, fileFilter: filefilter });
-
-// // Now creating the S3 instance which will be used in uploading photo to s3 bucket.
-// const s3 = new Aws.S3({
-// 	//switch when we set up .gitignore
-// 	// accessKeyId:process.env.AWS_ACCESS_KEY_ID,              // accessKeyId that is stored in .env file
-//  //    secretAccessKey:process.env.AWS_ACCESS_KEY_SECRET       // secretAccessKey is also store in .env file
-//     accessKeyId:AWS_ACCESS_KEY_ID,              // accessKeyId that is stored in .env file
-//     secretAccessKey:AWS_ACCESS_KEY_SECRET       // secretAccessKey is also store in .env file
-// })
-
-// // now how to handle the post request and to upload photo (upload photo using the key defined below in upload.single ie: productimage )
-// router.post('/', upload.single('productimage'), (req, res) => {
-//     console.log(req.file)  // to check the data in the console that is being uploaded
-  
-//     // Definning the params variable to uplaod the photo
-    
-//     const params = {
-//     		//switch when we set up .gitignore
-//         //Bucket:process.env.AWS_BUCKET_NAME,
-//         Bucket:AWS_BUCKET_NAME,      // bucket that we made earlier
-//         Key:req.file.originalname,               // Name of the image
-//         Body:req.file.buffer,                    // Body which will contain the image in buffer format
-//         ACL:"public-read-write",                 // defining the permissions to get the public link
-//         ContentType:"image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
-//     };
-  
-//    // uplaoding the photo using s3 instance and saving the link in the database.
-    
-//     s3.upload(params,(error,data)=>{
-//         if(error){
-//             res.status(500).send({"err":error})  // if we get any error while uploading error message will be returned.
-//         }
-  
-//    // If not then below code will be executed
-        
-//     console.log(data) 
-//     // If not then below code will be executed
-//                    // this will give the information about the object in which photo is stored 
-    
-//    // saving the information in the database.   
-//     const item = new Item({
-//             title: req.body.title,
-//             price: req.body.price,
-//             image: data.Location
-//         });
-//         item.save()
-//             .then(result => {
-//                 res.status(200).send({
-//                     _id: result._id,
-//                     title: result.title,
-//                     price: result.price,
-//                     image: data.Location,
-//                 })
-//             })
-//             .catch(err => {
-//                 res.send({ message: err })
-//           })
-//     })
-// })                     // this will give the information about the object in which photo is stored 
-// module.exports = router

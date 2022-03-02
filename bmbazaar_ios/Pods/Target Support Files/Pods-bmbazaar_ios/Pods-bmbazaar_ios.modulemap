@@ -1,0 +1,6 @@
+framework module Pods_bmbazaar_ios {
+  umbrella header "Pods-bmbazaar_ios-umbrella.h"
+
+  export *
+  module * { export * }
+}
