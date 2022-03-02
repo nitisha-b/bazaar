@@ -5,11 +5,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 mongoose.connect("mongodb+srv://ndaniyarov:HelloNitisha@cluster0.sazvw.mongodb.net/items_services?retryWrites=true&w=majority");
-mongoose.set('useFindAndModify', false);
-
-const router = express.Router()               // router will be used to handle the request.
-const multer = require('multer')              // multer will be used to handle the form data.
-const Aws = require('aws-sdk') 					// aws-sdk library will used to upload image to s3 bucket.
+//mongoose.set('useFindAndModify', false);
 
 //require("dotenv/config")   // for using the environment variables that stores the confedential information.
 
