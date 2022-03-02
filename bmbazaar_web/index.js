@@ -31,7 +31,7 @@ app.set('view engine', 'html');
 
 // endpoint for creating a new person
 // this is the action of the "create new person" form
-app.use('/create', (req, res) => {
+app.use('/create', (req, res) => {	
 	// construct the Person from the form data which is in the request body
 
 	// Get Item type
@@ -42,6 +42,41 @@ app.use('/create', (req, res) => {
 	// }
 
 	var newItem = new Item ({
+		// title: req.query.title,
+		// description: req.query.description,
+		// isService: req.query.isService,
+		// venmo: req.query.venmo,
+		// location: req.query.location,
+		// price: req.query.price,
+		// image: req.query.image
+
+		title: req.body.title,
+		description: req.body.description,
+		isService: service,
+		venmo: req.body.venmo,
+		location: req.body.location,
+		price: req.body.price,
+		image: req.body.image
+	    });
+
+	// save the person to the database
+	newItem.save( (err) => {
+		if (err) {
+		    res.type('html').status(200);
+		    res.write('uh oh: ' + err);
+		    console.log(err);
+		    res.end();
+		}
+		else {
+		    // display the "successfull created" message
+		    res.send('successfully added ' + newItem.title + ' to the database');
+		}
+	});
+});
+
+app.use('/createItemInApp', (req, res) => {	
+
+	var newItem = new Item ({
 		title: req.query.title,
 		description: req.query.description,
 		isService: req.query.isService,
@@ -49,14 +84,6 @@ app.use('/create', (req, res) => {
 		location: req.query.location,
 		price: req.query.price,
 		image: req.query.image
-
-		// title: req.body.title,
-		// description: req.body.description,
-		// isService: service,
-		// venmo: req.body.venmo,
-		// location: req.body.location,
-		// price: req.body.price,
-		// image: req.body.image
 	    });
 
 	// save the person to the database
@@ -173,7 +200,7 @@ app.use('/api', (req, res) => {
 
 app.use('/public', express.static('public'));
 
-app.use('/', (req, res) => { res.redirect('/public/personform.html'); } );
+app.use('/', (req, res) => { res.redirect('/public/add_item.html'); } );
 
 app.listen(3000,  () => {
 	console.log('Listening on port 3000');

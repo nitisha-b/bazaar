@@ -140,7 +140,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         print(image1)
         
-        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+isService+image1;
+        var urlStr = "http://localhost:3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1;
 //        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
 //        print(urlStr);
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
