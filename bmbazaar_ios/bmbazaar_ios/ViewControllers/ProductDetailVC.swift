@@ -23,7 +23,7 @@ class ProductDetailsVC: UIViewController {
     var price = ""
     var venmo = ""
     var seller = ""
-    var img = ""
+    var img:UIImage = UIImage(named: "avatar-5")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class ProductDetailsVC: UIViewController {
         prodPrice.text = price
         sellerVenmo.text = venmo
         sellerName.text = seller
-        //prodImage.image =
+        prodImage.image = img
         
       
     }

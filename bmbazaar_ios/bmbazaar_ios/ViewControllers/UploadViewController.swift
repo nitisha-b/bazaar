@@ -85,7 +85,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         uploadRequest?.key = key
         uploadRequest?.contentType = "image/jpeg"
         uploadRequest?.body = fileUrl as URL
-        uploadRequest?.serverSideEncryption = AWSS3ServerSideEncryption.awsKms
+        //uploadRequest?.serverSideEncryption = AWSS3ServerSideEncryption.awsKms
         uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
             DispatchQueue.main.async(execute: {
                                 print("totalBytesSent",totalBytesSent)

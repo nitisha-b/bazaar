@@ -123,6 +123,7 @@ extension MainPageViewController: UICollectionViewDelegate {
         detailsVC?.desc = items[indexPath.row].description
         detailsVC?.price = items[indexPath.row].price.description
         detailsVC?.venmo = items[indexPath.row].venmo
+        detailsVC?.img = images[indexPath.row].image
         
         
         // Show details view controller
