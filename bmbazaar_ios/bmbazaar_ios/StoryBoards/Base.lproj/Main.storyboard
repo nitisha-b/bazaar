@@ -368,7 +368,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4VO-5Q-QNs">
                                                 <rect key="frame" x="0.0" y="55.5" width="394" height="450"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.richtext.fill.th" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3w1-IY-JV3">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.richtext.fill.th" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3w1-IY-JV3">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="450"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="450" id="BvP-tO-m63"/>
