@@ -17,7 +17,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     func setup(with item: Item, with image: Image) {
         title.text = item.title;
-        price.text = String(item.price)
+        price.text = "$ " + String(item.price)
         //seller.text = item.seller
         //title.text = "HI"
         //price.text = "10.00"

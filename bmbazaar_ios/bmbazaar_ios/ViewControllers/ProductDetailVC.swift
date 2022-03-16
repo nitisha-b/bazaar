@@ -17,6 +17,7 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var sellerVenmo: UILabel!
     @IBOutlet weak var sellerName: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var name = ""
     var desc = ""
@@ -28,6 +29,8 @@ class ProductDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Product Details"
+        
+        
         
         prodTitle.text = name
         prodDesc.text = desc

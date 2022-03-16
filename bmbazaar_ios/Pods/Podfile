@@ -1,0 +1,50 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'AWSCore' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AWSCore
+
+end
+
+target 'AWSPinpoint' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AWSPinpoint
+
+end
+
+target 'AWSS3' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AWSS3
+
+end
+
+target 'Pods-bmbazaar_ios' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Pods-bmbazaar_ios
+
+end
+
+target 'Pods-bmbazaar_ios-bmbazaar_iosUITests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Pods-bmbazaar_ios-bmbazaar_iosUITests
+
+end
+
+target 'Pods-bmbazaar_iosTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Pods-bmbazaar_iosTests
+
+end
