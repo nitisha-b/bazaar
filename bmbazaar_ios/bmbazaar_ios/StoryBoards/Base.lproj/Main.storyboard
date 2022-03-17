@@ -31,6 +31,10 @@
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" button="YES" image="YES"/>
                                                         </accessibility>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="414" id="512-M1-boa"/>
+                                                            <constraint firstAttribute="height" constant="256" id="fby-oK-yex"/>
+                                                        </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2s-y0-EB8">
                                                         <rect key="frame" x="0.0" y="261" width="414" height="31"/>
