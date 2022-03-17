@@ -50,13 +50,18 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         return
                     }
                     for item in json {
+                        var img = item.image
                         
+                        if(img == "") {
+                            img = "noimage"
+                        }
                         
-                        let url = NSURL(string: "https://brynmawrbazaar.s3.amazonaws.com/" + item.image);
+                        let url = NSURL(string: "https://brynmawrbazaar.s3.amazonaws.com/" + img);
                         var err: NSError?
                         var imageData :NSData = try! NSData(contentsOf: url as! URL,options: NSData.ReadingOptions.mappedIfSafe)
                         var bgImage = UIImage(data:imageData as Data)
                         var i = Image(image: bgImage!, title: item.title)
+                        //if i == nil { print("nil photo")}
                         images.append(i)
                         
                         //item.image = bgImage
