@@ -25,7 +25,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         
     
     func onLoad() {
-        let url = URL(string: "http://localhost:3000/api")
+        let url = URL(string: "http://165.106.136.56:3000/api")
 
         guard let requestUrl = url else { fatalError() }
         // Create URL Request

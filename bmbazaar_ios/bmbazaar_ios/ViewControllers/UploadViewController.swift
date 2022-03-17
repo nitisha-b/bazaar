@@ -11,7 +11,7 @@ import AWSCore
 import AWSS3
 import Photos
 
-class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var descText: UITextField!
@@ -27,7 +27,11 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        self.titleText.delegate = self
+        self.descText.delegate = self
+        self.venmoText.delegate = self
+        self.locationText.delegate = self
+        self.priceText.delegate = self
         imagePicker.delegate = self
     }
     
@@ -51,10 +55,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             dismiss(animated: true, completion: nil)
         }
     
-    func convertImageToBase64String (img: UIImage) -> String {
-        return img.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
-    }
-    
+    // To generate random key
     func generateRandomStringWithLength(length: Int) -> String {
         let randomString: NSMutableString = NSMutableString(capacity: length)
         let letters: NSMutableString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -67,6 +68,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         return String(randomString)
     }
+    
+    // To hide the keyboard when press enter
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
+
     
     @IBAction func onClickUpload(_ sender: UIButton!) {
         let imageLength = 10
@@ -140,7 +148,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         print(image1)
         
-        var urlStr = "http://localhost:3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1;
+        var urlStr = "http://165.106.136.56:3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1;
 //        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
 //        print(urlStr);
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
