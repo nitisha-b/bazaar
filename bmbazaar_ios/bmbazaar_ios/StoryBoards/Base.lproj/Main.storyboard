@@ -213,7 +213,7 @@
                                             <color key="titleColor" red="0.054901960780000002" green="0.36078431370000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="ecZ-HP-a35" kind="presentation" modalPresentationStyle="fullScreen" id="6wA-NJ-vrC"/>
+                                            <segue destination="Nnq-kX-gHR" kind="presentation" modalPresentationStyle="fullScreen" id="BId-YT-sPe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -233,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RN-1h-Y4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1623" y="-56"/>
+            <point key="canvasLocation" x="-1800" y="-62"/>
         </scene>
         <!--Main Page View Controller-->
         <scene sceneID="yV9-wY-2NU">
@@ -571,12 +571,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-854" y="-512"/>
+            <point key="canvasLocation" x="-880" y="-651"/>
         </scene>
         <!--Home-->
         <scene sceneID="3ue-jT-hDa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jv3-6d-mjR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navcontroller" automaticallyAdjustsScrollViewInsets="NO" id="jv3-6d-mjR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" selectedImage="homekit" id="5HB-bc-hPQ"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="wXC-Pn-rjY"/>
@@ -593,10 +593,84 @@
             </objects>
             <point key="canvasLocation" x="-446" y="635"/>
         </scene>
+        <!--Email VerifyVC-->
+        <scene sceneID="s40-LJ-SFu">
+            <objects>
+                <viewController id="Nnq-kX-gHR" customClass="EmailVerifyVC" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AFN-lm-wb9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SL5-Sq-WgN">
+                                <rect key="frame" x="32" y="304.5" width="350" height="287"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your Bryn Mawr email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5He-Vl-tMA">
+                                        <rect key="frame" x="37" y="0.0" width="276" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="AWO-Hc-ioG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31Z-oB-NQn">
+                                        <rect key="frame" x="0.0" y="65" width="350" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="BKc-gs-634"/>
+                                            <constraint firstAttribute="width" constant="350" id="qJq-Up-6KG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dh-CG-vFC">
+                                        <rect key="frame" x="30" y="135" width="290" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="2De-mm-ZaU"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Verify"/>
+                                        <connections>
+                                            <action selector="onClickVerify:" destination="Nnq-kX-gHR" eventType="touchUpInside" id="yIA-qg-A1v"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;invalid email message&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqF-Qg-SEL">
+                                        <rect key="frame" x="0.0" y="205" width="350" height="82"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="31Z-oB-NQn" firstAttribute="leading" secondItem="SL5-Sq-WgN" secondAttribute="leading" id="2id-ZB-7As"/>
+                                    <constraint firstItem="2dh-CG-vFC" firstAttribute="leading" secondItem="SL5-Sq-WgN" secondAttribute="leading" constant="30" id="758-EZ-Jxg"/>
+                                    <constraint firstAttribute="trailing" secondItem="31Z-oB-NQn" secondAttribute="trailing" id="FJm-WE-juT"/>
+                                    <constraint firstAttribute="trailing" secondItem="zqF-Qg-SEL" secondAttribute="trailing" id="Gkd-nD-2pg"/>
+                                    <constraint firstItem="zqF-Qg-SEL" firstAttribute="leading" secondItem="SL5-Sq-WgN" secondAttribute="leading" id="W5a-xh-jZr"/>
+                                    <constraint firstAttribute="trailing" secondItem="2dh-CG-vFC" secondAttribute="trailing" constant="30" id="ajA-ZR-d8g"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GIa-Ih-APS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SL5-Sq-WgN" firstAttribute="centerX" secondItem="AFN-lm-wb9" secondAttribute="centerX" id="RD3-XX-v2u"/>
+                            <constraint firstItem="SL5-Sq-WgN" firstAttribute="centerY" secondItem="AFN-lm-wb9" secondAttribute="centerY" id="zIE-np-UYX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ykm-a5-279"/>
+                    <connections>
+                        <outlet property="errorMessage" destination="zqF-Qg-SEL" id="Oqo-ei-baJ"/>
+                        <outlet property="userEmail" destination="31Z-oB-NQn" id="vKk-qH-V1V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0d-qK-59q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-881" y="-13"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Svp-5O-mUV">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ecZ-HP-a35" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="ecZ-HP-a35" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="JN4-Y2-ZyE"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lUN-VD-7au">
