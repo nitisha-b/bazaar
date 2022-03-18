@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jcj-dZ-7JT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hNJ-aS-50B">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -318,9 +318,36 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ESq-JW-YjG">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SearchBar" id="ESq-JW-YjG" customClass="SearchBarView" customModule="bmbazaar_ios" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Awc-1V-clk">
+                                            <rect key="frame" x="0.0" y="20" width="414" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ESg-Px-vVz"/>
+                                                <constraint firstAttribute="height" constant="30" id="jyD-mS-4EN"/>
+                                            </constraints>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <scopeButtonTitles>
+                                                <string>Title</string>
+                                                <string>Title</string>
+                                            </scopeButtonTitles>
+                                            <connections>
+                                                <outlet property="delegate" destination="hNJ-aS-50B" id="oy3-ry-Efn"/>
+                                            </connections>
+                                        </searchBar>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Awc-1V-clk" firstAttribute="leadingMargin" secondItem="ESq-JW-YjG" secondAttribute="leading" constant="8" id="90s-kB-LzG"/>
+                                        <constraint firstItem="Awc-1V-clk" firstAttribute="top" secondItem="ESq-JW-YjG" secondAttribute="top" constant="20" id="Cpg-ZF-fM6"/>
+                                        <constraint firstAttribute="bottom" secondItem="Awc-1V-clk" secondAttribute="bottom" constant="10" id="fFf-1q-YDC"/>
+                                        <constraint firstAttribute="trailing" secondItem="Awc-1V-clk" secondAttribute="trailing" id="jUN-6l-lBU"/>
+                                        <constraint firstAttribute="bottom" secondItem="Awc-1V-clk" secondAttribute="bottom" constant="10" id="ygg-bJ-fxl"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="searchBar" destination="Awc-1V-clk" id="yzn-te-fWi"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="hNJ-aS-50B" id="ngk-XU-0DE"/>

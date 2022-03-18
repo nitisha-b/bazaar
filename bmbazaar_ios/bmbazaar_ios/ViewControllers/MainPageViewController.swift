@@ -10,7 +10,7 @@ import UIKit
 import AWSCore
 import AWSS3
 
-class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout{
+class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate{
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -99,6 +99,11 @@ extension MainPageViewController: UICollectionViewDataSource {
         return items.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBar", for: indexPath)
+        return searchView
+    }
+    
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 //        return CGSize(width: self.view.frame.size.width/CGFloat(Float(items.count)))
 //    }
@@ -136,5 +141,3 @@ extension MainPageViewController: UICollectionViewDelegate {
         self.navigationController?.pushViewController(detailsVC!, animated: true)
     }
 }
-
-
