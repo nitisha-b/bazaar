@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -728,23 +729,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUs-UL-ak2">
-                                <rect key="frame" x="137" y="293" width="140" height="147"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUs-UL-ak2">
+                                <rect key="frame" x="154" y="420.5" width="106.5" height="55"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="person.3.fill" catalog="system" title="Switch User"/>
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Switch User" imagePadding="6">
+                                    <imageReference key="image" image="person.3.fill" catalog="system" symbolScale="large"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="jcj-dZ-7JT" kind="presentation" modalPresentationStyle="fullScreen" id="2YR-Ke-xuR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="K1Q-ck-PbT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DUs-UL-ak2" firstAttribute="centerX" secondItem="PzJ-tK-LOY" secondAttribute="centerX" id="JYb-Iq-hLo"/>
+                            <constraint firstItem="DUs-UL-ak2" firstAttribute="centerX" secondItem="PzJ-tK-LOY" secondAttribute="centerX" id="hiq-06-PSM"/>
+                            <constraint firstItem="DUs-UL-ak2" firstAttribute="centerY" secondItem="PzJ-tK-LOY" secondAttribute="centerY" id="ojH-CZ-Ire"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Profile" image="person.fill" catalog="system" id="xJf-7s-cb1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVm-vw-7GN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="703" y="-83"/>
+            <point key="canvasLocation" x="702.89855072463774" y="-83.035714285714278"/>
         </scene>
     </scenes>
     <resources>
