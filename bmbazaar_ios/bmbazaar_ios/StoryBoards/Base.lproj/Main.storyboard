@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hNJ-aS-50B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jcj-dZ-7JT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -188,6 +188,37 @@
             </objects>
             <point key="canvasLocation" x="264" y="635"/>
         </scene>
+        <!--Search-->
+        <scene sceneID="teP-IU-85L">
+            <objects>
+                <viewController id="8Sh-JL-jae" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oK3-Yp-WND">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TYO-41-yn3">
+                                <rect key="frame" x="0.0" y="91" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bbW-5e-DhR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TYO-41-yn3" firstAttribute="leading" secondItem="bbW-5e-DhR" secondAttribute="leading" id="9ES-Op-NBa"/>
+                            <constraint firstItem="TYO-41-yn3" firstAttribute="trailing" secondItem="bbW-5e-DhR" secondAttribute="trailing" id="OzK-qW-PAK"/>
+                            <constraint firstItem="TYO-41-yn3" firstAttribute="top" secondItem="bbW-5e-DhR" secondAttribute="top" constant="47" id="mTl-Ud-jPd"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="n5c-Kq-qVh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U7S-JG-Hyv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="635"/>
+        </scene>
         <!--UserLoginViewController-->
         <scene sceneID="FF3-Ex-Y9i">
             <objects>
@@ -252,13 +283,13 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="L9f-Wr-LFL">
                                     <size key="itemSize" width="300" height="370"/>
-                                    <size key="headerReferenceSize" width="0.0" height="25"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" reuseIdentifier="ItemCollectionViewCell" id="Un1-pL-OaZ" customClass="ItemCollectionViewCell" customModule="bmbazaar_ios" customModuleProvider="target">
-                                        <rect key="frame" x="57" y="25" width="300" height="370"/>
+                                        <rect key="frame" x="57" y="0.0" width="300" height="370"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="370"/>
@@ -318,37 +349,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SearchBar" id="ESq-JW-YjG" customClass="SearchBarView" customModule="bmbazaar_ios" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <searchBar contentMode="redraw" showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Awc-1V-clk">
-                                            <rect key="frame" x="0.0" y="20" width="414" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ESg-Px-vVz"/>
-                                                <constraint firstAttribute="height" constant="30" id="jyD-mS-4EN"/>
-                                            </constraints>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <scopeButtonTitles>
-                                                <string>Title</string>
-                                                <string>Title</string>
-                                            </scopeButtonTitles>
-                                            <connections>
-                                                <outlet property="delegate" destination="hNJ-aS-50B" id="oy3-ry-Efn"/>
-                                            </connections>
-                                        </searchBar>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Awc-1V-clk" firstAttribute="leadingMargin" secondItem="ESq-JW-YjG" secondAttribute="leading" constant="8" id="90s-kB-LzG"/>
-                                        <constraint firstItem="Awc-1V-clk" firstAttribute="top" secondItem="ESq-JW-YjG" secondAttribute="top" constant="20" id="Cpg-ZF-fM6"/>
-                                        <constraint firstAttribute="bottom" secondItem="Awc-1V-clk" secondAttribute="bottom" constant="10" id="fFf-1q-YDC"/>
-                                        <constraint firstAttribute="trailing" secondItem="Awc-1V-clk" secondAttribute="trailing" id="jUN-6l-lBU"/>
-                                        <constraint firstAttribute="bottom" secondItem="Awc-1V-clk" secondAttribute="bottom" constant="10" id="ygg-bJ-fxl"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="searchBar" destination="Awc-1V-clk" id="yzn-te-fWi"/>
-                                    </connections>
-                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="hNJ-aS-50B" id="ngk-XU-0DE"/>
                                     <outlet property="delegate" destination="hNJ-aS-50B" id="y5r-lc-7np"/>
@@ -712,6 +712,7 @@
                     <connections>
                         <segue destination="jv3-6d-mjR" kind="relationship" relationship="viewControllers" id="qQK-2d-vl9"/>
                         <segue destination="UBY-at-3JY" kind="relationship" relationship="viewControllers" id="Hqc-gn-BMm"/>
+                        <segue destination="8Sh-JL-jae" kind="relationship" relationship="viewControllers" id="p95-UD-06R"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9I-CE-ck0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -723,6 +724,7 @@
         <image name="avatar-5" width="341.33334350585938" height="341.33334350585938"/>
         <image name="doc.richtext.fill.th" catalog="system" width="115" height="128"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="sponge" width="256" height="256"/>
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
