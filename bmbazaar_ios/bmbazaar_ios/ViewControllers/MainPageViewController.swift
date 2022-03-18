@@ -10,12 +10,16 @@ import UIKit
 import AWSCore
 import AWSS3
 
-class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate{
+class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var items = [Item]()
     var images = [Image]()
+    
+    // Items for search bar
+    var searchItems = [Item]()
+    var searchImages = [Image]()
 //
 //    var items2: [Item] = [
 //            Item(title: "hehe", description: "hehe", price: 10.0),
@@ -64,9 +68,11 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         var i = Image(image: bgImage!, title: item.title)
                         //if i == nil { print("nil photo")}
                         images.append(i)
+                        searchImages.append(i)
                         
                         //item.image = bgImage
                         items.append(item)
+                        searchItems.append(item)
                     }
                 } catch {
                     print("Failed to load: \(error.localizedDescription)")
@@ -88,8 +94,27 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         onLoad()
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.items.removeAll()
+        
+        for item in self.searchItems {
+            if (item.title.lowercased().contains(searchBar.text!.lowercased())) {
+                self.items.append(item)
+            }
+        }
+        
+        // If the search is blank
+        if (searchBar.text!.isEmpty) {
+            self.items = self.searchItems
+        }
+        
+        self.collectionView.reloadData()
+    }
+    
 
 }
 
@@ -100,7 +125,8 @@ extension MainPageViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBar", for: indexPath)
+        
+        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "searchbar", for: indexPath)
         return searchView
     }
     

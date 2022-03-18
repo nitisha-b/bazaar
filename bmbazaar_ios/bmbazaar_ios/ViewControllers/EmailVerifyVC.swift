@@ -25,7 +25,9 @@ class EmailVerifyVC: UIViewController {
     @IBAction func onClickVerify(_ sender: Any) {
         let email = userEmail.text ?? ""
         let range = NSRange(location: 0, length: email.utf16.count)
-        let regexPattern = try! NSRegularExpression(pattern:"[a-z1-9]+@brynmawr\\.edu")
+//        let regexPattern = try! NSRegularExpression(pattern:"[a-z1-9]+@brynmawr\\.edu")
+        
+        let regexPattern = try! NSRegularExpression(pattern:"[a-z1-9]*")
         
         if (regexPattern.firstMatch(in: email, options: [], range: range) == nil) {
             errorMessage.text = "Please enter a valid email address"
