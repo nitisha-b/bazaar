@@ -10,9 +10,10 @@ import UIKit
 import AWSCore
 import AWSS3
 
-class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
     
     var items = [Item]()
     var images = [Image]()
@@ -20,13 +21,48 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     // Items for search bar
     var searchItems = [Item]()
     var searchImages = [Image]()
-//
-//    var items2: [Item] = [
-//            Item(title: "hehe", description: "hehe", price: 10.0),
-//            Item(title: "boom", description: "hehe", price: 10.0),
-//            Item(title: "a", description: "hehe", price: 10.0)
-//         ]
+
+    
+    @IBOutlet weak var itemType: UISegmentedControl!
+    
+    @IBAction func onItemTypeChanged(_ sender: Any) {
         
+        // index=0: all, index=1: product, index=2: service
+        print("filter: \(itemType.selectedSegmentIndex.description )")
+        
+        self.items.removeAll()
+        self.images.removeAll()
+        
+        // search for products
+        if (itemType.selectedSegmentIndex == 1) {
+            for (idx, item) in self.searchItems.enumerated() {
+                if (!item.isService) {
+                    items.append(item)
+                    images.append(searchImages[idx])
+                }
+            }
+        }
+        
+        // search for services
+        else if (itemType.selectedSegmentIndex == 2) {
+            for (idx, item) in self.searchItems.enumerated() {
+                if (item.isService) {
+                    items.append(item)
+                    images.append(searchImages[idx])
+                }
+            }
+        }
+        
+        // If the search is blank
+        else if (itemType.selectedSegmentIndex == 0) {
+            self.items = self.searchItems
+            self.images = self.searchImages
+        }
+        
+        self.collectionView.reloadData()
+    }
+    
+    
     
     func onLoad() {
 //        let url = URL(string: "http://165.106.136.56:3000/api")
@@ -95,26 +131,10 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        collectionView.reloadData()
+        
         onLoad()
     }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.items.removeAll()
-        
-        for item in self.searchItems {
-            if (item.title.lowercased().contains(searchBar.text!.lowercased())) {
-                self.items.append(item)
-            }
-        }
-        
-        // If the search is blank
-        if (searchBar.text!.isEmpty) {
-            self.items = self.searchItems
-        }
-        
-        self.collectionView.reloadData()
-    }
-    
 
 }
 
@@ -123,16 +143,6 @@ extension MainPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "searchbar", for: indexPath)
-        return searchView
-    }
-    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        return CGSize(width: self.view.frame.size.width/CGFloat(Float(items.count)))
-//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 

@@ -195,10 +195,15 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             let ok = UIAlertAction(title: "OK", style: .default) { (aciton) ->Void in
                 print("OK button tapped")
+                
+                // return to main page
+                let mainPageVC = self.storyboard?.instantiateViewController(withIdentifier: "homepage") as? MainPageViewController
+                self.navigationController?.pushViewController(mainPageVC!, animated: true)
             }
             postedAlert.addAction(ok)
             self.present(postedAlert, animated: true, completion: nil)
         }
+        
     }
     
     func clearForm() {
