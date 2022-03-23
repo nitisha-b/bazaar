@@ -7,13 +7,13 @@ mongoose.connect("mongodb+srv://ndaniyarov:HelloNitisha@cluster0.sazvw.mongodb.n
 var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({
- title: {type: String, required: true},
+ title: {type: String, required: true, unique: true},
  description: String,
  isService: Boolean,
  venmo: String,
  location: String,
  price: {type: Number, required: true},
- image: String
+ image: String,
 });
 
 // export personSchema as a class called Person

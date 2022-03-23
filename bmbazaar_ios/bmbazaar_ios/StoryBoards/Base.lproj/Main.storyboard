@@ -13,7 +13,7 @@
         <!--Upload-->
         <scene sceneID="VaK-OV-349">
             <objects>
-                <viewController id="UBY-at-3JY" customClass="UploadViewController" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadViewController" id="UBY-at-3JY" customClass="UploadViewController" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xhU-Ki-RLM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -741,13 +741,17 @@
         <!--My Profile-->
         <scene sceneID="1hB-WG-AYf">
             <objects>
-                <viewController id="mag-4T-fy1" sceneMemberID="viewController">
+                <viewController id="mag-4T-fy1" customClass="MyProfileViewController" customModule="bmbazaar_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PzJ-tK-LOY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUs-UL-ak2">
-                                <rect key="frame" x="154" y="420.5" width="106.5" height="55"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n84-Eg-b0j">
+                                <rect key="frame" x="152" y="348" width="240" height="183"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUs-UL-ak2">
+                                <rect key="frame" x="87" y="104" width="240" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Switch User" imagePadding="6">
                                     <imageReference key="image" image="person.3.fill" catalog="system" symbolScale="large"/>
@@ -757,15 +761,75 @@
                                     <segue destination="jcj-dZ-7JT" kind="presentation" modalPresentationStyle="fullScreen" id="2YR-Ke-xuR"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-uT-uKo">
+                                <rect key="frame" x="47" y="280" width="320" height="251"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ag2-p2-2ei">
+                                    <size key="itemSize" width="314" height="379"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" reuseIdentifier="ItemCollectionViewCell" id="Lqm-Fy-i3Q" customClass="ItemCollectionViewCell" customModule="bmbazaar_ios" customModuleProvider="target">
+                                        <rect key="frame" x="3" y="0.0" width="314" height="379"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="379"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1SQ-Tl-PcI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="339"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8KV-y8-y3p">
+                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="298"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqb-Os-eW8">
+                                                            <rect key="frame" x="0.0" y="298" width="300" height="20.5"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="osh-Oa-dNf">
+                                                            <rect key="frame" x="0.0" y="318.5" width="300" height="20.5"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </view>
+                                        <size key="customSize" width="314" height="379"/>
+                                        <connections>
+                                            <outlet property="itemImage" destination="8KV-y8-y3p" id="6XM-H8-bYc"/>
+                                            <outlet property="price" destination="osh-Oa-dNf" id="pmy-EW-mni"/>
+                                            <outlet property="title" destination="Pqb-Os-eW8" id="2O5-YX-EgF"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="mag-4T-fy1" id="FTf-OC-5aE"/>
+                                    <outlet property="delegate" destination="mag-4T-fy1" id="PMJ-au-5LG"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="K1Q-ck-PbT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DUs-UL-ak2" firstAttribute="centerX" secondItem="PzJ-tK-LOY" secondAttribute="centerX" id="hiq-06-PSM"/>
-                            <constraint firstItem="DUs-UL-ak2" firstAttribute="centerY" secondItem="PzJ-tK-LOY" secondAttribute="centerY" id="ojH-CZ-Ire"/>
+                            <constraint firstItem="K1Q-ck-PbT" firstAttribute="trailing" secondItem="n84-Eg-b0j" secondAttribute="trailing" constant="22" id="G6g-G4-sau"/>
+                            <constraint firstItem="K1Q-ck-PbT" firstAttribute="bottom" secondItem="n84-Eg-b0j" secondAttribute="bottom" constant="282" id="ONW-OL-jvr"/>
+                            <constraint firstItem="n84-Eg-b0j" firstAttribute="top" secondItem="K1Q-ck-PbT" secondAttribute="top" constant="304" id="PBg-cO-VHk"/>
+                            <constraint firstItem="n84-Eg-b0j" firstAttribute="leading" secondItem="K1Q-ck-PbT" secondAttribute="leading" constant="152" id="Up6-XD-ykY"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Profile" image="person.fill" catalog="system" id="xJf-7s-cb1"/>
+                    <connections>
+                        <outlet property="collectionView" destination="LSE-uT-uKo" id="PB3-Sx-hrS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVm-vw-7GN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

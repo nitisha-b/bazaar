@@ -38,7 +38,7 @@ class ProductDetailsVC: UIViewController {
         sellerVenmo.text = venmo
         sellerName.text = seller
         prodImage.image = img
-        
+        print(name)
       
     }
     

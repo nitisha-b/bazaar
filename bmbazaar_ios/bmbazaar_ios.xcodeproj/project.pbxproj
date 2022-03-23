@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F78410E39DF1650799DB03E /* Pods_bmbazaar_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56C86C1AB75DFAF0107203B /* Pods_bmbazaar_ios.framework */; };
+		240E266227EAD7F700379E97 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E266127EAD7F700379E97 /* MyProfileViewController.swift */; };
 		6B0E5B0627C4AF3C0077463B /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E5B0527C4AF3B0077463B /* ProductDetailVC.swift */; };
 		6B5C471627B4BA92001862C6 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C471527B4BA92001862C6 /* UploadViewController.swift */; };
 		6B671A4D27AF4A3300745FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B671A4C27AF4A3300745FDB /* AppDelegate.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		240E266127EAD7F700379E97 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		24E3880B27C72F1600B37E92 /* bmbazaar_iosTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bmbazaar_iosTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		3B9D3BA5ED1841C2518EEE9D /* Pods-bmbazaar_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bmbazaar_ios.debug.xcconfig"; path = "Target Support Files/Pods-bmbazaar_ios/Pods-bmbazaar_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		6B0E5B0527C4AF3B0077463B /* ProductDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
@@ -179,10 +181,11 @@
 				6B671A5027AF4A3300745FDB /* ViewController.swift */,
 				6B671A8E27AF5F6D00745FDB /* LoginViewController.swift */,
 				6BA6C1B827B10027002357A1 /* UserLoginViewController.swift */,
-				6BA6C1BD27B228FF002357A1 /* MainPageViewController.swift */,
 				6B5C471527B4BA92001862C6 /* UploadViewController.swift */,
 				6B0E5B0527C4AF3B0077463B /* ProductDetailVC.swift */,
+				6BA6C1BD27B228FF002357A1 /* MainPageViewController.swift */,
 				6B6A5BB827E271CC00774ABF /* EmailVerifyVC.swift */,
+				240E266127EAD7F700379E97 /* MyProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				6B6A5BB927E271CC00774ABF /* EmailVerifyVC.swift in Sources */,
 				6BA6C1BE27B228FF002357A1 /* MainPageViewController.swift in Sources */,
 				6B671A8027AF4D5C00745FDB /* Item.swift in Sources */,
+				240E266227EAD7F700379E97 /* MyProfileViewController.swift in Sources */,
 				6B671A4D27AF4A3300745FDB /* AppDelegate.swift in Sources */,
 				6BA6C1B927B10027002357A1 /* UserLoginViewController.swift in Sources */,
 				6B671A8F27AF5F6D00745FDB /* LoginViewController.swift in Sources */,

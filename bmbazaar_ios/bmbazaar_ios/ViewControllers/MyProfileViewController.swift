@@ -1,8 +1,8 @@
 //
-//  MainPageViewController.swift
+//  MyProfileViewController.swift
 //  bmbazaar_ios
 //
-//  Created by Nitisha on 2/7/22.
+//  Created by Nigina Daniyarova on 3/23/22.
 //
 
 import Foundation
@@ -10,61 +10,20 @@ import UIKit
 import AWSCore
 import AWSS3
 
-class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayout {
-
-    @IBOutlet weak var collectionView: UICollectionView!
+class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var items = [Item]()
     var images = [Image]()
-    
-    // Items for search bar
-    var searchItems = [Item]()
-    var searchImages = [Image]()
-
-    
-    @IBOutlet weak var itemType: UISegmentedControl!
-    
-    @IBAction func onItemTypeChanged(_ sender: Any) {
-        
-        // index=0: all, index=1: product, index=2: service
-        print("filter: \(itemType.selectedSegmentIndex.description )")
-        
-        self.items.removeAll()
-        self.images.removeAll()
-        
-        // search for products
-        if (itemType.selectedSegmentIndex == 1) {
-            for (idx, item) in self.searchItems.enumerated() {
-                if (!item.isService) {
-                    items.append(item)
-                    images.append(searchImages[idx])
-                }
-            }
-        }
-        
-        // search for services
-        else if (itemType.selectedSegmentIndex == 2) {
-            for (idx, item) in self.searchItems.enumerated() {
-                if (item.isService) {
-                    items.append(item)
-                    images.append(searchImages[idx])
-                }
-            }
-        }
-        
-        // If the search is blank
-        else if (itemType.selectedSegmentIndex == 0) {
-            self.items = self.searchItems
-            self.images = self.searchImages
-        }
-        
-        self.collectionView.reloadData()
-    }
+    var email = ""
     
     func onLoad() {
-//        let url = URL(string: "http://165.106.136.56:3000/api")
-        let url = URL(string: "http://localhost:3000/api")
+        //get email from verification page
+        let defaults = UserDefaults.standard;
+        email = defaults.object(forKey: "email") as! String;
+//        let url = URL(string: "http://165.106.136.56:3000/apiUser")
+        let url = URL(string: "http://localhost:3000/apiUser?username="+email)
 
         guard let requestUrl = url else { fatalError() }
         // Create URL Request
@@ -102,11 +61,11 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         var i = Image(image: bgImage!, title: item.title)
                         //if i == nil { print("nil photo")}
                         images.append(i)
-                        searchImages.append(i)
+                        
                         
                         //item.image = bgImage
                         items.append(item)
-                        searchItems.append(item)
+                        
                     }
                 } catch {
                     print("Failed to load: \(error.localizedDescription)")
@@ -123,7 +82,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Home"
+        title = "My Profile"
         
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
@@ -136,7 +95,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
 }
 
-extension MainPageViewController: UICollectionViewDataSource {
+extension MyProfileViewController: UICollectionViewDataSource {
  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -158,7 +117,7 @@ extension MainPageViewController: UICollectionViewDataSource {
 
 }
 
-extension MainPageViewController: UICollectionViewDelegate {
+extension MyProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsVC = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsVC") as? ProductDetailsVC
@@ -175,3 +134,5 @@ extension MainPageViewController: UICollectionViewDelegate {
         self.navigationController?.pushViewController(detailsVC!, animated: true)
     }
 }
+
+//

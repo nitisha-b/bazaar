@@ -5,6 +5,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 mongoose.connect("mongodb+srv://ndaniyarov:HelloNitisha@cluster0.sazvw.mongodb.net/items_services?retryWrites=true&w=majority");
+//mongoose.connect("mongodb+srv://ndaniyarov:HelloNitisha@cluster0.sazvw.mongodb.net/users?retryWrites=true&w=majority");
 //mongoose.set('useFindAndModify', false);
 
 //require("dotenv/config")   // for using the environment variables that stores the confedential information.
@@ -15,7 +16,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // import the Person class from Person.js
+//var User = require('./User.js');
 var Item = require('./Item.js');
+var User = require('./User.js');
 
 // Set up ejs
 app.use(express.static(__dirname + '/public'));
@@ -25,8 +28,7 @@ app.set('view engine', 'html');
 
 /***************************************/
 
-// endpoint for creating a new person
-// this is the action of the "create new person" form
+// endpoint for creating a new item in web
 app.use('/create', (req, res) => {	
 	// construct the Person from the form data which is in the request body
 
@@ -38,14 +40,6 @@ app.use('/create', (req, res) => {
 	// }
 
 	var newItem = new Item ({
-		// title: req.query.title,
-		// description: req.query.description,
-		// isService: req.query.isService,
-		// venmo: req.query.venmo,
-		// location: req.query.location,
-		// price: req.query.price,
-		// image: req.query.image
-
 		title: req.body.title,
 		description: req.body.description,
 		isService: service,
@@ -93,6 +87,62 @@ app.use('/createItemInApp', (req, res) => {
 		else {
 		    // display the "successfull created" message
 		    res.send('successfully added ' + newItem.title + ' to the database');
+		}
+	});
+});
+
+app.use('/createUser', (req, res) => {	
+
+	User.findOne({username: req.query.username}, function(err, duplicate) {
+		if(err) console.log(err);
+		if (duplicate){
+			console.log('This has already been saved');
+		} else {
+
+			var newUser = new User ({
+				username: req.query.username
+	    	});
+
+			// save the person to the database
+			newUser.save( (err) => {
+				if (err) {
+		    		res.type('html').status(200);
+		    		res.write('uh oh: ' + err);
+		    		console.log(err);
+		    		res.end();
+				}	
+				else {
+		    		// display the "successfull created" message
+		    		res.send('successfully added ' + newUser.username + ' to the Users database');
+				}
+			});
+		}
+	});
+});
+
+app.use('/addItemToUser', (req, res) => {
+	var newItem = new Item ({
+		title: req.query.title,
+		description: req.query.description,
+		isService: req.query.isService,
+		venmo: req.query.venmo,
+		location: req.query.location,
+		price: req.query.price,
+		image: req.query.image
+	 });
+	var username = req.query.username;
+	var filter = { 'username': username };
+	var action = { '$push': { 'items': newItem } };
+
+	User.findOneAndUpdate(filter, action, (err, orig) => {
+		if (err) {
+			res.json({ 'status': err });
+		}
+		else if (!orig) {
+			res.json({ 'status': 'no resource' });
+		}
+		else {
+			res.json({ 'status': 'success' });
 		}
 	});
 });
@@ -189,6 +239,19 @@ app.use('/api', (req, res) => {
 	    });
     });
 
+app.use('/apiUser', (req, res) => {
+
+	User.findOne({'username': req.query.username}, function (err, docs) {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			res.json(docs.items)
+		}
+	});
+});
+
+
 
 
 
@@ -202,9 +265,19 @@ app.listen(3000,  () => {
 	console.log('Listening on port 3000');
     });
 
+function updateItemsList(req, res, username,item) {
+	var filter = { 'username': username };
+	var action = { '$push': { 'items': item } };
+
+	Resource.findOneAndUpdate(filter, action, (err, orig) => {
+		
+	});
+}
+
 const eitherSort = (arr = []) => {
    const sorter = (a, b) => {
       return +a.price - +b.price;
    };
    arr.sort(sorter);
 };
+

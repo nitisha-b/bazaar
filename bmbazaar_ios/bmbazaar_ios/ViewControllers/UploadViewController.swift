@@ -21,9 +21,15 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var segControl: UISegmentedControl!
     @IBOutlet var imageView: UIImageView!
     
+    var email = ""
+    
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
+        
+        //get email from EmailVerifyVC
+        let defaults = UserDefaults.standard;
+        email = defaults.object(forKey: "email") as! String;
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -35,13 +41,18 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         priceText?.addDoneCancelToolbar()
         imagePicker.delegate = self
         title = "Post Product"
+        //var e = email;
+        print(email);
+        
     }
     
     @IBAction func loadImageButtonTapped(_ sender: UIButton) {
+    
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
 
         present(imagePicker, animated: true, completion: nil)
+        
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -100,9 +111,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             DispatchQueue.main.async(execute: {
                                 print("totalBytesSent",totalBytesSent)
                                 print("totalBytesExpectedToSend",totalBytesExpectedToSend)
-
-//                                self.amountUploaded = totalBytesSent // To show the updating data status in label.
-//                                self.fileSize = totalBytesExpectedToSend
                             })
                         }
         print(fileUrl as URL)
@@ -118,6 +126,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                             return nil
                         })
         
+        let u = email;
+        let username = "&username=" + u;
 
         let s = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
         let isService = "&isService=" + String(s);
@@ -132,39 +142,39 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let p = priceText.text!;
         let price = "&price=" + p;
         
-//        let uiImage : UIImage = imageView.image!
-//        let imageData : Data = uiImage.jpegData(compressionQuality: 0) ?? Data()
-//        var i : String = imageData.base64EncodedString()
-//
-//        i = i.replacingOccurrences(of: "+", with: "%2B")
-//        i = i.replacingOccurrences(of: "/", with: "%2F")
-//        i = i.replacingOccurrences(of: "=", with: "%3D")
         let i: String = key
         let image1: String = "&image=" + i
-//        let i = convertImageToBase64String(img: imageView.image! );
-//        let image = "&image=" + i;
-        
-        
-        
-        
-        
+ 
         print(image1)
+//change to this if using an physical device
+//        var urlStr = "http://165.106.136.56:3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username;
         
-        var urlStr = "http://165.106.136.56:3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1;
-//        var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
-//        print(urlStr);
+        //upload to users
+        var urlStr = "http://localhost:3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username;
+        
+        //upload to items
+        var urlStr2 = "http://localhost:3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1;
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+        urlStr2 = urlStr2.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
         let url = URL(string: urlStr)!;
+        let url2 = URL(string: urlStr2)!;
 
         var request = URLRequest(url: url);
+        var request2 = URLRequest(url: url2);
 
-        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i] as [String : Any];
-//        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService] as [String : Any];
+        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "username":u] as [String : Any];
+        let body2 = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i] as [String : Any];
+
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
+        let bodyData2 = try? JSONSerialization.data(withJSONObject: body2, options: [])
 
         request.httpMethod = "POST"
+        request2.httpMethod = "POST"
+        
         request.httpBody = bodyData;
+        request2.httpBody = bodyData2;
         var isPosted = false;
         
         // Create the HTTP request
@@ -185,6 +195,18 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
         task.resume()
+        
+        let task2 = session.dataTask(with: request2) { (data2, response, error) in
+            
+            if let data2 = data2 {
+                print("Data successfully posted in the database! \(data2)")
+                isPosted = true
+            }
+            else if let error = error {
+                print("Http request failed \(error)")
+            }
+        }
+        task2.resume()
     }
     
     func displayAlert(isPosted: Bool) {
