@@ -40,10 +40,9 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.priceText.delegate = self
         priceText?.addDoneCancelToolbar()
         imagePicker.delegate = self
-        title = "Post Product"
-        //var e = email;
-        print(email);
-        
+
+        title = "Upload"
+
     }
     
     @IBAction func loadImageButtonTapped(_ sender: UIButton) {
@@ -235,6 +234,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.locationText.text = ""
         self.priceText.text = ""
         self.segControl.selectedSegmentIndex = 0;
+        self.imageView.image = UIImage(named: "noimage")
     }
 }
 
