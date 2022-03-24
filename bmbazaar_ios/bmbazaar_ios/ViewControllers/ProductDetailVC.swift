@@ -17,6 +17,7 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var sellerVenmo: UILabel!
     @IBOutlet weak var sellerName: UILabel!
     
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var name = ""
@@ -25,6 +26,7 @@ class ProductDetailsVC: UIViewController {
     var venmo = ""
     var seller = ""
     var img:UIImage = UIImage(named: "avatar-5")!
+    var email = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,20 +41,73 @@ class ProductDetailsVC: UIViewController {
         sellerName.text = seller
         prodImage.image = img
         print(name)
+        
+        let parentVC = self.navigationController?.viewControllers[0]
+        if (parentVC!.isKind(of: MainPageViewController.self)) {
+            deleteButton.isEnabled = false
+        }
       
     }
     
     @IBAction func onClickDelete(_ sender: Any) {
         
-        var urlStr = "http://localhost:3000/delete?title="+name+"&venmo="+venmo
-        print("url \(urlStr)")
+        let defaults = UserDefaults.standard;
+        email = defaults.object(forKey: "email") as! String;
+        
+        deleteItem(username: email, venmo: "");
+        deleteItem(username: email, venmo: venmo)
+    }
+    
+    func displayAlert(isDeleted: Bool) {
+        print("isparent \(navigationController?.viewControllers[0].isKind(of: MyProfileViewController.self))")
+        if (isDeleted) {
+            // Create a new alert
+            let deletedAlert = UIAlertController(title: "Yay!", message: "Product successfully deleted!", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default) { (aciton) ->Void in
+                print("OK button tapped")
+                
+                // Go back to the main page
+                let mainPageVC = self.storyboard?.instantiateViewController(withIdentifier: "homepage") as? MainPageViewController
+                
+                let myProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "myProfileVC") as? MyProfileViewController
+                
+                let parentVC = self.navigationController?.viewControllers[0]
+                
+                if (parentVC!.isKind(of: MyProfileViewController.self)) {
+                    self.navigationController?.pushViewController(myProfileVC!, animated: true)
+                }
+                else if (parentVC!.isKind(of: MainPageViewController.self)) {
+                    self.navigationController?.pushViewController(mainPageVC!, animated: true)
+                }
+                
+            }
+            
+            deletedAlert.addAction(ok)
+            self.present(deletedAlert, animated: true, completion: nil)
+        }
+    }
+    func deleteItem(username: String, venmo: String) {
+        var urlStr = ""
+        if (venmo != "") {
+            urlStr = "http://localhost:3000/delete?title="+name+"&venmo="+venmo
+        }
+        else {
+            urlStr = "http://localhost:3000/deleteFromUser?title="+name+"&username="+username
+        }
+        //print("url \(urlStr)")
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         let url = URL(string: urlStr)!
         
         var request = URLRequest(url: url);
-        
-        let body = ["title":name, "venmo":venmo]
+        var body = ["test" : ""]
+        if (venmo != "") {
+            body = ["title":name, "venmo":venmo]
+        }
+        else {
+            body = ["title":name, "username":username]
+        }
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
         
         // Set http method
@@ -105,25 +160,6 @@ class ProductDetailsVC: UIViewController {
             }
         }
         task.resume()
-    }
-    
-    func displayAlert(isDeleted: Bool) {
-        
-        if (isDeleted) {
-            // Create a new alert
-            let deletedAlert = UIAlertController(title: "Yay!", message: "Product successfully deleted!", preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: "OK", style: .default) { (aciton) ->Void in
-                print("OK button tapped")
-                
-                // Go back to the main page
-                let mainPageVC = self.storyboard?.instantiateViewController(withIdentifier: "homepage") as? MainPageViewController
-                self.navigationController?.pushViewController(mainPageVC!, animated: true)
-            }
-            
-            deletedAlert.addAction(ok)
-            self.present(deletedAlert, animated: true, completion: nil)
-        }
     }
     
 }

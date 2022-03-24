@@ -164,6 +164,22 @@ app.use('/delete', (req, res) => {
 	});
 });
 
+app.use('/deleteFromUser', (req, res) => {
+	var filter = { 'username': req.query.username};
+	var action = {'$pull': {'items': {'title': req.query.title}} }
+
+	User.findOneAndUpdate(filter, action, (err, orig) => {
+		if (err) {
+			res.json({ 'status': err });
+		}
+		else if (!orig) {
+			res.json({ 'status': 'no resource' });
+		}
+		else {
+			res.json({ 'status': 'success' });
+		}
+	});
+});
 
 
 // endpoint for showing all the people
