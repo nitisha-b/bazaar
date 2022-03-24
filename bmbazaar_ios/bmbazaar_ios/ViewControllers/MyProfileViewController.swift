@@ -17,10 +17,17 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
     var items = [Item]()
     var images = [Image]()
     var email = ""
+    //var isMyProfile = true
     
     func onLoad() {
+        //let defaults = UserDefaults.standard
+//        defaults.set(self.isMyProfile,forKey: "isMyProfile")
+//            defaults.synchronize()
+        
+        
         //get email from verification page
         let defaults = UserDefaults.standard;
+        
         email = defaults.object(forKey: "email") as! String;
 //        let url = URL(string: "http://165.106.136.56:3000/apiUser")
         let url = URL(string: "http://localhost:3000/apiUser?username="+email)
