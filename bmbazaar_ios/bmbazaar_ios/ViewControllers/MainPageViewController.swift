@@ -146,16 +146,13 @@ extension MainPageViewController: UICollectionViewDataSource {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         cell.setup(with: items[indexPath.row], with: images[indexPath.row])
-        //cell.itemImage.contentMode = UIView.ContentMode.center
-        
         
         return cell
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
 }
 
 extension MainPageViewController: UICollectionViewDelegate {
