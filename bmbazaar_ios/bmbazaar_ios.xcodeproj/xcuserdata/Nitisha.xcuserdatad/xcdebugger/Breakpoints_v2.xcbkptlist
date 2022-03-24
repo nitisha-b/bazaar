@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
             endingLineNumber = "71"
-            landmarkName = "imagePickerControllerDidCancel(_:)"
+            landmarkName = "generateRandomStringWithLength(length:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
