@@ -26,6 +26,8 @@ app.set('views', __dirname + '/public');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+var isSortDate = false;
+
 /***************************************/
 
 // endpoint for creating a new item in web
@@ -73,7 +75,8 @@ app.use('/createItemInApp', (req, res) => {
 		venmo: req.query.venmo,
 		location: req.query.location,
 		price: req.query.price,
-		image: req.query.image
+		image: req.query.image,
+		date: Date.now()
 	    });
 
 	// save the person to the database
@@ -219,9 +222,8 @@ app.use('/all', (req, res) => {
 // or /api?name=[whatever] to get a single object
 app.use('/api', (req, res) => {
 
-	// construct the query object
 	var queryObject = {};
-	if (req.query.title) {
+	if (req.query.name) {
 	    // if there's a name in the query parameter, use it here
 	    queryObject = { "title" : req.query.title };
 	}
@@ -236,11 +238,6 @@ app.use('/api', (req, res) => {
 		    // no objects found, so send back empty json
 		    res.json({});
 		}
-		else if (items.length == 1 ) {
-		    var item = items[0];
-		    // send back a single JSON object
-		    res.json( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image } );
-		}
 		else {
 		    // construct an array out of the result
 		    var returnArray = [];
@@ -248,7 +245,16 @@ app.use('/api', (req, res) => {
 			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image } );
 			});
 		    // send it back as JSON Array
-				eitherSort(returnArray);
+		    // console.log(isSortDate == 1);
+		    // if (isSortDate == '1') {
+		    // 	console.log("date");
+		    // 	dateSort(returnArray)
+		    // }
+		    // if (isSortDate == '0') {
+		    // 	console.log("price");
+		    // 	priceSort(returnArray)
+		    // }
+				//eitherSort(returnArray);
 				res.json(returnArray);
 		}
 
@@ -266,6 +272,14 @@ app.use('/apiUser', (req, res) => {
 		}
 	});
 });
+
+
+app.use('/sortByDate', (req, res) => {
+	isSortDate = req.query.bool;
+	//console.log(isSortDate);
+	res.end();
+});
+
 
 
 
@@ -290,10 +304,14 @@ function updateItemsList(req, res, username,item) {
 	});
 }
 
-const eitherSort = (arr = []) => {
+const priceSort = (arr = []) => {
    const sorter = (a, b) => {
       return +a.price - +b.price;
    };
    arr.sort(sorter);
+};
+
+const dateSort = (arr = []) => {
+   arr.reverse();
 };
 

@@ -17,7 +17,7 @@ struct Item: Decodable {
  //   var seller: String;
 //    var dateAdded: Date;
 //    var dateSold: Date;
-//    var location: String;
+    var location: String;
     var isService: Bool;   // specify product or service
     var venmo: String;
 }

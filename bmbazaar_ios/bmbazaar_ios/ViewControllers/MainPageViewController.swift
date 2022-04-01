@@ -16,14 +16,19 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     
     var items = [Item]()
+    var itemsSortedByDate = [Item]()
+    var itemsSortedByPrice = [Item]()
     var images = [Image]()
     
     // Items for search bar
     var searchItems = [Item]()
     var searchImages = [Image]()
+    
+    var isSortedByPrice = false;
 
     
     @IBOutlet weak var itemType: UISegmentedControl!
+    @IBOutlet weak var sortType: UISegmentedControl!
     
     @IBAction func onItemTypeChanged(_ sender: Any) {
         
@@ -62,6 +67,17 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         self.collectionView.reloadData()
     }
     
+    @IBAction func onSortTypeChanged(_ sender: Any) {
+        if (sortType.selectedSegmentIndex == 0) {
+            
+            self.items = items.sorted(by: { $0.price < $1.price })
+        }
+        else if (sortType.selectedSegmentIndex == 1) {
+            self.items = self.itemsSortedByDate.reversed()
+        }
+        self.collectionView.reloadData()
+    }
+    
     func onLoad() {
 //        let url = URL(string: "http://165.106.136.56:3000/api")
         let url = URL(string: "http://localhost:3000/api")
@@ -85,7 +101,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 do {
 //                    print(String (data: data, encoding: .utf8)!)
                     guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
-                        print("Error: Couldn't decode data into cars array")
+                        print("Error: Couldn't decode data into Main array")
                         return
                     }
                     for item in json {
@@ -106,6 +122,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         
                         //item.image = bgImage
                         items.append(item)
+                        itemsSortedByDate.append(item)
                         searchItems.append(item)
                     }
                 } catch {
@@ -124,7 +141,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
-        
+        print("opened")
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self

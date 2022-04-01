@@ -51,7 +51,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
                 do {
 //                    print(String (data: data, encoding: .utf8)!)
                     guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
-                        print("Error: Couldn't decode data into cars array")
+                        print("Error: Couldn't decode data into my profile array")
                         return
                     }
                     for item in json {

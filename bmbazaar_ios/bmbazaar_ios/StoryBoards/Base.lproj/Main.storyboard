@@ -262,8 +262,18 @@
                                             <action selector="onItemTypeChanged:" destination="hNJ-aS-50B" eventType="valueChanged" id="4In-h4-phb"/>
                                         </connections>
                                     </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RgV-eT-IdP">
+                                        <rect key="frame" x="0.0" y="51" width="414" height="32"/>
+                                        <segments>
+                                            <segment title="Cheapest first"/>
+                                            <segment title="Newest First"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="onSortTypeChanged:" destination="hNJ-aS-50B" eventType="valueChanged" id="LjP-Dv-tso"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cMD-x6-HbR">
-                                        <rect key="frame" x="0.0" y="51" width="414" height="570"/>
+                                        <rect key="frame" x="0.0" y="102" width="414" height="519"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="L9f-Wr-LFL">
                                             <size key="itemSize" width="300" height="370"/>
@@ -356,6 +366,7 @@
                     <connections>
                         <outlet property="collectionView" destination="cMD-x6-HbR" id="qXe-Ye-gBY"/>
                         <outlet property="itemType" destination="ZWV-Ro-mdC" id="aMq-ht-lft"/>
+                        <outlet property="sortType" destination="RgV-eT-IdP" id="40c-ld-6a2"/>
                         <segue destination="Ng9-fs-a51" kind="show" id="hUl-2B-cxD"/>
                     </connections>
                 </viewController>
@@ -850,7 +861,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XHX-YK-f0m"/>
+        <segue reference="hUl-2B-cxD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="avatar-5" width="341.33334350585938" height="341.33334350585938"/>
