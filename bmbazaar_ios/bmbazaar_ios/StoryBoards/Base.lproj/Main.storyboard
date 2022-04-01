@@ -249,7 +249,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-7m-SH4">
-                                <rect key="frame" x="0.0" y="232" width="414" height="621"/>
+                                <rect key="frame" x="0.0" y="232" width="414" height="564"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZWV-Ro-mdC">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
@@ -273,7 +273,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cMD-x6-HbR">
-                                        <rect key="frame" x="0.0" y="102" width="414" height="519"/>
+                                        <rect key="frame" x="0.0" y="102" width="414" height="462"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="L9f-Wr-LFL">
                                             <size key="itemSize" width="300" height="370"/>
@@ -354,7 +354,7 @@
                         <viewLayoutGuide key="safeArea" id="dpc-eO-CFa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="YK3-7m-SH4" firstAttribute="bottom" secondItem="dpc-eO-CFa" secondAttribute="bottom" constant="40" id="2Om-Ih-xGc"/>
+                            <constraint firstItem="YK3-7m-SH4" firstAttribute="bottom" secondItem="wpH-yu-5fh" secondAttribute="bottom" constant="-100" id="2Om-Ih-xGc"/>
                             <constraint firstItem="YK3-7m-SH4" firstAttribute="top" secondItem="dpc-eO-CFa" secondAttribute="top" constant="100" id="2z4-pS-ZaP"/>
                             <constraint firstItem="YK3-7m-SH4" firstAttribute="trailing" secondItem="dpc-eO-CFa" secondAttribute="trailing" id="OQu-Ea-HTD"/>
                             <constraint firstItem="YK3-7m-SH4" firstAttribute="leading" secondItem="dpc-eO-CFa" secondAttribute="leading" id="rwE-HU-VZl"/>

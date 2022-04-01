@@ -24,7 +24,11 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     var searchItems = [Item]()
     var searchImages = [Image]()
     
-    var isSortedByPrice = false;
+    var isSortedByDate = false;
+    
+    let refreshControl = UIRefreshControl()
+    
+    var refresher:UIRefreshControl!
 
     
     @IBOutlet weak var itemType: UISegmentedControl!
@@ -34,11 +38,19 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         
         // index=0: all, index=1: product, index=2: service
         print("filter: \(itemType.selectedSegmentIndex.description )")
-        
+        sortItems()
+        self.collectionView.reloadData()
+    }
+    
+    @IBAction func onSortTypeChanged(_ sender: Any) {
+        sortItems()
+        self.collectionView.reloadData()
+    }
+    
+    func sortItems() {
         self.items.removeAll()
         self.images.removeAll()
         
-        // search for products
         if (itemType.selectedSegmentIndex == 1) {
             for (idx, item) in self.searchItems.enumerated() {
                 if (!item.isService) {
@@ -46,8 +58,14 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     images.append(searchImages[idx])
                 }
             }
+            if (sortType.selectedSegmentIndex == 0) {
+                self.items = items.sorted(by: { $0.price < $1.price })
+            }
+            else if(sortType.selectedSegmentIndex == 1) {
+                itemsSortedByDate = items
+                    self.items = itemsSortedByDate.reversed()
+            }
         }
-        
         // search for services
         else if (itemType.selectedSegmentIndex == 2) {
             for (idx, item) in self.searchItems.enumerated() {
@@ -56,29 +74,34 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     images.append(searchImages[idx])
                 }
             }
+            if (sortType.selectedSegmentIndex == 0) {
+                self.items = items.sorted(by: { $0.price < $1.price })
+            }
+            else if(sortType.selectedSegmentIndex == 1) {
+                itemsSortedByDate = items
+                    self.items = itemsSortedByDate.reversed()
+            }
         }
         
         // If the search is blank
         else if (itemType.selectedSegmentIndex == 0) {
             self.items = self.searchItems
             self.images = self.searchImages
+            
+            if(sortType.selectedSegmentIndex == 1) {
+                itemsSortedByDate = items
+                    self.items = itemsSortedByDate.reversed()
+            }
+            else if (sortType.selectedSegmentIndex == 0){
+                self.items = items.sorted(by: { $0.price < $1.price })
+            }
         }
         
-        self.collectionView.reloadData()
     }
     
-    @IBAction func onSortTypeChanged(_ sender: Any) {
-        if (sortType.selectedSegmentIndex == 0) {
-            
-            self.items = items.sorted(by: { $0.price < $1.price })
-        }
-        else if (sortType.selectedSegmentIndex == 1) {
-            self.items = self.itemsSortedByDate.reversed()
-        }
-        self.collectionView.reloadData()
-    }
-    
-    func onLoad() {
+    @objc func onLoad() {
+        print("opened")
+        self.collectionView!.refreshControl?.beginRefreshing()
 //        let url = URL(string: "http://165.106.136.56:3000/api")
         let url = URL(string: "http://localhost:3000/api")
 
@@ -124,24 +147,50 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         items.append(item)
                         itemsSortedByDate.append(item)
                         searchItems.append(item)
+                        
                     }
                 } catch {
                     print("Failed to load: \(error.localizedDescription)")
                 }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    //stopRefresher()
+                        //refreshControl.endRefreshing()
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    stopRefresher()
+                                }
+
             }
 
         }
         task.resume()
+        //stopRefresher()
     }
     
-
+    func stopRefresher() {
+        self.collectionView!.refreshControl?.endRefreshing()
+    }
+    @objc func refreshData() {
+            //onLoad()
+            
+            collectionView.reloadData()
+            refreshControl.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.red
+        self.refresher.addTarget(self, action: #selector(onLoad), for: .valueChanged)
+        self.collectionView!.addSubview(refresher)
+        
+        
+        sortType.selectedSegmentIndex = -1
         title = "Home"
-        print("opened")
+        
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -150,6 +199,12 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         
         onLoad()
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        self.collectionView.reloadData()
+//    }
 
 }
 
@@ -180,7 +235,7 @@ extension MainPageViewController: UICollectionViewDelegate {
         // Set values for product details
         detailsVC?.name = items[indexPath.row].title
         detailsVC?.desc = items[indexPath.row].description
-        detailsVC?.price = "$ " + items[indexPath.row].price.description
+        detailsVC?.price = "$ " + String(format: "%.2f", items[indexPath.row].price)
         detailsVC?.venmo = items[indexPath.row].venmo
         detailsVC?.img = images[indexPath.row].image
         

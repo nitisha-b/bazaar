@@ -75,8 +75,7 @@ app.use('/createItemInApp', (req, res) => {
 		venmo: req.query.venmo,
 		location: req.query.location,
 		price: req.query.price,
-		image: req.query.image,
-		date: Date.now()
+		image: req.query.image
 	    });
 
 	// save the person to the database
