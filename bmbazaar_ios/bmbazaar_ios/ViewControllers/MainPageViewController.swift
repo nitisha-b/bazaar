@@ -101,7 +101,8 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     @objc func onLoad() {
         print("opened")
-        self.collectionView!.refreshControl?.beginRefreshing()
+//        self.collectionView!.refreshControl?.beginRefreshing()
+        
 //        let url = URL(string: "http://165.106.136.56:3000/api")
         let url = URL(string: "http://localhost:3000/api")
 
@@ -154,29 +155,32 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
-                    //stopRefresher()
+//                    stopRefresher()
                         //refreshControl.endRefreshing()
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    stopRefresher()
-                                }
+                    stopRefresher()
+                }
 
             }
 
         }
         task.resume()
-        //stopRefresher()
     }
     
     func stopRefresher() {
-        self.collectionView!.refreshControl?.endRefreshing()
+//        self.collectionView!.refreshControl?.endRefreshing()
+        self.refresher.endRefreshing()
+        itemType.selectedSegmentIndex = 0
+        sortType.selectedSegmentIndex = -1
     }
-    @objc func refreshData() {
-            //onLoad()
-            
-            collectionView.reloadData()
-            refreshControl.endRefreshing()
-    }
+//    @objc func refreshData() {
+//            //onLoad()
+//        DispatchQueue.main.async {
+//            self.collectionView.reloadData()
+//            self.refresher.endRefreshing()
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
