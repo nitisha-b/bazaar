@@ -332,8 +332,8 @@ extension MainPageViewController: UICollectionViewDelegate {
         detailsVC?.desc = items[indexPath.row].description
         detailsVC?.price = "$ " + String(format: "%.2f", items[indexPath.row].price)
         detailsVC?.venmo = items[indexPath.row].venmo
+        detailsVC?.location = items[indexPath.row].location
         detailsVC?.img = images[indexPath.row].image
-        
         
         // Show details view controller
         self.navigationController?.pushViewController(detailsVC!, animated: true)
