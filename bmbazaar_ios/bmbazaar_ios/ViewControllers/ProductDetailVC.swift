@@ -12,7 +12,9 @@ class ProductDetailsVC: UIViewController {
     
     @IBOutlet weak var prodTitle: UILabel!
     @IBOutlet weak var prodImage: UIImageView!
-    @IBOutlet weak var prodDesc: UILabel!
+//    @IBOutlet weak var prodDesc: UILabel!
+    @IBOutlet weak var desc1: UITextView!
+    
     @IBOutlet weak var prodPrice: UILabel!
     @IBOutlet weak var sellerVenmo: UILabel!
     @IBOutlet weak var sellerLocation: UILabel!
@@ -34,15 +36,16 @@ class ProductDetailsVC: UIViewController {
         title = "Product Details"
         
         prodTitle.text = name
-        prodDesc.text = desc
+//        prodDesc.text = desc
+        desc1.text = desc
         prodPrice.text = price
         sellerVenmo.text = venmo
         prodImage.image = img
         sellerLocation.text = location
         
         // Line break for description
-        prodDesc.lineBreakMode = .byWordWrapping
-        prodDesc.numberOfLines = 0
+//        prodDesc.lineBreakMode = .byWordWrapping
+//        prodDesc.numberOfLines = 0
         
         // Disable delete button for home page
         let parentVC = self.navigationController?.viewControllers[0]

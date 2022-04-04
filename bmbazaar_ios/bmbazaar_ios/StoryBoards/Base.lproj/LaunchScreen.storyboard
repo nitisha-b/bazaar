@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="BBo-Kg-qdU">
-                                <rect key="frame" x="30" y="238" width="354" height="321"/>
+                                <rect key="frame" x="28.236363636361375" y="238" width="353.99999999999989" height="320.99999999999989"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -31,6 +31,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="200" height="200"/>
+        <image name="logo" width="100" height="100"/>
     </resources>
 </document>
