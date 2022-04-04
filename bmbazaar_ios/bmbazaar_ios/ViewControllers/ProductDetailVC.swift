@@ -15,7 +15,6 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var prodDesc: UILabel!
     @IBOutlet weak var prodPrice: UILabel!
     @IBOutlet weak var sellerVenmo: UILabel!
-    @IBOutlet weak var sellerName: UILabel!
     
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -24,7 +23,7 @@ class ProductDetailsVC: UIViewController {
     var desc = ""
     var price = ""
     var venmo = ""
-    var seller = ""
+//    var seller = ""
     var img:UIImage = UIImage(named: "avatar-5")!
     var email = ""
     
@@ -38,7 +37,7 @@ class ProductDetailsVC: UIViewController {
         prodDesc.text = desc
         prodPrice.text = price
         sellerVenmo.text = venmo
-        sellerName.text = seller
+//        sellerName.text = seller
         prodImage.image = img
         print(name)
         
