@@ -20,17 +20,37 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var priceText: UITextField!
     @IBOutlet weak var segControl: UISegmentedControl!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var email = ""
     
     let imagePicker = UIImagePickerController()
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+//    }
+//
+//    override func viewWillLayoutSubviews(){
+//        super.viewWillLayoutSubviews()
+//        scrollView.contentSize = CGSize(width: 375, height: 700)
+//    }
     
     override func viewDidLoad() {
         
+//        view.addSubview(scrollView)
         //get email from EmailVerifyVC
         let defaults = UserDefaults.standard;
         email = defaults.object(forKey: "email") as! String;
         super.viewDidLoad()
+        
+//        view.addSubview(scrollView)
+        
+//        scrollView.gestureRecognizers?.forEach {
+//
+//            $0.delaysTouchesBegan = true; $0.cancelsTouchesInView = false
+//        }
+        //scrollView.delaysContentTouches = true
+//        scrollView.contentSize = CGSize(width: 414, height: 800)
         
         // Do any additional setup after loading the view.
         self.titleText.delegate = self
@@ -38,8 +58,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.venmoText.delegate = self
         self.locationText.delegate = self
         self.priceText.delegate = self
-        priceText?.addDoneCancelToolbar()
+//        priceText?.addDoneCancelToolbar()
         imagePicker.delegate = self
+        
+//        scrollView.delaysContentTouches = true
+//        scrollView.canCancelContentTouches = true
+        
+        //scrollView.touchesShouldCancel(in: contentScrollView(for: <#T##NSDirectionalRectEdge#>)!)
 
         title = "Upload"
 
@@ -81,7 +106,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         return String(randomString)
     }
     
-    // To hide the keyboard when press enter
+   //  To hide the keyboard when press enter
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             self.view.endEditing(true)
             return false
@@ -148,11 +173,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 //change to this if using an physical device
 //        var urlStr = "http://165.106.136.56:3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username;
         
+        let ip = "165.106.136.56"
+        let localhost = "localhost"
         //upload to users
-        var urlStr = "http://localhost:3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username;
+        var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username;
         
         //upload to items
-        var urlStr2 = "http://localhost:3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1;
+        var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1;
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         urlStr2 = urlStr2.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
@@ -259,3 +286,13 @@ extension UITextField {
     @objc func doneButtonTapped() { self.resignFirstResponder() }
     @objc func cancelButtonTapped() { self.resignFirstResponder() }
 }
+
+
+//class ScrollView: UIScrollView {
+//  override func touchesShouldCancel(in view: UIView) -> Bool {
+//    if type(of: view) == UITextField.self || type(of: view) == UITextView.self {
+//      return true
+//    }
+//    return super.touchesShouldCancel(in: view)
+//  }
+//}

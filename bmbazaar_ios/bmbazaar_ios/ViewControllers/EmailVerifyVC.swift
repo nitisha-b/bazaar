@@ -58,8 +58,10 @@ class EmailVerifyVC: UIViewController {
     }
     
     func createUser(email: String) {
+        let ip = "165.106.136.56"
+        let localhost = "localhost"
 //        var urlStr = "http://165.106.136.56:3000/createUser?username="+email;
-        var urlStr = "http://localhost:3000/createUser?username="+email;
+        var urlStr = "http://"+ip+":3000/createUser?username="+email;
 //                var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
         //        print(urlStr);
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!

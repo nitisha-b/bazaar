@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkg-Nc-aOv">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkg-Nc-aOv">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VDw-gC-Qdb" userLabel="Main Stack View">
@@ -179,6 +179,7 @@
                         <outlet property="imageView" destination="1at-As-raq" id="Jcb-EL-zkL"/>
                         <outlet property="locationText" destination="0Kj-qa-YJb" id="3r5-ah-DWu"/>
                         <outlet property="priceText" destination="f5P-K2-S6x" id="m3Z-wY-IGe"/>
+                        <outlet property="scrollView" destination="nkg-Nc-aOv" id="NZ3-fA-YmV"/>
                         <outlet property="segControl" destination="3es-d2-whL" id="vG5-lz-LZU"/>
                         <outlet property="titleText" destination="pKT-oK-bPV" id="Hlp-oq-bb9"/>
                         <outlet property="venmoText" destination="Osl-gj-mty" id="14R-7t-2lf"/>
@@ -705,7 +706,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lUN-VD-7au">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="jv3-6d-mjR" kind="relationship" relationship="viewControllers" id="qQK-2d-vl9"/>

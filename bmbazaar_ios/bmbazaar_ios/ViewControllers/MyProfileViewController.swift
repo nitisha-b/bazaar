@@ -29,8 +29,11 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
         let defaults = UserDefaults.standard;
         
         email = defaults.object(forKey: "email") as! String;
+        
+        let ip = "165.106.136.56"
+        let localhost = "localhost"
 //        let url = URL(string: "http://165.106.136.56:3000/apiUser")
-        let url = URL(string: "http://localhost:3000/apiUser?username="+email)
+        let url = URL(string: "http://"+ip+":3000/apiUser?username="+email)
 
         guard let requestUrl = url else { fatalError() }
         // Create URL Request

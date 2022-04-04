@@ -17,12 +17,14 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     var items = [Item]()
     var itemsSortedByDate = [Item]()
-    var itemsSortedByPrice = [Item]()
+    var imagesSortedByDate = [Item]()
     var images = [Image]()
     
     // Items for search bar
     var searchItems = [Item]()
     var searchImages = [Image]()
+    var refreshItems = [Item]()
+    var refreshImages = [Image]()
     
     var isSortedByDate = false;
     
@@ -59,11 +61,22 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 }
             }
             if (sortType.selectedSegmentIndex == 0) {
-                self.items = items.sorted(by: { $0.price < $1.price })
-            }
+                items = items.sorted(by: { $0.price < $1.price })
+                
+                for (_, item) in self.items.enumerated() {
+                    for (_, image) in self.images.enumerated(){
+                        print(item.image == image.title)
+                        if (item.image == image.title){
+                            print(item.title)
+                            images.append(image)
+                        }
+                    }
+                }
+             }
             else if(sortType.selectedSegmentIndex == 1) {
                 itemsSortedByDate = items
-                    self.items = itemsSortedByDate.reversed()
+                self.items = itemsSortedByDate.reversed()
+                self.images = images.reversed()
             }
         }
         // search for services
@@ -76,10 +89,18 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
             }
             if (sortType.selectedSegmentIndex == 0) {
                 self.items = items.sorted(by: { $0.price < $1.price })
+                for (_, item) in self.items.enumerated() {
+                    for (_, image) in self.searchImages.enumerated(){
+                        if (item.image == image.title){
+                            images.append(image)
+                        }
+                    }
+                }
             }
             else if(sortType.selectedSegmentIndex == 1) {
                 itemsSortedByDate = items
-                    self.items = itemsSortedByDate.reversed()
+                self.items = itemsSortedByDate.reversed()
+                self.images = images.reversed()
             }
         }
         
@@ -90,10 +111,18 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
             
             if(sortType.selectedSegmentIndex == 1) {
                 itemsSortedByDate = items
-                    self.items = itemsSortedByDate.reversed()
+                self.items = itemsSortedByDate.reversed()
+                self.images = searchImages.reversed()
             }
             else if (sortType.selectedSegmentIndex == 0){
                 self.items = items.sorted(by: { $0.price < $1.price })
+                for (_, item) in self.items.enumerated() {
+                    for (_, image) in self.searchImages.enumerated(){
+                        if (item.image == image.title){
+                            images.append(image)
+                        }
+                    }
+                }
             }
         }
         
@@ -101,10 +130,21 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     @objc func onLoad() {
         print("opened")
+//        items.removeAll()
+//        images.removeAll()
+//        searchItems.removeAll()
+//        searchImages.removeAll()
+//        itemsSortedByDate.removeAll()
+        refreshItems.removeAll()
+        refreshImages.removeAll()
+        
+        
+        let ip = "165.106.136.56"
+        let localhost = "localhost"
 //        self.collectionView!.refreshControl?.beginRefreshing()
         
 //        let url = URL(string: "http://165.106.136.56:3000/api")
-        let url = URL(string: "http://localhost:3000/api")
+        let url = URL(string: "http://"+ip+":3000/api")
 
         guard let requestUrl = url else { fatalError() }
         // Create URL Request
@@ -141,13 +181,15 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         var bgImage = UIImage(data:imageData as Data)
                         var i = Image(image: bgImage!, title: item.title)
                         //if i == nil { print("nil photo")}
-                        images.append(i)
-                        searchImages.append(i)
+//                        images.append(i)
+//                        searchImages.append(i)
+                        refreshImages.append(i)
                         
                         //item.image = bgImage
-                        items.append(item)
-                        itemsSortedByDate.append(item)
-                        searchItems.append(item)
+//                        items.append(item)
+//                        itemsSortedByDate.append(item)
+//                        searchItems.append(item)
+                        refreshItems.append(item)
                         
                     }
                 } catch {
@@ -155,11 +197,18 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    items = refreshItems
+                    images = refreshImages
+                    searchItems = items
+                    searchImages = images
+                    itemsSortedByDate = items
+                    
 //                    stopRefresher()
                         //refreshControl.endRefreshing()
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     stopRefresher()
+                    //sortItems()
                 }
 
             }
