@@ -58,7 +58,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.venmoText.delegate = self
         self.locationText.delegate = self
         self.priceText.delegate = self
-//        priceText?.addDoneCancelToolbar()
+        priceText?.addDoneCancelToolbar()
         imagePicker.delegate = self
         
 //        scrollView.delaysContentTouches = true

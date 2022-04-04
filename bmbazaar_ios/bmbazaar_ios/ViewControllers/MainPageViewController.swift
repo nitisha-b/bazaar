@@ -57,39 +57,6 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
             for (idx, item) in self.searchItems.enumerated() {
                 if (!item.isService) {
                     items.append(item)
-                    images.append(searchImages[idx])
-                }
-            }
-            if (sortType.selectedSegmentIndex == 0) {
-                items = items.sorted(by: { $0.price < $1.price })
-                
-                for (_, item) in self.items.enumerated() {
-                    for (_, image) in self.images.enumerated(){
-                        print(item.image == image.title)
-                        if (item.image == image.title){
-                            print(item.title)
-                            images.append(image)
-                        }
-                    }
-                }
-             }
-            else if(sortType.selectedSegmentIndex == 1) {
-                itemsSortedByDate = items
-                self.items = itemsSortedByDate.reversed()
-                self.images = images.reversed()
-            }
-        }
-        // search for services
-        else if (itemType.selectedSegmentIndex == 2) {
-            for (idx, item) in self.searchItems.enumerated() {
-                if (item.isService) {
-                    items.append(item)
-                    images.append(searchImages[idx])
-                }
-            }
-            if (sortType.selectedSegmentIndex == 0) {
-                self.items = items.sorted(by: { $0.price < $1.price })
-                for (_, item) in self.items.enumerated() {
                     for (_, image) in self.searchImages.enumerated(){
                         if (item.image == image.title){
                             images.append(image)
@@ -97,10 +64,75 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     }
                 }
             }
+            if (sortType.selectedSegmentIndex == 0) {
+                images.removeAll()
+                items = items.sorted(by: { $0.price < $1.price })
+                for (_, item) in self.items.enumerated() {
+                    for (_, imag) in self.searchImages.enumerated(){
+                        if (item.image == imag.title){
+                            print("item.image: \(item.image) image.title\(imag.title)")
+                            images.append(imag)
+                        }
+                    }
+                }
+             }
             else if(sortType.selectedSegmentIndex == 1) {
+                images.removeAll()
+                //itemsSortedByDate = items
+                self.items = items.reversed()
+                //self.images = images.reversed()
+                for (_, item) in self.items.enumerated() {
+                    for (_, imag) in self.searchImages.enumerated(){
+                        if (item.image == imag.title){
+                            print("item.image: \(item.image) image.title\(imag.title)")
+                            images.append(imag)
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        // search for services
+        else if (itemType.selectedSegmentIndex == 2) {
+            for (idx, item) in self.searchItems.enumerated() {
+                if (item.isService) {
+                    items.append(item)
+                    for (_, item) in self.items.enumerated() {
+                        for (_, imag) in self.searchImages.enumerated(){
+                            if (item.image == imag.title){
+                                print("item.image: \(item.image) image.title\(imag.title)")
+                                images.append(imag)
+                            }
+                        }
+                    }
+                }
+            }
+            if (sortType.selectedSegmentIndex == 0) {
+                images.removeAll()
+                self.items = items.sorted(by: { $0.price < $1.price })
+                for (_, item) in self.items.enumerated() {
+                    for (_, imag) in self.searchImages.enumerated(){
+                        if (item.image == imag.title){
+                            print("item.image: \(item.image) image.title\(imag.title)")
+                            images.append(imag)
+                        }
+                    }
+                }
+            }
+            else if(sortType.selectedSegmentIndex == 1) {
+                images.removeAll()
                 itemsSortedByDate = items
                 self.items = itemsSortedByDate.reversed()
-                self.images = images.reversed()
+                //self.images = images.reversed()
+                for (_, item) in self.items.enumerated() {
+                    for (_, imag) in self.searchImages.enumerated(){
+                        if (item.image == imag.title){
+                            print("item.image: \(item.image) image.title\(imag.title)")
+                            images.append(imag)
+                        }
+                    }
+                }
             }
         }
         
@@ -110,16 +142,26 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
             self.images = self.searchImages
             
             if(sortType.selectedSegmentIndex == 1) {
+                images.removeAll()
                 itemsSortedByDate = items
                 self.items = itemsSortedByDate.reversed()
-                self.images = searchImages.reversed()
+                for (_, item) in self.items.enumerated() {
+                    for (_, imag) in self.searchImages.enumerated(){
+                        if (item.image == imag.title){
+                            print("item.image: \(item.image) image.title\(imag.title)")
+                            images.append(imag)
+                        }
+                    }
+                }
             }
             else if (sortType.selectedSegmentIndex == 0){
+                images.removeAll()
                 self.items = items.sorted(by: { $0.price < $1.price })
                 for (_, item) in self.items.enumerated() {
-                    for (_, image) in self.searchImages.enumerated(){
-                        if (item.image == image.title){
-                            images.append(image)
+                    for (_, imag) in self.searchImages.enumerated(){
+                        if (item.image == imag.title){
+                            print("item.image: \(item.image) image.title\(imag.title)")
+                            images.append(imag)
                         }
                     }
                 }
@@ -179,7 +221,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         var err: NSError?
                         var imageData :NSData = try! NSData(contentsOf: url as! URL,options: NSData.ReadingOptions.mappedIfSafe)
                         var bgImage = UIImage(data:imageData as Data)
-                        var i = Image(image: bgImage!, title: item.title)
+                        var i = Image(image: bgImage!, title: item.image)
                         //if i == nil { print("nil photo")}
 //                        images.append(i)
 //                        searchImages.append(i)
