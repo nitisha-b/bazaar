@@ -16,10 +16,19 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
     
     var items = [Item]()
     var images = [Image]()
+    
+    var refreshItems = [Item]()
+    var refreshImages = [Image]()
     var email = ""
+    
+    let refreshControl = UIRefreshControl()
+    
+    var refresher:UIRefreshControl!
     //var isMyProfile = true
     
-    func onLoad() {
+    @objc func onLoad() {
+        refreshItems.removeAll()
+        refreshImages.removeAll()
         //let defaults = UserDefaults.standard
 //        defaults.set(self.isMyProfile,forKey: "isMyProfile")
 //            defaults.synchronize()
@@ -70,11 +79,12 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
                         var bgImage = UIImage(data:imageData as Data)
                         var i = Image(image: bgImage!, title: item.title)
                         //if i == nil { print("nil photo")}
-                        images.append(i)
-                        
+                        //images.append(i)
+                        refreshItems.append(item)
+                        refreshImages.append(i)
                         
                         //item.image = bgImage
-                        items.append(item)
+                        //items.append(item)
                         
                     }
                 } catch {
@@ -82,6 +92,12 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
                 }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    items = refreshItems
+                    images = refreshImages
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    stopRefresher()
+                    //sortItems()
                 }
             }
 
@@ -89,11 +105,20 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
         task.resume()
     }
     
+    func stopRefresher() {
+//        self.collectionView!.refreshControl?.endRefreshing()
+        self.refresher.endRefreshing()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Profile"
         
+        self.refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.red
+        self.refresher.addTarget(self, action: #selector(onLoad), for: .valueChanged)
+        self.collectionView!.addSubview(refresher)
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self
