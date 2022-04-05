@@ -18,6 +18,7 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var prodPrice: UILabel!
     @IBOutlet weak var sellerVenmo: UILabel!
     @IBOutlet weak var sellerLocation: UILabel!
+    @IBOutlet weak var sellerEmail: UILabel!
     
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -26,40 +27,31 @@ class ProductDetailsVC: UIViewController {
     var desc = ""
     var price = ""
     var venmo = ""
-//    var seller = ""
     var img:UIImage = UIImage(named: "avatar-5")!
     var email = ""
     var location = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         title = "Product Details"
         
         prodTitle.text = name
-//        prodDesc.text = desc
         desc1.text = desc
         prodPrice.text = price
         sellerVenmo.text = venmo
         prodImage.image = img
         sellerLocation.text = location
-        
-        // Line break for description
-//        prodDesc.lineBreakMode = .byWordWrapping
-//        prodDesc.numberOfLines = 0
+        sellerEmail.text = email
         
         // Disable delete button for home page
         let parentVC = self.navigationController?.viewControllers[0]
         if (parentVC!.isKind(of: MainPageViewController.self)) {
             deleteButton.isEnabled = false
         }
-      
     }
     
     @IBAction func onClickDelete(_ sender: Any) {
-        
-        let defaults = UserDefaults.standard;
-        email = defaults.object(forKey: "email") as! String;
-        
         deleteItem(username: email, venmo: "");
         deleteItem(username: email, venmo: venmo)
     }
@@ -101,7 +93,6 @@ class ProductDetailsVC: UIViewController {
         else {
             urlStr = "http://localhost:3000/deleteFromUser?title="+name+"&username="+username
         }
-        //print("url \(urlStr)")
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         let url = URL(string: urlStr)!

@@ -14,6 +14,7 @@ var itemSchema = new Schema({
  location: String,
  price: {type: Number, required: true},
  image: String,
+ email: String
 });
 
 // export personSchema as a class called Person

@@ -48,7 +48,8 @@ app.use('/create', (req, res) => {
 		venmo: req.body.venmo,
 		location: req.body.location,
 		price: req.body.price,
-		image: req.body.image
+		image: req.body.image,
+		email: req.body.email
 	    });
 
 	// save the person to the database
@@ -75,7 +76,8 @@ app.use('/createItemInApp', (req, res) => {
 		venmo: req.query.venmo,
 		location: req.query.location,
 		price: req.query.price,
-		image: req.query.image
+		image: req.query.image,
+		email: req.query.email
 	    });
 
 	// save the person to the database
@@ -130,7 +132,8 @@ app.use('/addItemToUser', (req, res) => {
 		venmo: req.query.venmo,
 		location: req.query.location,
 		price: req.query.price,
-		image: req.query.image
+		image: req.query.image,
+		email: req.query.email
 	 });
 	var username = req.query.username;
 	var filter = { 'username': username };
@@ -241,7 +244,7 @@ app.use('/api', (req, res) => {
 		    // construct an array out of the result
 		    var returnArray = [];
 		    items.forEach( (item) => {
-			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image } );
+			    returnArray.push( { 'title' : item.title , "description" : item.description, "price" : item.price, "isService" : item.isService, "location" : item.location, "venmo" : item.venmo, "image" : item.image, "email" : item.email } );
 			});
 		    // send it back as JSON Array
 		    // console.log(isSortDate == 1);

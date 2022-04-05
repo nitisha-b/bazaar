@@ -24,24 +24,19 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
     let refreshControl = UIRefreshControl()
     
     var refresher:UIRefreshControl!
-    //var isMyProfile = true
     
     @objc func onLoad() {
         refreshItems.removeAll()
         refreshImages.removeAll()
-        //let defaults = UserDefaults.standard
-//        defaults.set(self.isMyProfile,forKey: "isMyProfile")
-//            defaults.synchronize()
-        
         
         //get email from verification page
         let defaults = UserDefaults.standard;
-        
         email = defaults.object(forKey: "email") as! String;
         
         let ip = "165.106.136.56"
         let localhost = "localhost"
-//        let url = URL(string: "http://165.106.136.56:3000/apiUser")
+
+        //change to localhost to ip if using an physical device
         let url = URL(string: "http://"+ip+":3000/apiUser?username="+email)
 
         guard let requestUrl = url else { fatalError() }
@@ -61,7 +56,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
             // Convert HTTP Response Data to a simple String
             if let data = data {
                 do {
-//                    print(String (data: data, encoding: .utf8)!)
                     guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
                         print("Error: Couldn't decode data into my profile array")
                         return
@@ -78,13 +72,9 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
                         var imageData :NSData = try! NSData(contentsOf: url as! URL,options: NSData.ReadingOptions.mappedIfSafe)
                         var bgImage = UIImage(data:imageData as Data)
                         var i = Image(image: bgImage!, title: item.title)
-                        //if i == nil { print("nil photo")}
-                        //images.append(i)
+
                         refreshItems.append(item)
                         refreshImages.append(i)
-                        
-                        //item.image = bgImage
-                        //items.append(item)
                         
                     }
                 } catch {
@@ -97,7 +87,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     stopRefresher()
-                    //sortItems()
                 }
             }
 
@@ -106,7 +95,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
     }
     
     func stopRefresher() {
-//        self.collectionView!.refreshControl?.endRefreshing()
         self.refresher.endRefreshing()
     }
 
@@ -140,8 +128,6 @@ extension MyProfileViewController: UICollectionViewDataSource {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         cell.setup(with: items[indexPath.row], with: images[indexPath.row])
-        //cell.itemImage.contentMode = UIView.ContentMode.center
-        
         
         return cell
     }
@@ -151,7 +137,6 @@ extension MyProfileViewController: UICollectionViewDataSource {
     }
 
 }
-
 extension MyProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -163,6 +148,7 @@ extension MyProfileViewController: UICollectionViewDelegate {
         detailsVC?.price = "$ " + String(format: "%.2f", items[indexPath.row].price)
         detailsVC?.venmo = items[indexPath.row].venmo
         detailsVC?.img = images[indexPath.row].image
+        detailsVC?.email = items[indexPath.row].email
         
         
         // Show details view controller
@@ -170,4 +156,3 @@ extension MyProfileViewController: UICollectionViewDelegate {
     }
 }
 
-//

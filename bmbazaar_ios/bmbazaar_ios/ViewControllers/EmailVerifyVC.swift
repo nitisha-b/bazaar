@@ -32,8 +32,6 @@ class EmailVerifyVC: UIViewController {
         
         let regexPattern = try! NSRegularExpression(pattern:"[a-z1-9]+@brynmawr\\.edu")
         
-        //let regexPattern = try! NSRegularExpression(pattern:"[a-z1-9]*")
-        
         if (regexPattern.firstMatch(in: email, options: [], range: range) == nil) {
             errorMessage.text = "Please enter a valid email address"
         }
@@ -43,8 +41,7 @@ class EmailVerifyVC: UIViewController {
             let defaults = UserDefaults.standard
             defaults.set(self.userEmail.text!,forKey: "email")
                 defaults.synchronize()
-            
-            //print(email);
+
             createUser(email: email)
             errorMessage.text = "Valid!"
             
@@ -60,10 +57,9 @@ class EmailVerifyVC: UIViewController {
     func createUser(email: String) {
         let ip = "165.106.136.56"
         let localhost = "localhost"
-//        var urlStr = "http://165.106.136.56:3000/createUser?username="+email;
+
         var urlStr = "http://"+ip+":3000/createUser?username="+email;
-//                var urlStr = "http://localhost:3000/create?"+title+desc+ven+loc+price+"&isService="+String(isService);
-        //        print(urlStr);
+
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
         let url = URL(string: urlStr)!;
@@ -71,7 +67,7 @@ class EmailVerifyVC: UIViewController {
         var request = URLRequest(url: url);
 
         let body = ["username": email];
-        //        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":isService] as [String : Any];
+
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
 
         request.httpMethod = "POST"
@@ -92,8 +88,5 @@ class EmailVerifyVC: UIViewController {
         }
         task.resume()
     }
-//    func saveUserName {
-//        return username
-//    }
 }
 

@@ -37,9 +37,6 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     @IBOutlet weak var sortType: UISegmentedControl!
     
     @IBAction func onItemTypeChanged(_ sender: Any) {
-        
-        // index=0: all, index=1: product, index=2: service
-        print("filter: \(itemType.selectedSegmentIndex.description )")
         sortItems()
         self.collectionView.reloadData()
     }
@@ -49,12 +46,15 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         self.collectionView.reloadData()
     }
     
+    //sort items whenever segment is changed
     func sortItems() {
+        
         self.items.removeAll()
         self.images.removeAll()
         
+        //search for products
         if (itemType.selectedSegmentIndex == 1) {
-            for (idx, item) in self.searchItems.enumerated() {
+            for (_, item) in self.searchItems.enumerated() {
                 if (!item.isService) {
                     items.append(item)
                     for (_, image) in self.searchImages.enumerated(){
@@ -64,27 +64,27 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     }
                 }
             }
+            
+            //if product and cheapest first are selected
             if (sortType.selectedSegmentIndex == 0) {
                 images.removeAll()
                 items = items.sorted(by: { $0.price < $1.price })
                 for (_, item) in self.items.enumerated() {
                     for (_, imag) in self.searchImages.enumerated(){
                         if (item.image == imag.title){
-                            print("item.image: \(item.image) image.title\(imag.title)")
                             images.append(imag)
                         }
                     }
                 }
              }
+            
+            //if product and newest first are selected
             else if(sortType.selectedSegmentIndex == 1) {
                 images.removeAll()
-                //itemsSortedByDate = items
                 self.items = items.reversed()
-                //self.images = images.reversed()
                 for (_, item) in self.items.enumerated() {
                     for (_, imag) in self.searchImages.enumerated(){
                         if (item.image == imag.title){
-                            print("item.image: \(item.image) image.title\(imag.title)")
                             images.append(imag)
                         }
                     }
@@ -95,40 +95,40 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         
         // search for services
         else if (itemType.selectedSegmentIndex == 2) {
-            for (idx, item) in self.searchItems.enumerated() {
+            for (_, item) in self.searchItems.enumerated() {
                 if (item.isService) {
                     items.append(item)
                     for (_, item) in self.items.enumerated() {
                         for (_, imag) in self.searchImages.enumerated(){
                             if (item.image == imag.title){
-                                print("item.image: \(item.image) image.title\(imag.title)")
                                 images.append(imag)
                             }
                         }
                     }
                 }
             }
+            
+            // if services and cheapest first are selected
             if (sortType.selectedSegmentIndex == 0) {
                 images.removeAll()
                 self.items = items.sorted(by: { $0.price < $1.price })
                 for (_, item) in self.items.enumerated() {
                     for (_, imag) in self.searchImages.enumerated(){
                         if (item.image == imag.title){
-                            print("item.image: \(item.image) image.title\(imag.title)")
                             images.append(imag)
                         }
                     }
                 }
             }
+            
+            // if services and newest first are selected
             else if(sortType.selectedSegmentIndex == 1) {
                 images.removeAll()
                 itemsSortedByDate = items
                 self.items = itemsSortedByDate.reversed()
-                //self.images = images.reversed()
                 for (_, item) in self.items.enumerated() {
                     for (_, imag) in self.searchImages.enumerated(){
                         if (item.image == imag.title){
-                            print("item.image: \(item.image) image.title\(imag.title)")
                             images.append(imag)
                         }
                     }
@@ -136,11 +136,12 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
             }
         }
         
-        // If the search is blank
+        // search for all
         else if (itemType.selectedSegmentIndex == 0) {
             self.items = self.searchItems
             self.images = self.searchImages
             
+            // if all and cheapest are selected
             if(sortType.selectedSegmentIndex == 1) {
                 images.removeAll()
                 itemsSortedByDate = items
@@ -148,19 +149,19 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                 for (_, item) in self.items.enumerated() {
                     for (_, imag) in self.searchImages.enumerated(){
                         if (item.image == imag.title){
-                            print("item.image: \(item.image) image.title\(imag.title)")
                             images.append(imag)
                         }
                     }
                 }
             }
+            
+            // if all and newest are selected
             else if (sortType.selectedSegmentIndex == 0){
                 images.removeAll()
                 self.items = items.sorted(by: { $0.price < $1.price })
                 for (_, item) in self.items.enumerated() {
                     for (_, imag) in self.searchImages.enumerated(){
                         if (item.image == imag.title){
-                            print("item.image: \(item.image) image.title\(imag.title)")
                             images.append(imag)
                         }
                     }
@@ -172,20 +173,13 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     @objc func onLoad() {
         print("opened")
-//        items.removeAll()
-//        images.removeAll()
-//        searchItems.removeAll()
-//        searchImages.removeAll()
-//        itemsSortedByDate.removeAll()
         refreshItems.removeAll()
         refreshImages.removeAll()
         
         
         let ip = "165.106.136.56"
         let localhost = "localhost"
-//        self.collectionView!.refreshControl?.beginRefreshing()
-        
-//        let url = URL(string: "http://165.106.136.56:3000/api")
+
         let url = URL(string: "http://"+ip+":3000/api")
 
         guard let requestUrl = url else { fatalError() }
@@ -222,15 +216,8 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                         var imageData :NSData = try! NSData(contentsOf: url as! URL,options: NSData.ReadingOptions.mappedIfSafe)
                         var bgImage = UIImage(data:imageData as Data)
                         var i = Image(image: bgImage!, title: item.image)
-                        //if i == nil { print("nil photo")}
-//                        images.append(i)
-//                        searchImages.append(i)
+
                         refreshImages.append(i)
-                        
-                        //item.image = bgImage
-//                        items.append(item)
-//                        itemsSortedByDate.append(item)
-//                        searchItems.append(item)
                         refreshItems.append(item)
                         
                     }
@@ -244,13 +231,10 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
                     searchItems = items
                     searchImages = images
                     itemsSortedByDate = items
-                    
-//                    stopRefresher()
-                        //refreshControl.endRefreshing()
+
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     stopRefresher()
-                    //sortItems()
                 }
 
             }
@@ -260,18 +244,10 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
     }
     
     func stopRefresher() {
-//        self.collectionView!.refreshControl?.endRefreshing()
         self.refresher.endRefreshing()
         itemType.selectedSegmentIndex = 0
         sortType.selectedSegmentIndex = -1
     }
-//    @objc func refreshData() {
-//            //onLoad()
-//        DispatchQueue.main.async {
-//            self.collectionView.reloadData()
-//            self.refresher.endRefreshing()
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -294,12 +270,6 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         
         onLoad()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        self.collectionView.reloadData()
-//    }
 
 }
 
@@ -316,10 +286,6 @@ extension MainPageViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
 }
 
 extension MainPageViewController: UICollectionViewDelegate {
@@ -334,6 +300,7 @@ extension MainPageViewController: UICollectionViewDelegate {
         detailsVC?.venmo = items[indexPath.row].venmo
         detailsVC?.location = items[indexPath.row].location
         detailsVC?.img = images[indexPath.row].image
+        detailsVC?.email = items[indexPath.row].email
         
         // Show details view controller
         self.navigationController?.pushViewController(detailsVC!, animated: true)
