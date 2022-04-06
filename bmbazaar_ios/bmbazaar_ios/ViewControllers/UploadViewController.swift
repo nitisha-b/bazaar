@@ -250,7 +250,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 //        let num = phoneNum.text?.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression) ?? ""
         formatPhoneNumber()
         
-        if (phoneDigitsOnly.count != 0 || phoneDigitsOnly.count != 0) {
+        if (phoneDigitsOnly.count != 0 && phoneDigitsOnly.count != 10) {
             let alert = UIAlertController(title: "Uh Oh", message: "Please enter a valid phone number", preferredStyle: .alert)
 
             let ok = UIAlertAction(title: "OK", style: .default)
