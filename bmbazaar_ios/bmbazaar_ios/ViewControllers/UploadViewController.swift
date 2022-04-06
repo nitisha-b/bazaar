@@ -138,11 +138,11 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let isService = "&isService=" + String(s);
         let t = titleText.text!
         let title = "title=" + t;
-        let d = descText.text ?? "";
+        let d = descText.text ?? "n/a";
         let desc = "&description=" + d;
-        let v = venmoText.text ?? "";
+        let v = venmoText.text ?? "n/a";
         let ven = "&venmo=" + v;
-        let l = locationText.text ?? "";
+        let l = locationText.text ?? "n/a";
         let loc = "&location=" + l;
         let p = priceText.text!;
         let price = "&price=" + p;
@@ -151,7 +151,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let image1: String = "&image=" + i
         
         // format phone number
-        let phoneText = phoneNum.text ?? ""
+        let phoneText = phoneNum.text ?? "n/a"
         var formattedPhone = phoneText.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
         formattedPhone = formattedPhone.toPhoneNumber()
         let phone = "&phoneNum=" + formattedPhone

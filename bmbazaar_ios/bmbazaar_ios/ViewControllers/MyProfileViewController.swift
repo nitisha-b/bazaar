@@ -151,6 +151,7 @@ extension MyProfileViewController: UICollectionViewDelegate {
         detailsVC?.img = images[indexPath.row].image
         detailsVC?.email = items[indexPath.row].email
         detailsVC?.phone = items[indexPath.row].phoneNum
+        detailsVC?.location = items[indexPath.row].location
         
         
         // Show details view controller

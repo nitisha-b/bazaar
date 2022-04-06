@@ -361,7 +361,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Tgt-3m-BPm" userLabel="Main Stack View">
-                                        <rect key="frame" x="10" y="30" width="394" height="1152.5"/>
+                                        <rect key="frame" x="10" y="30" width="394" height="1127.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzF-VC-guj">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="37.5"/>
@@ -380,8 +380,8 @@
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-qz-2EG" userLabel="Details Stack View">
-                                                <rect key="frame" x="0.0" y="527.5" width="394" height="555"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-qz-2EG" userLabel="Details Stack View">
+                                                <rect key="frame" x="0.0" y="527.5" width="394" height="530"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYS-TJ-XRq">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="80"/>
@@ -390,7 +390,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K5l-Rd-hQm">
-                                                        <rect key="frame" x="0.0" y="95" width="394" height="80"/>
+                                                        <rect key="frame" x="0.0" y="90" width="394" height="80"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="KWK-8e-XRs"/>
@@ -401,16 +401,19 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Hp6-cX-7gf" userLabel="Seller Stack View">
-                                                        <rect key="frame" x="0.0" y="190" width="394" height="80"/>
+                                                        <rect key="frame" x="0.0" y="180" width="394" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venmo:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkk-q0-GFB" userLabel="Venmo:">
-                                                                <rect key="frame" x="0.0" y="0.0" width="123.5" height="80"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="100" id="mRi-LH-IhD"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller venmo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE5-c8-Fka">
-                                                                <rect key="frame" x="123.5" y="0.0" width="270.5" height="80"/>
+                                                                <rect key="frame" x="100" y="0.0" width="294" height="80"/>
                                                                 <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -418,16 +421,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Kve-CX-tnZ" userLabel="Phone Stack View">
-                                                        <rect key="frame" x="0.0" y="285" width="394" height="80"/>
+                                                        <rect key="frame" x="0.0" y="270" width="394" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzy-HA-ynO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="150.5" height="80"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="100" id="FXf-DB-KAf"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFJ-MR-aaS">
-                                                                <rect key="frame" x="150.5" y="0.0" width="243.5" height="80"/>
+                                                                <rect key="frame" x="100" y="0.0" width="294" height="80"/>
                                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -435,16 +441,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="NMr-6j-gc6" userLabel="Email Stack View">
-                                                        <rect key="frame" x="0.0" y="380" width="394" height="80"/>
+                                                        <rect key="frame" x="0.0" y="360" width="394" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjd-h7-a7q" userLabel="Email:">
-                                                                <rect key="frame" x="0.0" y="0.0" width="138" height="80"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="100" id="sV0-rU-Ghw"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xO-3P-p60" userLabel="Seller email">
-                                                                <rect key="frame" x="138" y="0.0" width="256" height="80"/>
+                                                                <rect key="frame" x="100" y="0.0" width="294" height="80"/>
                                                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -452,16 +461,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-75-WHF" userLabel="Location Stack View">
-                                                        <rect key="frame" x="0.0" y="475" width="394" height="80"/>
+                                                        <rect key="frame" x="0.0" y="450" width="394" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfa-e1-zFa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="152" height="80"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="100" id="p0P-sn-iKI"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B23-ma-Mty">
-                                                                <rect key="frame" x="152" y="0.0" width="242" height="80"/>
+                                                                <rect key="frame" x="100" y="0.0" width="294" height="80"/>
                                                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -471,7 +483,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQx-sD-hCQ">
-                                                <rect key="frame" x="0.0" y="1102.5" width="394" height="50"/>
+                                                <rect key="frame" x="0.0" y="1077.5" width="394" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="TCM-EN-TGf"/>
                                                 </constraints>
