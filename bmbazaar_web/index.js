@@ -153,7 +153,7 @@ app.use('/addItemToUser', (req, res) => {
 });
 
 app.use('/delete', (req, res) => {
-	var filter = { 'title': req.query.title, 'venmo': req.query.venmo};
+	var filter = { 'title': req.query.title, 'email': req.query.email};
 	console.log(filter);
 
 	Item.findOneAndDelete(filter, (err, orig) => {

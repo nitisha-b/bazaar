@@ -52,8 +52,8 @@ class ProductDetailsVC: UIViewController {
     }
     
     @IBAction func onClickDelete(_ sender: Any) {
-        deleteItem(username: email, venmo: "");
-        deleteItem(username: email, venmo: venmo)
+        deleteItem(database: "items", title: name, username: email);
+        deleteItem(database: "users", title: name, username: email)
     }
     
     func displayAlert(isDeleted: Bool) {
@@ -85,10 +85,10 @@ class ProductDetailsVC: UIViewController {
             self.present(deletedAlert, animated: true, completion: nil)
         }
     }
-    func deleteItem(username: String, venmo: String) {
+    func deleteItem(database: String, title: String, username: String) {
         var urlStr = ""
-        if (venmo != "") {
-            urlStr = "http://localhost:3000/delete?title="+name+"&venmo="+venmo
+        if (database == "items") {
+            urlStr = "http://localhost:3000/delete?title="+name+"&email="+username
         }
         else {
             urlStr = "http://localhost:3000/deleteFromUser?title="+name+"&username="+username
@@ -100,7 +100,7 @@ class ProductDetailsVC: UIViewController {
         var request = URLRequest(url: url);
         var body = ["test" : ""]
         if (venmo != "") {
-            body = ["title":name, "venmo":venmo]
+            body = ["title":name, "email":username]
         }
         else {
             body = ["title":name, "username":username]

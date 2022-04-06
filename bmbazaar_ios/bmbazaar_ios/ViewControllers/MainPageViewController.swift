@@ -199,7 +199,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
             // Convert HTTP Response Data to a simple String
             if let data = data {
                 do {
-//                    print(String (data: data, encoding: .utf8)!)
+                    print(String (data: data, encoding: .utf8)!)
                     guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
                         print("Error: Couldn't decode data into Main array")
                         return
