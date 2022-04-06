@@ -57,6 +57,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
             // Convert HTTP Response Data to a simple String
             if let data = data {
                 do {
+//                    print(String (data: data, encoding: .utf8)!)
                     guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
                         print("Error: Couldn't decode data into my profile array")
                         return

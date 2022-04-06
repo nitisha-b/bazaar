@@ -25,6 +25,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var scrollView: UIScrollView!
     
     var email = ""
+    var formattedPhone = ""
+    var phoneDigitsOnly = ""
     
     let imagePicker = UIImagePickerController()
     
@@ -95,133 +97,175 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     
     @IBAction func onClickUpload(_ sender: UIButton!) {
-        let imageLength = 10
-        let key = generateRandomStringWithLength(length: imageLength)
         
-        let image = imageView.image!
-        let fileManager = FileManager.default
-        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("test3.jpeg")
-        let imageData = image.jpegData(compressionQuality: 0); fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
+        // Exit function if form validation fails
+        if (!validateFields()) {
+            return
+        }
+        else {
+        
+            let imageLength = 10
+            let key = generateRandomStringWithLength(length: imageLength)
+            
+            let image = imageView.image!
+            let fileManager = FileManager.default
+            let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("test3.jpeg")
+            let imageData = image.jpegData(compressionQuality: 0); fileManager.createFile(atPath: path as String, contents: imageData, attributes: nil)
 
-        let fileUrl = NSURL(fileURLWithPath: path)
-        
-        let uploadRequest = AWSS3TransferManagerUploadRequest()
-        uploadRequest?.bucket = "brynmawrbazaar"
-        uploadRequest?.key = key
-        uploadRequest?.contentType = "image/jpeg"
-        uploadRequest?.body = fileUrl as URL
-        //uncomment to add encryption
-        //uploadRequest?.serverSideEncryption = AWSS3ServerSideEncryption.awsKms
-        uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
-            DispatchQueue.main.async(execute: {
-                                print("totalBytesSent",totalBytesSent)
-                                print("totalBytesExpectedToSend",totalBytesExpectedToSend)
-                            })
-                        }
-        print(fileUrl as URL)
-        let transferManager = AWSS3TransferManager.default()
-        transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
-                        if task.error != nil {
-                                // Error.
-                            print(task.error ?? "default value")
-                            } else {
-                                // Do something with your result.
-                            print("No error Upload Done")
+            let fileUrl = NSURL(fileURLWithPath: path)
+            
+            let uploadRequest = AWSS3TransferManagerUploadRequest()
+            uploadRequest?.bucket = "brynmawrbazaar"
+            uploadRequest?.key = key
+            uploadRequest?.contentType = "image/jpeg"
+            uploadRequest?.body = fileUrl as URL
+            //uncomment to add encryption
+            //uploadRequest?.serverSideEncryption = AWSS3ServerSideEncryption.awsKms
+            uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
+                DispatchQueue.main.async(execute: {
+                                    print("totalBytesSent",totalBytesSent)
+                                    print("totalBytesExpectedToSend",totalBytesExpectedToSend)
+                                })
                             }
-                            return nil
-                        })
-        
-        let u = email;
-        let username = "&username=" + u;
+            print(fileUrl as URL)
+            let transferManager = AWSS3TransferManager.default()
+            transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+                            if task.error != nil {
+                                    // Error.
+                                print(task.error ?? "default value")
+                                } else {
+                                    // Do something with your result.
+                                print("No error Upload Done")
+                                }
+                                return nil
+                            })
+            
+            let u = email;
+            let username = "&username=" + u;
 
-        let s = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
-        let isService = "&isService=" + String(s);
-        let t = titleText.text!
-        let title = "title=" + t;
-        let d = descText.text ?? "n/a";
-        let desc = "&description=" + d;
-        let v = venmoText.text ?? "n/a";
-        let ven = "&venmo=" + v;
-        let l = locationText.text ?? "n/a";
-        let loc = "&location=" + l;
-        let p = priceText.text!;
-        let price = "&price=" + p;
+            let s = Bool(truncating: segControl.selectedSegmentIndex as NSNumber);
+            let isService = "&isService=" + String(s);
+            let t = titleText.text!
+            let title = "title=" + t;
+            let d = descText.text ?? "n/a";
+            let desc = "&description=" + d;
+            let v = venmoText.text ?? "n/a";
+            let ven = "&venmo=" + v;
+            let l = locationText.text ?? "n/a";
+            let loc = "&location=" + l;
+            let p = priceText.text!;
+            let price = "&price=" + p;
+            
+            let i: String = key
+            let image1: String = "&image=" + i
+            
+            // format phone number
+            formatPhoneNumber()
+            let phone = "&phoneNum=" + formattedPhone
+            
+            let ip = "165.106.136.56"
+            let localhost = "localhost"
+            
+            //upload to users
+            //change to localhost to ip if using an physical device
+    //        var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
+    //
+            var urlStr = "http://"+localhost+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
+            
+            //upload to items
+    //        var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
+            var urlStr2 = "http://"+localhost+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
+            
+            urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            
+            urlStr2 = urlStr2.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            
+            let url = URL(string: urlStr)!;
+            let url2 = URL(string: urlStr2)!;
+
+            var request = URLRequest(url: url);
+            var request2 = URLRequest(url: url2);
+
+            let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "username":u, "email":u, "phoneNum":formattedPhone] as [String : Any];
+            let body2 = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "email":u, "phoneNum":formattedPhone] as [String : Any];
+
+            let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
+            let bodyData2 = try? JSONSerialization.data(withJSONObject: body2, options: [])
+
+            request.httpMethod = "POST"
+            request2.httpMethod = "POST"
+            
+            request.httpBody = bodyData;
+            request2.httpBody = bodyData2;
+            var isPosted = false;
+            
+            // Create the HTTP request
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { (data, response, error) in
+                
+                if let data = data {
+                    print("Data successfully posted in the database! \(data)")
+                    isPosted = true
+                }
+                else if let error = error {
+                    print("Http request failed \(error)")
+                }
+                
+                DispatchQueue.main.async {
+                    self.displayAlert(isPosted: isPosted)
+                    self.clearForm()
+                }
+            }
+            task.resume()
+            
+            let task2 = session.dataTask(with: request2) { (data2, response, error) in
+                
+                if let data2 = data2 {
+                    print("Data successfully posted in the database! \(data2)")
+                    isPosted = true
+                }
+                else if let error = error {
+                    print("Http request failed \(error)")
+                }
+            }
+            task2.resume()
+        }
+    }
+    
+    /* Checks if the user entered all the required fields in the Upload page */
+    func validateFields() -> Bool {
         
-        let i: String = key
-        let image1: String = "&image=" + i
+        // Title and Price are required and cannot be left blank
+        if (titleText.text == nil || titleText.text == "" || priceText.text == nil || priceText.text == "") {
+            let alert = UIAlertController(title: "Uh Oh", message: "Please enter all required fields", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
         
-        // format phone number
+        // Phone number cannot be less or greater than 10 digits
+        
+//        let num = phoneNum.text?.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression) ?? ""
+        formatPhoneNumber()
+        
+        if (phoneDigitsOnly.count != 0 || phoneDigitsOnly.count != 0) {
+            let alert = UIAlertController(title: "Uh Oh", message: "Please enter a valid phone number", preferredStyle: .alert)
+
+            let ok = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        
+        return true
+    }
+    
+    func formatPhoneNumber() {
         let phoneText = phoneNum.text ?? "n/a"
-        var formattedPhone = phoneText.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
-        formattedPhone = formattedPhone.toPhoneNumber()
-        let phone = "&phoneNum=" + formattedPhone
-        
-        let ip = "165.106.136.56"
-        let localhost = "localhost"
-        
-        //upload to users
-        //change to localhost to ip if using an physical device
-//        var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
-//
-        var urlStr = "http://"+localhost+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
-        
-        //upload to items
-//        var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
-        var urlStr2 = "http://"+localhost+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
-        
-        urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        
-        urlStr2 = urlStr2.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        
-        let url = URL(string: urlStr)!;
-        let url2 = URL(string: urlStr2)!;
-
-        var request = URLRequest(url: url);
-        var request2 = URLRequest(url: url2);
-
-        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "username":u, "email":u, "phoneNum":formattedPhone] as [String : Any];
-        let body2 = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "email":u, "phoneNum":formattedPhone] as [String : Any];
-
-        let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
-        let bodyData2 = try? JSONSerialization.data(withJSONObject: body2, options: [])
-
-        request.httpMethod = "POST"
-        request2.httpMethod = "POST"
-        
-        request.httpBody = bodyData;
-        request2.httpBody = bodyData2;
-        var isPosted = false;
-        
-        // Create the HTTP request
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data, response, error) in
-            
-            if let data = data {
-                print("Data successfully posted in the database! \(data)")
-                isPosted = true
-            }
-            else if let error = error {
-                print("Http request failed \(error)")
-            }
-            
-            DispatchQueue.main.async {
-                self.displayAlert(isPosted: isPosted)
-                self.clearForm()
-            }
-        }
-        task.resume()
-        
-        let task2 = session.dataTask(with: request2) { (data2, response, error) in
-            
-            if let data2 = data2 {
-                print("Data successfully posted in the database! \(data2)")
-                isPosted = true
-            }
-            else if let error = error {
-                print("Http request failed \(error)")
-            }
-        }
-        task2.resume()
+        phoneDigitsOnly = phoneText.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+        formattedPhone = phoneDigitsOnly.toPhoneNumber()
     }
     
     func displayAlert(isPosted: Bool) {
