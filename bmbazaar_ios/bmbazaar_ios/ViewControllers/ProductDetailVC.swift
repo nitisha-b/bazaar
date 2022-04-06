@@ -67,19 +67,20 @@ class ProductDetailsVC: UIViewController {
             let ok = UIAlertAction(title: "OK", style: .default) { (aciton) ->Void in
                 print("OK button tapped")
                 
-                // Go back to the main page
+                // Go back to either the main page or my profile page depending on where the user navigated from
                 let mainPageVC = self.storyboard?.instantiateViewController(withIdentifier: "homepage") as? MainPageViewController
                 
                 let myProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "myProfileVC") as? MyProfileViewController
                 
                 let parentVC = self.navigationController?.viewControllers[0]
                 
-                if (parentVC!.isKind(of: MyProfileViewController.self)) {
-                    self.navigationController?.pushViewController(myProfileVC!, animated: true)
-                }
-                else if (parentVC!.isKind(of: MainPageViewController.self)) {
-                    self.navigationController?.pushViewController(mainPageVC!, animated: true)
-                }
+//                if (parentVC!.isKind(of: MyProfileViewController.self)) {
+//                    self.navigationController?.pushViewController(myProfileVC!, animated: true)
+//                }
+//                else if (parentVC!.isKind(of: MainPageViewController.self)) {
+//                    self.navigationController?.pushViewController(mainPageVC!, animated: true)
+//                }
+                self.navigationController?.popViewController(animated: true)
                 
             }
             
