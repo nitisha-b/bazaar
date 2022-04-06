@@ -168,13 +168,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             //upload to users
             //change to localhost to ip if using an physical device
-    //        var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
+            var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
     //
-            var urlStr = "http://"+localhost+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
+//            var urlStr = "http://"+localhost+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
             
             //upload to items
-    //        var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
-            var urlStr2 = "http://"+localhost+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
+            var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
+//            var urlStr2 = "http://"+localhost+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
             
             urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
             

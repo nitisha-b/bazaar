@@ -180,8 +180,8 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         let ip = "165.106.136.56"
         let localhost = "localhost"
 
-//        let url = URL(string: "http://"+ip+":3000/api")
-        let url = URL(string: "http://"+localhost+":3000/api")
+        let url = URL(string: "http://"+ip+":3000/api")
+//        let url = URL(string: "http://"+localhost+":3000/api")
 
         guard let requestUrl = url else { fatalError() }
         // Create URL Request

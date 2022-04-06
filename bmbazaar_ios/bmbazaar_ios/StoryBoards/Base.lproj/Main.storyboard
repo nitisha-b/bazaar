@@ -432,12 +432,14 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFJ-MR-aaS">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DE7-5m-cS2">
                                                                 <rect key="frame" x="100" y="0.0" width="294" height="80"/>
-                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Seller Phone"/>
+                                                                <connections>
+                                                                    <action selector="onClickPhoneNumber:" destination="Ng9-fs-a51" eventType="touchUpInside" id="qe6-dP-OUi"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="NMr-6j-gc6" userLabel="Email Stack View">
@@ -535,7 +537,7 @@
                         <outlet property="scrollView" destination="Wom-52-eSj" id="Fng-FS-Kml"/>
                         <outlet property="sellerEmail" destination="6xO-3P-p60" id="65A-oh-4Cu"/>
                         <outlet property="sellerLocation" destination="B23-ma-Mty" id="KXc-fi-B57"/>
-                        <outlet property="sellerPhone" destination="xFJ-MR-aaS" id="YDe-w5-BcO"/>
+                        <outlet property="sellerPhone" destination="DE7-5m-cS2" id="Ann-hH-ZSg"/>
                         <outlet property="sellerVenmo" destination="BE5-c8-Fka" id="MfO-Sk-cxH"/>
                     </connections>
                 </viewController>

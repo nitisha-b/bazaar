@@ -18,7 +18,9 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var sellerVenmo: UILabel!
     @IBOutlet weak var sellerLocation: UILabel!
     @IBOutlet weak var sellerEmail: UILabel!
-    @IBOutlet weak var sellerPhone: UILabel!
+//    @IBOutlet weak var sellerPhone: UILabel!
+    
+    @IBOutlet weak var sellerPhone: UIButton!
     
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -31,6 +33,7 @@ class ProductDetailsVC: UIViewController {
     var email = ""
     var location = ""
     var phone = ""
+    var phoneDigits = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +47,7 @@ class ProductDetailsVC: UIViewController {
         prodImage.image = img
         sellerLocation.text = location
         sellerEmail.text = email
-        sellerPhone.text = phone
+        sellerPhone.setTitle(phone, for: .normal)
         
         // Disable delete button for home page
         let parentVC = self.navigationController?.viewControllers[0]
@@ -56,6 +59,25 @@ class ProductDetailsVC: UIViewController {
     @IBAction func onClickDelete(_ sender: Any) {
         deleteItem(database: "items", title: name, username: email);
         deleteItem(database: "users", title: name, username: email)
+    }
+    
+    
+    @IBAction func onClickPhoneNumber(_ sender: Any) {
+        phoneDigits = phone.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+        
+        if (phoneDigits.count > 0) {
+            clickablePhoneNumber()
+        }
+    }
+    
+    func clickablePhoneNumber() {
+        
+        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneDigits)") {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL as URL)) {
+                application.openURL(phoneCallURL as URL);
+            }
+          }
     }
     
     func displayAlert(isDeleted: Bool) {
@@ -90,11 +112,13 @@ class ProductDetailsVC: UIViewController {
     }
     func deleteItem(database: String, title: String, username: String) {
         var urlStr = ""
+        let ip = "165.106.136.56"
+        
         if (database == "items") {
-            urlStr = "http://localhost:3000/delete?title="+name+"&email="+username
+            urlStr = "http://"+ip+":3000/delete?title="+name+"&email="+username
         }
         else {
-            urlStr = "http://localhost:3000/deleteFromUser?title="+name+"&username="+username
+            urlStr = "http://"+ip+":3000/deleteFromUser?title="+name+"&username="+username
         }
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
