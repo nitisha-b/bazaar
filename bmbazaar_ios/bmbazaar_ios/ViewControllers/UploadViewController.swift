@@ -20,6 +20,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var priceText: UITextField!
     @IBOutlet weak var segControl: UISegmentedControl!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var phoneNum: UITextField!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     var email = ""
@@ -40,9 +42,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.priceText.delegate = self
         priceText?.addDoneCancelToolbar()
         imagePicker.delegate = self
+        self.phoneNum.delegate = self
+        phoneNum?.addDoneCancelToolbar()
 
         title = "Upload"
-
+        
+        // set content type for phone number
+        phoneNum.textContentType = .telephoneNumber
     }
     
     @IBAction func loadImageButtonTapped(_ sender: UIButton) {
@@ -143,30 +149,38 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         let i: String = key
         let image1: String = "&image=" + i
- 
-        print(image1)
+        
+        // format phone number
+        let phoneText = phoneNum.text ?? ""
+        var formattedPhone = phoneText.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+        formattedPhone = formattedPhone.toPhoneNumber()
+        let phone = "&phoneNum=" + formattedPhone
         
         let ip = "165.106.136.56"
         let localhost = "localhost"
         
         //upload to users
         //change to localhost to ip if using an physical device
-        var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u;
+//        var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
+//
+        var urlStr = "http://"+localhost+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
         
         //upload to items
-        var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u;
+//        var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
+        var urlStr2 = "http://"+localhost+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
+        
         urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         urlStr2 = urlStr2.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-
+        
         let url = URL(string: urlStr)!;
         let url2 = URL(string: urlStr2)!;
 
         var request = URLRequest(url: url);
         var request2 = URLRequest(url: url2);
 
-        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "username":u, "email":u] as [String : Any];
-        let body2 = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "email":u] as [String : Any];
+        let body = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "username":u, "email":u, "phoneNum":formattedPhone] as [String : Any];
+        let body2 = ["title":t, "description":d, "venmo":v, "location":l, "price":p, "isService":s, "image":i, "email":u, "phoneNum":formattedPhone] as [String : Any];
 
         let bodyData = try? JSONSerialization.data(withJSONObject: body, options: [])
         let bodyData2 = try? JSONSerialization.data(withJSONObject: body2, options: [])
@@ -237,6 +251,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.priceText.text = ""
         self.segControl.selectedSegmentIndex = 0;
         self.imageView.image = UIImage(named: "noimage")
+        self.phoneNum.text = ""
     }
 }
 
@@ -260,4 +275,10 @@ extension UITextField {
     // Default actions:
     @objc func doneButtonTapped() { self.resignFirstResponder() }
     @objc func cancelButtonTapped() { self.resignFirstResponder() }
+}
+
+extension String {
+    public func toPhoneNumber() -> String {
+        return self.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: nil)
+    }
 }

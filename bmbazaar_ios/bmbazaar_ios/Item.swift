@@ -21,6 +21,7 @@ struct Item: Decodable {
     var isService: Bool;   // specify product or service
     var venmo: String;
     var email: String;
+    var phoneNum: String;
 }
 
 struct Image {

@@ -37,7 +37,8 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
         let localhost = "localhost"
 
         //change to localhost to ip if using an physical device
-        let url = URL(string: "http://"+ip+":3000/apiUser?username="+email)
+//        let url = URL(string: "http://"+ip+":3000/apiUser?username="+email)
+        let url = URL(string: "http://"+localhost+":3000/apiUser?username="+email)
 
         guard let requestUrl = url else { fatalError() }
         // Create URL Request
@@ -149,6 +150,7 @@ extension MyProfileViewController: UICollectionViewDelegate {
         detailsVC?.venmo = items[indexPath.row].venmo
         detailsVC?.img = images[indexPath.row].image
         detailsVC?.email = items[indexPath.row].email
+        detailsVC?.phone = items[indexPath.row].phoneNum
         
         
         // Show details view controller

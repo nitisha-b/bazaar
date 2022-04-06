@@ -180,7 +180,8 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         let ip = "165.106.136.56"
         let localhost = "localhost"
 
-        let url = URL(string: "http://"+ip+":3000/api")
+//        let url = URL(string: "http://"+ip+":3000/api")
+        let url = URL(string: "http://"+localhost+":3000/api")
 
         guard let requestUrl = url else { fatalError() }
         // Create URL Request
@@ -199,7 +200,8 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
             // Convert HTTP Response Data to a simple String
             if let data = data {
                 do {
-                    print(String (data: data, encoding: .utf8)!)
+//                    print(String (data: data, encoding: .utf8)!)
+
                     guard let json = try? JSONDecoder().decode([Item].self, from: data) else {
                         print("Error: Couldn't decode data into Main array")
                         return
@@ -219,6 +221,7 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
                         refreshImages.append(i)
                         refreshItems.append(item)
+//                        print("item: \(item)")
                         
                     }
                 } catch {
@@ -301,6 +304,7 @@ extension MainPageViewController: UICollectionViewDelegate {
         detailsVC?.location = items[indexPath.row].location
         detailsVC?.img = images[indexPath.row].image
         detailsVC?.email = items[indexPath.row].email
+        detailsVC?.phone = items[indexPath.row].phoneNum
         
         // Show details view controller
         self.navigationController?.pushViewController(detailsVC!, animated: true)

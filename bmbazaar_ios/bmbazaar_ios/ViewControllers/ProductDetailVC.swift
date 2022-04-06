@@ -14,11 +14,11 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var prodImage: UIImageView!
 //    @IBOutlet weak var prodDesc: UILabel!
     @IBOutlet weak var desc1: UITextView!
-    
     @IBOutlet weak var prodPrice: UILabel!
     @IBOutlet weak var sellerVenmo: UILabel!
     @IBOutlet weak var sellerLocation: UILabel!
     @IBOutlet weak var sellerEmail: UILabel!
+    @IBOutlet weak var sellerPhone: UILabel!
     
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -30,6 +30,7 @@ class ProductDetailsVC: UIViewController {
     var img:UIImage = UIImage(named: "avatar-5")!
     var email = ""
     var location = ""
+    var phone = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class ProductDetailsVC: UIViewController {
         prodImage.image = img
         sellerLocation.text = location
         sellerEmail.text = email
+        sellerPhone.text = phone
         
         // Disable delete button for home page
         let parentVC = self.navigationController?.viewControllers[0]
