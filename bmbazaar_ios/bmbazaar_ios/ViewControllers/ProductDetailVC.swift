@@ -58,27 +58,28 @@ class ProductDetailsVC: UIViewController {
     }
     
     @IBAction func onClickDelete(_ sender: Any) {
+        print("delete")
         deleteItem(database: "items", title: name, username: email);
         deleteItem(database: "users", title: name, username: email)
     }
     
     
     @IBAction func onClickPhoneNumber(_ sender: Any) {
-        phoneDigits = phone.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
-        
-        if (phoneDigits.count > 0) {
-            clickablePhoneNumber()
-        }
+//        phoneDigits = phone.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+//
+//        if (phoneDigits.count > 0) {
+//            clickablePhoneNumber()
+//        }
     }
     
     func clickablePhoneNumber() {
         
-        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneDigits)") {
-            let application:UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL as URL)) {
-                application.openURL(phoneCallURL as URL);
-            }
-          }
+//        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneDigits)") {
+//            let application:UIApplication = UIApplication.shared
+//            if (application.canOpenURL(phoneCallURL as URL)) {
+//                application.openURL(phoneCallURL as URL);
+//            }
+//          }
     }
     
     func displayAlert(isDeleted: Bool) {
@@ -113,7 +114,8 @@ class ProductDetailsVC: UIViewController {
     }
     func deleteItem(database: String, title: String, username: String) {
         var urlStr = ""
-        let ip = "165.106.136.56"
+//        let ip = "165.106.136.56"
+        let ip = "165.106.118.41"
         
         if (database == "items") {
             urlStr = "http://"+ip+":3000/delete?title="+name+"&email="+username

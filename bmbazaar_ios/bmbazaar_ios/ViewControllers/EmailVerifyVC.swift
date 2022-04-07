@@ -40,7 +40,7 @@ class EmailVerifyVC: UIViewController {
             
             //send email to UploadViewController
             let defaults = UserDefaults.standard
-            defaults.set(self.userEmail.text!,forKey: "email")
+            defaults.set(email, forKey: "email")
                 defaults.synchronize()
 
             createUser(email: email)
@@ -56,7 +56,8 @@ class EmailVerifyVC: UIViewController {
     }
     
     func createUser(email: String) {
-        let ip = "165.106.136.56"
+        let ip = "165.106.118.41"
+//        let ip = "165.106.136.56"
         let localhost = "localhost"
 
         var urlStr = "http://"+ip+":3000/createUser?username="+email;

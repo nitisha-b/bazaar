@@ -111,8 +111,9 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
         self.collectionView!.alwaysBounceVertical = true
         self.refresher.tintColor = UIColor.red
         self.refresher.addTarget(self, action: #selector(onLoad), for: .valueChanged)
+        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.collectionView!.addSubview(refresher)
-        // Do any additional setup after loading the view.
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         
