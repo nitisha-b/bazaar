@@ -25,8 +25,9 @@ class EmailVerifyVC: UIViewController {
     
     
     @IBAction func onClickVerify(_ sender: Any) {
-        let email = userEmail.text ?? ""
-        
+        let email1 = userEmail.text ?? ""
+        let email = email1.trimmingCharacters(in: .whitespacesAndNewlines)
+
         let range = NSRange(location: 0, length: email.utf16.count)
         
         

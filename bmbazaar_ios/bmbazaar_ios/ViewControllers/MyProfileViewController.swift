@@ -32,8 +32,9 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
         //get email from verification page
         let defaults = UserDefaults.standard;
         email = defaults.object(forKey: "email") as! String;
+        email = email.trimmingCharacters(in: .whitespacesAndNewlines)
         
-//        let ip = "165.106.136.56"
+        //        let ip = "165.106.136.56"
         let ip = "165.106.118.41"
         let localhost = "localhost"
 
