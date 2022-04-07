@@ -65,21 +65,21 @@ class ProductDetailsVC: UIViewController {
     
     
     @IBAction func onClickPhoneNumber(_ sender: Any) {
-//        phoneDigits = phone.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
-//
-//        if (phoneDigits.count > 0) {
-//            clickablePhoneNumber()
-//        }
+        phoneDigits = phone.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+
+        if (phoneDigits.count > 0) {
+            clickablePhoneNumber()
+        }
     }
     
     func clickablePhoneNumber() {
         
-//        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneDigits)") {
-//            let application:UIApplication = UIApplication.shared
-//            if (application.canOpenURL(phoneCallURL as URL)) {
-//                application.openURL(phoneCallURL as URL);
-//            }
-//          }
+        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneDigits)") {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL as URL)) {
+                application.openURL(phoneCallURL as URL);
+            }
+          }
     }
     
     func displayAlert(isDeleted: Bool) {
