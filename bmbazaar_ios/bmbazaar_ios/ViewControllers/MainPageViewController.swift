@@ -177,7 +177,8 @@ class MainPageViewController: UIViewController, UICollectionViewDelegateFlowLayo
         refreshImages.removeAll()
         
         
-        let ip = "165.106.136.56"
+//        let ip = "165.106.136.56"
+        let ip = "165.106.118.41"
         let localhost = "localhost"
 
         let url = URL(string: "http://"+ip+":3000/api")

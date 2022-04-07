@@ -53,6 +53,7 @@ class ProductDetailsVC: UIViewController {
         let parentVC = self.navigationController?.viewControllers[0]
         if (parentVC!.isKind(of: MainPageViewController.self)) {
             deleteButton.isEnabled = false
+            deleteButton.setTitle("To delete, go to \"My Profile\"", for: .normal)
         }
     }
     

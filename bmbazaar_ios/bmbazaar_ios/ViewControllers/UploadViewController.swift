@@ -163,7 +163,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             formatPhoneNumber()
             let phone = "&phoneNum=" + formattedPhone
             
-            let ip = "165.106.136.56"
+//            let ip = "165.106.136.56
+            let ip = "165.106.118.41"
             let localhost = "localhost"
             
             //upload to users
