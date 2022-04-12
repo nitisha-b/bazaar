@@ -19,11 +19,13 @@ class EmailVerifyVC: UIViewController {
         super.viewDidLoad()
         title = "Verify User"
         errorMessage.text = ""
-        
-        // Do any additional setup after loading the view.
     }
     
-    
+    /*
+     * Verifies the user's email address
+     * If the email is valid and does not already exist in the database, it creates a new user
+     * Saves the email to UserDefaults so it can be used in other view controllers when required
+     */
     @IBAction func onClickVerify(_ sender: Any) {
         let email1 = userEmail.text ?? ""
         let email = email1.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -55,6 +57,10 @@ class EmailVerifyVC: UIViewController {
         }
     }
     
+    /*
+     * Uses the POST endpoint to create a new user in the database
+     * Creates a new user in the MongoDB database if it is not an existing user
+     */
     func createUser(email: String) {
         let ip = "165.106.118.41"
 //        let ip = "165.106.136.56"

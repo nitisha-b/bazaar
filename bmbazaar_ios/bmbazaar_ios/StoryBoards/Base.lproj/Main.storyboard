@@ -204,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6D-P3-Ukj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="238" y="654"/>
+            <point key="canvasLocation" x="349" y="654"/>
         </scene>
         <!--UserLoginViewController-->
         <scene sceneID="FF3-Ex-Y9i">
@@ -626,7 +626,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-880" y="-651"/>
+            <point key="canvasLocation" x="-1010" y="-993"/>
         </scene>
         <!--Home-->
         <scene sceneID="3ue-jT-hDa">
@@ -646,7 +646,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9t-TW-By0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-448" y="654"/>
+            <point key="canvasLocation" x="-439" y="654"/>
         </scene>
         <!--Email VerifyVC-->
         <scene sceneID="s40-LJ-SFu">
@@ -720,7 +720,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0d-qK-59q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-881" y="-13"/>
+            <point key="canvasLocation" x="-1010" y="-72"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Svp-5O-mUV">
@@ -866,7 +866,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVm-vw-7GN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1667" y="-72"/>
+            <point key="canvasLocation" x="1180" y="654"/>
         </scene>
         <!--My Profile-->
         <scene sceneID="8gt-3h-paz">

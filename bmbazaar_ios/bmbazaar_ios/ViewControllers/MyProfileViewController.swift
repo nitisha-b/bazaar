@@ -17,14 +17,40 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
     var items = [Item]()
     var images = [Image]()
     
+    // Temporary arrays
     var refreshItems = [Item]()
     var refreshImages = [Image]()
+    
     var email = ""
     
     let refreshControl = UIRefreshControl()
-    
     var refresher:UIRefreshControl!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "My Profile"
+        
+        /* Create and set up a new refresher to call the "onLoad" function everytime the page is refreshed */
+        self.refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.red
+        self.refresher.addTarget(self, action: #selector(onLoad), for: .valueChanged)
+        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.collectionView!.addSubview(refresher)
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.reloadData()
+        
+        onLoad()
+    }
+
+    /*
+     * Uses the "GET" HTTP endpoint to fetch data from the MongoDB database and the images from the AWS server.
+     * Uses temporary arrays to store the items fetched from the databases. The arrays are emptied each time the
+     * function is called to avoid overlaps with the filtered items arrays.
+     */
     @objc func onLoad() {
         refreshItems.removeAll()
         refreshImages.removeAll()
@@ -38,7 +64,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
         let ip = "165.106.118.41"
         let localhost = "localhost"
 
-        //change to localhost to ip if using an physical device
+        // Change to localhost to ip if using an physical device
         let url = URL(string: "http://"+ip+":3000/apiUser?username="+email)
 //        let url = URL(string: "http://"+localhost+":3000/apiUser?username="+email)
         
@@ -48,6 +74,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
         var request = URLRequest(url: requestUrl)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
+        
         // Send HTTP Request
         let task = URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
 
@@ -80,11 +107,12 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
 
                         refreshItems.append(item)
                         refreshImages.append(i)
-                        
                     }
                 } catch {
                     print("Failed to load: \(error.localizedDescription)")
                 }
+                
+                /* Resets the item arrays everytime the collection view is refreshed */
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     items = refreshItems
@@ -94,7 +122,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
                     stopRefresher()
                 }
             }
-
         }
         task.resume()
     }
@@ -102,28 +129,12 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegateFlowLay
     func stopRefresher() {
         self.refresher.endRefreshing()
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "My Profile"
-        
-        self.refresher = UIRefreshControl()
-        self.collectionView!.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.red
-        self.refresher.addTarget(self, action: #selector(onLoad), for: .valueChanged)
-        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.collectionView!.addSubview(refresher)
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        collectionView.reloadData()
-        
-        onLoad()
-    }
-
 }
 
+/*
+ * Extension of the class to implement the UICollectionViewDataSource
+ * This is where data for the collection view is provided and cells are filled in with their respective information
+ */
 extension MyProfileViewController: UICollectionViewDataSource {
  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -141,8 +152,12 @@ extension MyProfileViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
 }
+
+/*
+ * Extension of the class to implement the UICollectionViewDelegate
+ * This is where the current selected cell is used to navigate to the product details page and where the product details page gets the all the information from
+ */
 extension MyProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

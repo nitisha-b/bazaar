@@ -12,16 +12,12 @@ class ProductDetailsVC: UIViewController {
     
     @IBOutlet weak var prodTitle: UILabel!
     @IBOutlet weak var prodImage: UIImageView!
-//    @IBOutlet weak var prodDesc: UILabel!
     @IBOutlet weak var desc1: UITextView!
     @IBOutlet weak var prodPrice: UILabel!
     @IBOutlet weak var sellerVenmo: UILabel!
     @IBOutlet weak var sellerLocation: UILabel!
     @IBOutlet weak var sellerEmail: UILabel!
-//    @IBOutlet weak var sellerPhone: UILabel!
-    
     @IBOutlet weak var sellerPhone: UIButton!
-    
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -83,7 +79,8 @@ class ProductDetailsVC: UIViewController {
     }
     
     func displayAlert(isDeleted: Bool) {
-        print("isparent \(navigationController?.viewControllers[0].isKind(of: MyProfileViewController.self))")
+//        print("isparent \(navigationController?.viewControllers[0].isKind(of: MyProfileViewController.self))")
+        
         if (isDeleted) {
             // Create a new alert
             let deletedAlert = UIAlertController(title: "Yay!", message: "Product successfully deleted!", preferredStyle: .alert)

@@ -53,15 +53,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         phoneNum.textContentType = .telephoneNumber
     }
     
+    /* Opens the photos library when the "Upload Image" button is pressed */
     @IBAction func loadImageButtonTapped(_ sender: UIButton) {
-    
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
-
         present(imagePicker, animated: true, completion: nil)
-        
     }
 
+    /* Dismisses the image picker after the user taps on an image and picks it */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
@@ -71,11 +70,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         dismiss(animated: true, completion: nil)
     }
     
+    /* Dismisses the image picker when cancel button is pressed */
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             dismiss(animated: true, completion: nil)
-        }
+    }
     
-    // To generate random key
+    /* Generates a random key of a given length using letters and digits */
     func generateRandomStringWithLength(length: Int) -> String {
         let randomString: NSMutableString = NSMutableString(capacity: length)
         let letters: NSMutableString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -89,13 +89,17 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         return String(randomString)
     }
     
-   //  To hide the keyboard when press enter
+   /* Hides the keyboard when press enter */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            self.view.endEditing(true)
-            return false
-        }
+        self.view.endEditing(true)
+        return false
+    }
 
-    
+    /*
+     * Called when the "Upload" button is clicked
+     * Uses the POST HTTP endpoint to post the item to the Items and the Users database in MongoDb
+     * Uploads the image from the item to AWS and links it to MongoDB using the randomly generated key
+     */
     @IBAction func onClickUpload(_ sender: UIButton!) {
         
         // Exit function if form validation fails
@@ -159,7 +163,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             let i: String = key
             let image1: String = "&image=" + i
             
-            // format phone number
+            // Format phone number
             formatPhoneNumber()
             let phone = "&phoneNum=" + formattedPhone
             
@@ -167,13 +171,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             let ip = "165.106.118.41"
             let localhost = "localhost"
             
-            //upload to users
-            //change to localhost to ip if using an physical device
+            // Upload to users
+            // Change to localhost to ip if using an physical device
             var urlStr = "http://"+ip+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
     //
 //            var urlStr = "http://"+localhost+":3000/addItemToUser?"+title+desc+ven+loc+price+isService+image1+username+"&email="+u+phone;
             
-            //upload to items
+            // Upload to items
             var urlStr2 = "http://"+ip+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
 //            var urlStr2 = "http://"+localhost+":3000/createItemInApp?"+title+desc+ven+loc+price+isService+image1+"&email="+u+phone;
             
@@ -212,6 +216,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                     print("Http request failed \(error)")
                 }
                 
+                // Display alert and clear form when the item is uploaded to database
                 DispatchQueue.main.async {
                     self.displayAlert(isPosted: isPosted)
                     self.clearForm()
@@ -247,8 +252,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         // Phone number cannot be less or greater than 10 digits
-        
-//        let num = phoneNum.text?.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression) ?? ""
         formatPhoneNumber()
         
         if (phoneDigitsOnly.count != 0 && phoneDigitsOnly.count != 10) {
@@ -263,12 +266,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         return true
     }
     
+    /* Formats the phone number entered by the user to replace all non-digit characters and display it in the phone number format  */
     func formatPhoneNumber() {
         let phoneText = phoneNum.text ?? "n/a"
         phoneDigitsOnly = phoneText.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
         formattedPhone = phoneDigitsOnly.toPhoneNumber()
     }
     
+    /* Displays alert when the item is posted in the database */
     func displayAlert(isPosted: Bool) {
         
         if (isPosted) {
@@ -288,6 +293,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         
     }
     
+    /* Reset all the fields in the form to their default state */
     func clearForm() {
         self.titleText.text = ""
         self.descText.text = ""
@@ -300,6 +306,9 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
 }
 
+/*
+ * Extend the UITextField class to implement the function to add a toolbar to the keyboard displayed when the text field is clicked
+ */
 extension UITextField {
     func addDoneCancelToolbar(onDone: (target: Any, action: Selector)? = nil, onCancel: (target: Any, action: Selector)? = nil) {
         let onCancel = onCancel ?? (target: self, action: #selector(cancelButtonTapped))
@@ -322,6 +331,9 @@ extension UITextField {
     @objc func cancelButtonTapped() { self.resignFirstResponder() }
 }
 
+/*
+ * Extend the String class to implement the function to format any given phone number to the format: (xxx) xxx-xxxx
+ */
 extension String {
     public func toPhoneNumber() -> String {
         return self.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: nil)
